@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import LanguageSwitch from './LanguageSwitch.svelte';
 
 	const t = $derived(locale.t);
+	// Year pages have their own archive section; elsewhere fall back to the newest year's.
+	const archiveHref = $derived(page.data.year ? `${page.url.pathname}#archive` : '/#archive');
 </script>
 
 <header>
@@ -13,7 +16,7 @@
 		</a>
 		<div class="flex items-center gap-6">
 			<a
-				href="#archive"
+				href={archiveHref}
 				class="hidden text-xs font-medium tracking-[0.16em] quiet-link uppercase sm:inline"
 			>
 				{t.archiveLink}
