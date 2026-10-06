@@ -478,3 +478,15 @@ This file contains persistent project rules.
 Individual prompts will provide the current task and may contain more specific requirements.
 
 When a task-specific instruction and this file differ, follow the more specific current task unless doing so would fundamentally contradict the architecture of the project.
+
+---
+
+# Git workflow
+
+The project is under Git version control (branch `main`).
+
+- Inspect `git status` before starting substantial work.
+- Never discard or overwrite unrelated user changes.
+- Never use destructive Git commands such as `git reset --hard`, `git checkout -- <file>` on user changes, or force pushes unless explicitly instructed.
+- After completing a discrete requested feature or design iteration, run the project checks (format, lint, svelte-check, build). Once they pass, create a concise Git commit for that milestone unless Dan explicitly says not to.
+- Do not amend or rewrite previous commits unless explicitly asked.
