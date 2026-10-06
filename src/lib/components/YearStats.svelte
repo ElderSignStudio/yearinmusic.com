@@ -17,9 +17,7 @@
 <Section id="stats" kicker={t.statsKicker} srTitle={t.statsKicker}>
 	<div class="grid gap-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-20">
 		<div>
-			<p
-				class="-ml-[0.04em] font-display text-[6rem] leading-[0.85] font-medium tracking-tight tabular-nums md:text-[7.5rem]"
-			>
+			<p class="-ml-[0.05em] numeral-display text-[6rem] leading-[0.8] md:text-[7.5rem]">
 				{data.totalAlbumsRated}
 			</p>
 			<p class="mt-5 kicker">{t.albumsRated}</p>

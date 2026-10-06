@@ -21,7 +21,7 @@
 			<li
 				class="grid grid-cols-[2.75rem_minmax(0,1fr)_auto_3.5rem] items-baseline gap-x-3 gap-y-2 py-2.5 sm:grid-cols-[2.75rem_10rem_minmax(0,1fr)_2.5rem_3.75rem] sm:items-center sm:gap-x-4 sm:py-2 md:grid-cols-[2.75rem_11rem_minmax(0,1fr)_2.5rem_3.75rem]"
 			>
-				<span class="font-display text-base font-medium tabular-nums">
+				<span class="text-sm font-medium tabular-nums">
 					{bucket.rating.toFixed(1)}
 				</span>
 				<span class="min-w-0 text-sm leading-snug text-ink">{locale.pick(bucket.label)}</span>

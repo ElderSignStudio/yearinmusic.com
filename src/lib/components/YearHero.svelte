@@ -32,9 +32,7 @@
 			{t.albumsRated}
 		</p>
 
-		<h1
-			class="mt-5 -ml-[0.05em] font-display text-[clamp(6.5rem,27vw,18rem)] leading-[0.82] font-medium tracking-[-0.05em] tabular-nums"
-		>
+		<h1 class="mt-5 -ml-[0.06em] numeral-display text-[clamp(6.5rem,27vw,18rem)] leading-[0.8]">
 			{data.year}
 		</h1>
 

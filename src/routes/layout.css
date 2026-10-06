@@ -143,6 +143,14 @@
 	font-variant-numeric: lining-nums;
 }
 
+/* Large numeric display (hero year, statistics): Inter, extra-light, graphic. */
+@utility numeral-display {
+	font-family: var(--type-body);
+	font-weight: 200;
+	font-variant-numeric: tabular-nums lining-nums;
+	letter-spacing: -0.05em;
+}
+
 /* Small uppercase label used for kickers, artist names, metadata. */
 @utility kicker {
 	font-family: var(--type-body);
@@ -153,14 +161,13 @@
 	font-weight: 500;
 }
 
-/* Ranking numbers: tabular, tight, display face. */
+/* Ranking numbers: Inter, light, tabular lining figures, tight tracking. */
 @utility rank-numeral {
-	font-family: var(--type-display);
-	font-optical-sizing: auto;
-	font-weight: 500;
+	font-family: var(--type-body);
+	font-weight: 300;
 	font-variant-numeric: tabular-nums lining-nums;
 	line-height: 0.85;
-	letter-spacing: -0.03em;
+	letter-spacing: -0.04em;
 	color: var(--year-accent);
 }
 
