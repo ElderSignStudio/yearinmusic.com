@@ -16,7 +16,7 @@ export const year2023: YearData = {
 	year: 2023,
 	theme: { accent: '#7fb7a4' },
 	intro: {
-		pt: [
+		'pt-BR': [
 			'Bem-vindo ao meu top dos melhores álbuns lançados em 2023!',
 			'Avaliei 104 álbuns lançados em 2023.'
 		],
@@ -25,15 +25,15 @@ export const year2023: YearData = {
 	totalAlbumsRated: 104,
 	previousYearAlbumsRated: 97,
 	ratingDistribution: [
-		{ rating: 5, label: { pt: 'Obras-primas', en: 'Masterpieces' }, count: 2 },
-		{ rating: 4.5, label: { pt: 'Incríveis', en: 'Amazing' }, count: 9 },
-		{ rating: 4, label: { pt: 'Ótimos', en: 'Great' }, count: 18 },
-		{ rating: 3.5, label: { pt: 'Bons', en: 'Good' }, count: 41 },
-		{ rating: 3, label: { pt: 'Acima da média', en: 'Above Average' }, count: 22 },
-		{ rating: 2.5, label: { pt: 'Nada de especial', en: 'Nothing Special' }, count: 10 },
-		{ rating: 2, label: { pt: 'Ruins', en: 'Bad' }, count: 2 },
-		{ rating: 1, label: { pt: 'Horríveis', en: 'Horrible' }, count: 0 },
-		{ rating: 0, label: { pt: 'Lixo', en: 'Filth' }, count: 0 }
+		{ rating: 5, label: { 'pt-BR': 'Obras-primas', en: 'Masterpieces' }, count: 2 },
+		{ rating: 4.5, label: { 'pt-BR': 'Incríveis', en: 'Amazing' }, count: 9 },
+		{ rating: 4, label: { 'pt-BR': 'Ótimos', en: 'Great' }, count: 18 },
+		{ rating: 3.5, label: { 'pt-BR': 'Bons', en: 'Good' }, count: 41 },
+		{ rating: 3, label: { 'pt-BR': 'Acima da média', en: 'Above Average' }, count: 22 },
+		{ rating: 2.5, label: { 'pt-BR': 'Nada de especial', en: 'Nothing Special' }, count: 10 },
+		{ rating: 2, label: { 'pt-BR': 'Ruins', en: 'Bad' }, count: 2 },
+		{ rating: 1, label: { 'pt-BR': 'Horríveis', en: 'Horrible' }, count: 0 },
+		{ rating: 0, label: { 'pt-BR': 'Lixo', en: 'Filth' }, count: 0 }
 	],
 	rymListUrl: 'https://rateyourmusic.com/list/PLACEHOLDER/2023/',
 	spotifyPlaylistUrl: 'https://open.spotify.com/playlist/37i9dQZF1DX4JAvHpjipBk',

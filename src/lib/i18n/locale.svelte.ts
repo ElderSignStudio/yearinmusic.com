@@ -2,13 +2,25 @@ import { browser } from '$app/env';
 import type { Locale, Localized } from '#lib/types/year.js';
 import { translations, type Dictionary } from './translations.js';
 
-export const DEFAULT_LOCALE: Locale = 'pt';
-export const LOCALES: readonly Locale[] = ['pt', 'en'];
+export const DEFAULT_LOCALE: Locale = 'pt-BR';
+export const LOCALES: readonly Locale[] = ['pt-BR', 'en'];
+/** Short labels for the language switch. */
+export const LOCALE_LABELS: Record<Locale, string> = { 'pt-BR': 'BR', en: 'EN' };
+/** Full names, in their own language, for assistive technology. */
+export const LOCALE_NAMES: Record<Locale, string> = {
+	'pt-BR': 'Português (Brasil)',
+	en: 'English'
+};
 const STORAGE_KEY = 'yim.locale';
-const HTML_LANG: Record<Locale, string> = { pt: 'pt-BR', en: 'en' };
 
 function isLocale(value: unknown): value is Locale {
-	return value === 'pt' || value === 'en';
+	return value === 'pt-BR' || value === 'en';
+}
+
+/** Accepts the legacy `pt` value persisted by the first prototype. */
+function fromStored(value: string | null): Locale | undefined {
+	if (value === 'pt') return 'pt-BR';
+	return isLocale(value) ? value : undefined;
 }
 
 class LocaleState {
@@ -28,8 +40,8 @@ class LocaleState {
 	restore() {
 		if (!browser) return;
 		try {
-			const stored = localStorage.getItem(STORAGE_KEY);
-			if (isLocale(stored)) this.current = stored;
+			const stored = fromStored(localStorage.getItem(STORAGE_KEY));
+			if (stored) this.current = stored;
 		} catch {
 			/* storage unavailable — keep default */
 		}
@@ -48,7 +60,7 @@ class LocaleState {
 	}
 
 	private applyLang() {
-		if (browser) document.documentElement.lang = HTML_LANG[this.current];
+		if (browser) document.documentElement.lang = this.current;
 	}
 }
 

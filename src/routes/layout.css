@@ -7,7 +7,7 @@
 @import 'tailwindcss';
 
 /* Provisional web fonts — swap these two imports + the --type-* tokens to retheme. */
-@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/source-serif-4/opsz.css';
 @import '@fontsource-variable/inter';
 
 @plugin 'daisyui' {
@@ -56,7 +56,7 @@
 	--year-accent: var(--accent);
 
 	/* Typography */
-	--type-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+	--type-display: 'Source Serif 4 Variable', 'Iowan Old Style', Georgia, serif;
 	--type-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
 	/* Widths */
@@ -139,7 +139,8 @@
 
 @utility font-display {
 	font-family: var(--type-display);
-	font-variation-settings: 'opsz' 144;
+	font-optical-sizing: auto;
+	font-variant-numeric: lining-nums;
 }
 
 /* Small uppercase label used for kickers, artist names, metadata. */
@@ -155,14 +156,11 @@
 /* Ranking numbers: tabular, tight, display face. */
 @utility rank-numeral {
 	font-family: var(--type-display);
-	font-variation-settings:
-		'opsz' 144,
-		'SOFT' 0,
-		'WONK' 0;
+	font-optical-sizing: auto;
 	font-weight: 500;
 	font-variant-numeric: tabular-nums lining-nums;
 	line-height: 0.85;
-	letter-spacing: -0.04em;
+	letter-spacing: -0.03em;
 	color: var(--year-accent);
 }
 

@@ -1,4 +1,5 @@
-export type Locale = 'pt' | 'en';
+/** Brazilian Portuguese (default) and English. */
+export type Locale = 'pt-BR' | 'en';
 
 /** A piece of editorial text that exists in both languages. */
 export type Localized<T = string> = Record<Locale, T>;
@@ -43,6 +44,11 @@ export interface YearData {
 	ratingDistribution: RatingBucket[];
 	rymListUrl: string;
 	spotifyPlaylistUrl: string;
+	/**
+	 * Optional 1200×630 social preview image (local path under `static/`).
+	 * Falls back to the #1 artwork when omitted.
+	 */
+	shareImage?: string;
 	/** Must be sorted by rank ascending. */
 	albums: Album[];
 }

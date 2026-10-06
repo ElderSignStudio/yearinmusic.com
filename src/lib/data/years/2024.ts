@@ -16,7 +16,7 @@ export const year2024: YearData = {
 	year: 2024,
 	theme: { accent: '#e2b45f' },
 	intro: {
-		pt: [
+		'pt-BR': [
 			'Bem-vindo ao meu top 20 dos melhores álbuns lançados em 2024!',
 			'Avaliei 168 álbuns lançados em 2024, bem mais do que em 2023 (avaliei 104 álbuns lançados naquele ano).'
 		],
@@ -28,15 +28,15 @@ export const year2024: YearData = {
 	totalAlbumsRated: 168,
 	previousYearAlbumsRated: 104,
 	ratingDistribution: [
-		{ rating: 5, label: { pt: 'Obras-primas', en: 'Masterpieces' }, count: 3 },
-		{ rating: 4.5, label: { pt: 'Incríveis', en: 'Amazing' }, count: 15 },
-		{ rating: 4, label: { pt: 'Ótimos', en: 'Great' }, count: 26 },
-		{ rating: 3.5, label: { pt: 'Bons', en: 'Good' }, count: 72 },
-		{ rating: 3, label: { pt: 'Acima da média', en: 'Above Average' }, count: 30 },
-		{ rating: 2.5, label: { pt: 'Nada de especial', en: 'Nothing Special' }, count: 20 },
-		{ rating: 2, label: { pt: 'Ruins', en: 'Bad' }, count: 2 },
-		{ rating: 1, label: { pt: 'Horríveis', en: 'Horrible' }, count: 0 },
-		{ rating: 0, label: { pt: 'Lixo', en: 'Filth' }, count: 0 }
+		{ rating: 5, label: { 'pt-BR': 'Obras-primas', en: 'Masterpieces' }, count: 3 },
+		{ rating: 4.5, label: { 'pt-BR': 'Incríveis', en: 'Amazing' }, count: 15 },
+		{ rating: 4, label: { 'pt-BR': 'Ótimos', en: 'Great' }, count: 26 },
+		{ rating: 3.5, label: { 'pt-BR': 'Bons', en: 'Good' }, count: 72 },
+		{ rating: 3, label: { 'pt-BR': 'Acima da média', en: 'Above Average' }, count: 30 },
+		{ rating: 2.5, label: { 'pt-BR': 'Nada de especial', en: 'Nothing Special' }, count: 20 },
+		{ rating: 2, label: { 'pt-BR': 'Ruins', en: 'Bad' }, count: 2 },
+		{ rating: 1, label: { 'pt-BR': 'Horríveis', en: 'Horrible' }, count: 0 },
+		{ rating: 0, label: { 'pt-BR': 'Lixo', en: 'Filth' }, count: 0 }
 	],
 	// TODO: replace with the real RYM yearly list URL.
 	rymListUrl: 'https://rateyourmusic.com/list/PLACEHOLDER/2024/',

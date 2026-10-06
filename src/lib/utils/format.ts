@@ -8,13 +8,13 @@ export function formatRank(rank: number): string {
 /** `+64`, `−12`, `±0` */
 export function formatDelta(delta: number, locale: Locale): string {
 	if (delta === 0) return '±0';
-	return new Intl.NumberFormat(locale === 'pt' ? 'pt-BR' : 'en', {
+	return new Intl.NumberFormat(locale, {
 		signDisplay: 'always'
 	}).format(delta);
 }
 
 export function formatPercent(value: number, locale: Locale): string {
-	return new Intl.NumberFormat(locale === 'pt' ? 'pt-BR' : 'en', {
+	return new Intl.NumberFormat(locale, {
 		style: 'percent',
 		minimumFractionDigits: 1,
 		maximumFractionDigits: 1

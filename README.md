@@ -1,6 +1,6 @@
 # Year in Music
 
-Personal annual music archive: one ranked album list and one Spotify playlist per year, bilingual (PT default, EN), built as a static SvelteKit site.
+Personal annual music archive: one ranked album list and one Spotify playlist per year, bilingual (Brazilian Portuguese default, English), built as a static SvelteKit site.
 
 ## Commands
 
@@ -25,9 +25,10 @@ Each year chooses its own accent via `theme.accent`; everything else comes from 
 
 - `src/routes/` — `/` (newest year) and `/[year=year]`, both rendering `YearPage`.
 - `src/lib/components/` — hero, intro, stats, ranking (winner / featured / list), playlist, archive, chrome.
-- `src/lib/i18n/` — `locale.svelte.ts` (PT/EN state + localStorage) and `translations.ts` (UI strings).
+- `src/lib/i18n/` — `locale.svelte.ts` (pt-BR/en state + localStorage) and `translations.ts` (UI strings).
 - `src/lib/data/years/` — one file per year plus the registry.
-- `src/routes/layout.css` — design tokens, fonts, Tailwind/daisyUI setup, shared utilities.
+- `src/routes/layout.css` — design tokens, fonts (Source Serif 4 + Inter, self-hosted via Fontsource), Tailwind/daisyUI setup, shared utilities.
+- `src/lib/site.ts` — `SITE_URL` for absolute canonical/Open Graph URLs; set it once the domain is chosen.
 
 ## Notes
 

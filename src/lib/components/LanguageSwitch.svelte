@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LOCALES, locale } from '#lib/i18n/locale.svelte.js';
+	import { LOCALES, LOCALE_LABELS, LOCALE_NAMES, locale } from '#lib/i18n/locale.svelte.js';
 
 	const t = $derived(locale.t);
 </script>
@@ -15,10 +15,11 @@
 			type="button"
 			lang={code}
 			aria-pressed={locale.current === code}
+			aria-label={LOCALE_NAMES[code]}
 			onclick={() => locale.set(code)}
 			class="cursor-pointer px-1 py-1.5 quiet-link underline-offset-[6px] aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-year aria-pressed:decoration-2"
 		>
-			{code}
+			{LOCALE_LABELS[code]}
 		</button>
 	{/each}
 </div>

@@ -1,6 +1,6 @@
 import type { Locale } from '#lib/types/year.js';
 
-const pt = {
+const ptBR = {
 	siteName: 'Year in Music',
 	siteTagline: 'Um arquivo pessoal de álbuns do ano',
 	heroTitle: 'Meus álbuns do ano',
@@ -42,7 +42,7 @@ const pt = {
 	pageDescription: (year: number) => `Os melhores álbuns e músicas de ${year}, segundo o Dan.`
 };
 
-type Dictionary = typeof pt;
+type Dictionary = typeof ptBR;
 
 const en: Dictionary = {
 	siteName: 'Year in Music',
@@ -86,5 +86,5 @@ const en: Dictionary = {
 	pageDescription: (year) => `The best albums and songs of ${year}, according to Dan.`
 };
 
-export const translations: Record<Locale, Dictionary> = { pt, en };
+export const translations: Record<Locale, Dictionary> = { 'pt-BR': ptBR, en };
 export type { Dictionary };

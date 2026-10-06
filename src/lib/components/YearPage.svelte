@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { YearData } from '#lib/types/year.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
+	import { yearMeta } from '#lib/seo.js';
+	import PageMeta from './PageMeta.svelte';
 	import YearHero from './YearHero.svelte';
 	import YearIntro from './YearIntro.svelte';
 	import YearStats from './YearStats.svelte';
@@ -9,14 +11,10 @@
 	import Archive from './Archive.svelte';
 
 	let { data }: { data: YearData } = $props();
-	const t = $derived(locale.t);
+	const meta = $derived(yearMeta(data, locale.current));
 </script>
 
-<svelte:head>
-	<title>{data.year} · {t.siteName}</title>
-	<meta name="description" content={t.pageDescription(data.year)} />
-	<link rel="canonical" href="/{data.year}" />
-</svelte:head>
+<PageMeta {meta} />
 
 <YearHero {data} />
 <YearIntro {data} />
