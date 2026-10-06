@@ -27,7 +27,7 @@ Each year chooses its own accent via `theme.accent`; everything else comes from 
 - `src/lib/components/` — hero, intro, stats, ranking (winner / featured / list), playlist, archive, chrome.
 - `src/lib/i18n/` — `locale.svelte.ts` (pt-BR/en state + localStorage) and `translations.ts` (UI strings).
 - `src/lib/data/years/` — one file per year plus the registry.
-- `src/routes/layout.css` — design tokens, fonts (Source Serif 4 + Inter, self-hosted via Fontsource), Tailwind/daisyUI setup, shared utilities.
+- `src/routes/layout.css` — design tokens, fonts (Newsreader + Inter, self-hosted via Fontsource), Tailwind/daisyUI setup, shared utilities.
 - `src/lib/site.ts` — `SITE_URL` for absolute canonical/Open Graph URLs; set it once the domain is chosen.
 
 ## Notes

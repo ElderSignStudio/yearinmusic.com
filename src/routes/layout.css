@@ -7,7 +7,7 @@
 @import 'tailwindcss';
 
 /* Provisional web fonts — swap these two imports + the --type-* tokens to retheme. */
-@import '@fontsource-variable/source-serif-4/opsz.css';
+@import '@fontsource-variable/newsreader/opsz.css';
 @import '@fontsource-variable/inter';
 
 @plugin 'daisyui' {
@@ -56,7 +56,7 @@
 	--year-accent: var(--accent);
 
 	/* Typography */
-	--type-display: 'Source Serif 4 Variable', 'Iowan Old Style', Georgia, serif;
+	--type-display: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
 	--type-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
 	/* Widths */
@@ -143,12 +143,13 @@
 	font-variant-numeric: lining-nums;
 }
 
-/* Large numeric display (hero year, statistics): Inter, extra-light, graphic. */
+/* Large numeric display (hero year, statistics): Newsreader, lining figures. */
 @utility numeral-display {
-	font-family: var(--type-body);
-	font-weight: 200;
-	font-variant-numeric: tabular-nums lining-nums;
-	letter-spacing: -0.05em;
+	font-family: var(--type-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-variant-numeric: lining-nums proportional-nums;
+	letter-spacing: -0.03em;
 }
 
 /* Small uppercase label used for kickers, artist names, metadata. */
@@ -161,13 +162,14 @@
 	font-weight: 500;
 }
 
-/* Ranking numbers: Inter, light, tabular lining figures, tight tracking. */
+/* Ranking numbers: Newsreader, regular weight, tabular lining figures. */
 @utility rank-numeral {
-	font-family: var(--type-body);
-	font-weight: 300;
+	font-family: var(--type-display);
+	font-optical-sizing: auto;
+	font-weight: 400;
 	font-variant-numeric: tabular-nums lining-nums;
 	line-height: 0.85;
-	letter-spacing: -0.04em;
+	letter-spacing: -0.02em;
 	color: var(--year-accent);
 }
 

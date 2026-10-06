@@ -42,7 +42,7 @@
 					{/if}
 					<span class="mt-3 flex items-baseline justify-between gap-3">
 						<span
-							class="text-3xl leading-none font-light tracking-[-0.04em] tabular-nums transition-colors duration-200 group-hover:text-year {isCurrent
+							class="font-display text-3xl leading-none font-normal tracking-[-0.02em] tabular-nums transition-colors duration-200 group-hover:text-year {isCurrent
 								? 'text-year'
 								: 'text-ink'}"
 						>

@@ -32,7 +32,7 @@
 			{t.albumsRated}
 		</p>
 
-		<h1 class="mt-5 -ml-[0.06em] numeral-display text-[clamp(6.5rem,27vw,18rem)] leading-[0.8]">
+		<h1 class="mt-6 -ml-[0.04em] numeral-display text-[clamp(6.5rem,27vw,18rem)] leading-[0.9]">
 			{data.year}
 		</h1>
 
