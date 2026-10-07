@@ -28,3 +28,8 @@ npm-debug.log*
 
 # Editors
 .idea
+
+# Saved RateYourMusic pages for the importer. They can contain logged-in
+# session data, so nothing in here (pages or their *_files folders) is tracked.
+/imports/rym/*
+!/imports/rym/.gitkeep

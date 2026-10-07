@@ -1,0 +1,367 @@
+{
+	"year": 2025,
+	"listTitle": "Top 20 Best Albums of 2025",
+	"rymListUrl": "https://rateyourmusic.com/list/Flict/top-20-best-albums-of-2025/",
+	"introEn": [
+		"Welcome to my top 20 best albums released in 2025!",
+		"I rated 157 albums released in 2025, just a bit less than in 2024 (I rated 168 albums released that year)."
+	],
+	"totalAlbumsRated": 157,
+	"ratingDistribution": [
+		{
+			"rating": 5,
+			"labelEn": "Masterpieces",
+			"count": 4
+		},
+		{
+			"rating": 4.5,
+			"labelEn": "Amazing",
+			"count": 11
+		},
+		{
+			"rating": 4,
+			"labelEn": "Great",
+			"count": 27
+		},
+		{
+			"rating": 3.5,
+			"labelEn": "Good",
+			"count": 65
+		},
+		{
+			"rating": 3,
+			"labelEn": "Above Average",
+			"count": 30
+		},
+		{
+			"rating": 2.5,
+			"labelEn": "Nothing Special",
+			"count": 20
+		},
+		{
+			"rating": 2,
+			"labelEn": "Bad",
+			"count": 2
+		},
+		{
+			"rating": 1,
+			"labelEn": "Horrible",
+			"count": 0
+		},
+		{
+			"rating": 0,
+			"labelEn": "Filth",
+			"count": 0
+		}
+	],
+	"spotifyPlaylistUrl": "https://open.spotify.com/playlist/0cANeNUkiWyPLGvoiSM0VN",
+	"albums": [
+		{
+			"rank": 1,
+			"artist": "Moron Police",
+			"album": "Pachinko",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/moron-police/pachinko/",
+			"primaryGenres": ["Progressive Rock", "Pop Rock", "Rock Opera"],
+			"secondaryGenres": [
+				"Progressive Pop",
+				"Progressive Metal",
+				"Jazz-Rock",
+				"Symphonic Prog",
+				"Shimokita-kei",
+				"Neo-Prog"
+			],
+			"descriptors": ["male vocalist", "theatrical", "eclectic", "epic", "concept album"],
+			"spotifyUrl": "https://open.spotify.com/search/Moron%20Police%20Pachinko",
+			"appleMusicUrl": "https://music.apple.com/search?term=Moron%20Police%20Pachinko",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/c9ebf3629fa74aa58e66f39753aa19ae/13704507"
+		},
+		{
+			"rank": 2,
+			"artist": "Ghost",
+			"album": "Skeletá",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/ghost/skeleta/",
+			"primaryGenres": ["AOR", "Hard Rock"],
+			"secondaryGenres": ["Glam Metal", "Pop Rock", "Heavy Metal"],
+			"descriptors": ["male vocalist", "anthemic", "melodic", "occult", "energetic"],
+			"spotifyUrl": "https://open.spotify.com/search/Ghost%20Skelet%C3%A1",
+			"appleMusicUrl": "https://music.apple.com/search?term=Ghost%20Skelet%C3%A1",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/a7eb40678f61a0715e8416f16c38fdfb/13148310"
+		},
+		{
+			"rank": 3,
+			"artist": "Bon Iver",
+			"album": "Sable, Fable",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/bon-iver/sable-fable/",
+			"primaryGenres": ["Pop Soul", "Art Pop"],
+			"secondaryGenres": ["Indie Folk", "Sophisti-Pop", "Folktronica", "Alternative R&B"],
+			"descriptors": ["uplifting", "soothing", "melodic", "male vocalist", "lush"],
+			"spotifyUrl": "https://open.spotify.com/search/Bon%20Iver%20Sable%2C%20Fable",
+			"appleMusicUrl": "https://music.apple.com/search?term=Bon%20Iver%20Sable%2C%20Fable",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/eaeb84e6b618df1afcdca6027fb5124a/13030050"
+		},
+		{
+			"rank": 4,
+			"artist": "Amorphis",
+			"album": "Borderland",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/amorphis/borderland/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Melodic Death Metal", "Folk Metal"],
+			"descriptors": ["male vocalist", "atmospheric", "melodic", "lush", "melancholic"],
+			"spotifyUrl": "https://open.spotify.com/search/Amorphis%20Borderland",
+			"appleMusicUrl": "https://music.apple.com/search?term=Amorphis%20Borderland",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/aadb427724fba0c3856af435fc48515b/13871639"
+		},
+		{
+			"rank": 5,
+			"artist": "A.C.T",
+			"album": "Eternal Winter",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/a_c_t/eternal-winter/",
+			"primaryGenres": ["Progressive Rock"],
+			"secondaryGenres": [],
+			"descriptors": [
+				"melodic",
+				"male vocalist",
+				"progressive",
+				"uncommon time signatures",
+				"quirky"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/A.C.T%20Eternal%20Winter",
+			"appleMusicUrl": "https://music.apple.com/search?term=A.C.T%20Eternal%20Winter",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/36db436037135a9ca71ff98c8e783508/13636802"
+		},
+		{
+			"rank": 6,
+			"artist": "Everon",
+			"album": "Shells",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/everon/shells/",
+			"primaryGenres": ["Progressive Rock"],
+			"secondaryGenres": ["Progressive Metal", "Neo-Prog"],
+			"descriptors": ["male vocalist", "female vocalist", "lush", "melodic"],
+			"spotifyUrl": "https://open.spotify.com/search/Everon%20Shells",
+			"appleMusicUrl": "https://music.apple.com/search?term=Everon%20Shells",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/2e7935f31487977690efa710c77ed120/12824843"
+		},
+		{
+			"rank": 7,
+			"artist": "Ollie Wride",
+			"album": "The Pressure Point",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/ollie-wride/the-pressure-point/",
+			"primaryGenres": ["Synthpop", "Dreamwave"],
+			"secondaryGenres": ["Blue-Eyed Soul", "Synthwave"],
+			"descriptors": ["nocturnal", "anthemic", "melodic", "passionate", "male vocalist"],
+			"spotifyUrl": "https://open.spotify.com/search/Ollie%20Wride%20The%20Pressure%20Point",
+			"appleMusicUrl": "https://music.apple.com/search?term=Ollie%20Wride%20The%20Pressure%20Point",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/93c94475c18c001a38078c9ca9710560/12897617"
+		},
+		{
+			"rank": 8,
+			"artist": "Men I Trust",
+			"album": "Equus caballus",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/men-i-trust/equus-caballus/",
+			"primaryGenres": ["Bedroom Pop"],
+			"secondaryGenres": ["Sophisti-Pop", "Jangle Pop", "Post-Punk"],
+			"descriptors": ["ethereal", "female vocalist", "rhythmic", "psychedelic", "atmospheric"],
+			"spotifyUrl": "https://open.spotify.com/search/Men%20I%20Trust%20Equus%20caballus",
+			"appleMusicUrl": "https://music.apple.com/search?term=Men%20I%20Trust%20Equus%20caballus",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/0ab855c41d0f9dd5410b689a0467305c/13317282"
+		},
+		{
+			"rank": 9,
+			"artist": "Nourished by Time",
+			"album": "The Passionate Ones",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/nourished-by-time/the-passionate-ones/",
+			"primaryGenres": ["Bedroom Pop", "Alternative R&B"],
+			"secondaryGenres": ["Hypnagogic Pop", "Synthpop", "Sophisti-Pop", "UK Street Soul"],
+			"descriptors": ["lush", "warm", "psychedelic", "male vocalist", "romantic"],
+			"spotifyUrl": "https://open.spotify.com/search/Nourished%20by%20Time%20The%20Passionate%20Ones",
+			"appleMusicUrl": "https://music.apple.com/search?term=Nourished%20by%20Time%20The%20Passionate%20Ones",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/cc2be1bded479f318f87f9cfc2ff28ee/13324520"
+		},
+		{
+			"rank": 10,
+			"artist": "Hayden Pedigo",
+			"album": "I'll Be Waving as You Drive Away",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/hayden-pedigo/ill-be-waving-as-you-drive-away/",
+			"primaryGenres": ["American Primitivism"],
+			"secondaryGenres": ["Ambient Americana", "New Age"],
+			"descriptors": ["peaceful", "atmospheric", "pastoral", "calm", "bright"],
+			"spotifyUrl": "https://open.spotify.com/search/Hayden%20Pedigo%20I'll%20Be%20Waving%20as%20You%20Drive%20Away",
+			"appleMusicUrl": "https://music.apple.com/search?term=Hayden%20Pedigo%20I'll%20Be%20Waving%20as%20You%20Drive%20Away",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/a079601c056b18ea6925b221b7d1c258/13222987"
+		},
+		{
+			"rank": 11,
+			"artist": "Dragonknight",
+			"album": "Legions",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/dragonknight/legions/",
+			"primaryGenres": ["Power Metal"],
+			"secondaryGenres": ["Symphonic Metal", "Folk Metal"],
+			"descriptors": ["epic", "male vocalist", "melodic", "energetic", "fantasy"],
+			"spotifyUrl": "https://open.spotify.com/search/Dragonknight%20Legions",
+			"appleMusicUrl": "https://music.apple.com/search?term=Dragonknight%20Legions",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/7347e60b5b59bfdb0967884bde629992/12947644"
+		},
+		{
+			"rank": 12,
+			"artist": "Fractal Universe",
+			"album": "The Great Filters",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/fractal-universe/the-great-filters/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Technical Death Metal", "Djent"],
+			"descriptors": [
+				"progressive",
+				"male vocalist",
+				"complex",
+				"uncommon time signatures",
+				"atmospheric"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Fractal%20Universe%20The%20Great%20Filters",
+			"appleMusicUrl": "https://music.apple.com/search?term=Fractal%20Universe%20The%20Great%20Filters",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/27bee2c5fdd979f224f1f7c1d59dfd09/13282041"
+		},
+		{
+			"rank": 13,
+			"artist": "青葉市子 [Ichiko Aoba]",
+			"album": "Luminescent Creatures",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/%E9%9D%92%E8%91%89%E5%B8%82%E5%AD%90/luminescent-creatures/",
+			"primaryGenres": ["Singer-Songwriter", "Chamber Folk"],
+			"secondaryGenres": ["New Age", "Ambient", "Nature Recordings"],
+			"descriptors": ["ethereal", "soft", "peaceful", "female vocalist", "atmospheric"],
+			"spotifyUrl": "https://open.spotify.com/search/Ichiko%20Aoba%20Luminescent%20Creatures",
+			"appleMusicUrl": "https://music.apple.com/search?term=Ichiko%20Aoba%20Luminescent%20Creatures",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/73e1b7c2ac5845955f607fd70a0d65b0/12709292"
+		},
+		{
+			"rank": 14,
+			"artist": "Steven Wilson",
+			"album": "The Overview",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/steven-wilson/the-overview/",
+			"primaryGenres": ["Progressive Rock", "Space Rock"],
+			"secondaryGenres": ["Progressive Electronic", "Art Rock", "Space Ambient"],
+			"descriptors": ["male vocalist", "space", "atmospheric", "suite", "progressive"],
+			"spotifyUrl": "https://open.spotify.com/search/Steven%20Wilson%20The%20Overview",
+			"appleMusicUrl": "https://music.apple.com/search?term=Steven%20Wilson%20The%20Overview",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/d1139e05abc9038d256b5ddd85e29aca/12912859"
+		},
+		{
+			"rank": 15,
+			"artist": "Messa",
+			"album": "The Spin",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/messa/the-spin/",
+			"primaryGenres": ["Doom Metal", "Gothic Metal"],
+			"secondaryGenres": ["Gothic Rock", "Occult Rock", "Heavy Psych"],
+			"descriptors": ["female vocalist", "atmospheric", "dark", "melodic", "occult"],
+			"spotifyUrl": "https://open.spotify.com/search/Messa%20The%20Spin",
+			"appleMusicUrl": "https://music.apple.com/search?term=Messa%20The%20Spin",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/ada68d4e2b6ae9bb4a22e37bd10cf74b/13230343"
+		},
+		{
+			"rank": 16,
+			"artist": "SPELLLING",
+			"album": "Portrait of My Heart",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/spellling/portrait-of-my-heart/",
+			"primaryGenres": ["Alternative Rock", "Pop Rock"],
+			"secondaryGenres": ["Progressive Pop", "Art Rock", "Post-Punk Revival", "Power Pop"],
+			"descriptors": ["female vocalist", "lush", "progressive", "eclectic", "passionate"],
+			"spotifyUrl": "https://open.spotify.com/search/SPELLLING%20Portrait%20of%20My%20Heart",
+			"appleMusicUrl": "https://music.apple.com/search?term=SPELLLING%20Portrait%20of%20My%20Heart",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/d43122e1a9c80b206f2163cb11757ff3/12909090"
+		},
+		{
+			"rank": 17,
+			"artist": "Oneohtrix Point Never",
+			"album": "Tranquilizer",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/oneohtrix-point-never/tranquilizer/",
+			"primaryGenres": ["Ambient", "Progressive Electronic", "Sound Collage", "Glitch", "Vapor"],
+			"secondaryGenres": ["Utopian Virtual", "New Age", "Epic Collage", "Space Ambient"],
+			"descriptors": ["ethereal", "sampling", "instrumental", "atmospheric", "nostalgia"],
+			"spotifyUrl": "https://open.spotify.com/search/Oneohtrix%20Point%20Never%20Tranquilizer",
+			"appleMusicUrl": "https://music.apple.com/search?term=Oneohtrix%20Point%20Never%20Tranquilizer",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 20 Best Albums of 2025 - Rate Your Music_files/13867378"
+		},
+		{
+			"rank": 18,
+			"artist": "Jim Ghedi",
+			"album": "Wasteland",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/jim-ghedi/wasteland/",
+			"primaryGenres": ["Progressive Folk", "British Folk Rock", "Avant-Folk"],
+			"secondaryGenres": ["English Folk Music", "Celtic Folk Music"],
+			"descriptors": ["androgynous vocals", "dense", "progressive", "existential", "male vocalist"],
+			"spotifyUrl": "https://open.spotify.com/search/Jim%20Ghedi%20Wasteland",
+			"appleMusicUrl": "https://music.apple.com/search?term=Jim%20Ghedi%20Wasteland",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 20 Best Albums of 2025 - Rate Your Music_files/12779029"
+		},
+		{
+			"rank": 19,
+			"artist": "The Night Flight Orchestra",
+			"album": "Give Us the Moon",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/the-night-flight-orchestra/give-us-the-moon/",
+			"primaryGenres": ["AOR"],
+			"secondaryGenres": ["Hard Rock", "Disco"],
+			"descriptors": ["male vocalist", "melodic", "female vocalist", "nocturnal"],
+			"spotifyUrl": "https://open.spotify.com/search/The%20Night%20Flight%20Orchestra%20Give%20Us%20the%20Moon",
+			"appleMusicUrl": "https://music.apple.com/search?term=The%20Night%20Flight%20Orchestra%20Give%20Us%20the%20Moon",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 20 Best Albums of 2025 - Rate Your Music_files/12661434"
+		},
+		{
+			"rank": 20,
+			"artist": "Black Country, New Road",
+			"album": "Forever Howlong",
+			"releaseYear": 2025,
+			"rymUrl": "https://rateyourmusic.com/release/album/black-country-new-road/forever-howlong/",
+			"primaryGenres": ["Progressive Pop", "Art Rock", "Baroque Pop"],
+			"secondaryGenres": ["Progressive Folk", "Baroque Pop", "Chamber Pop"],
+			"descriptors": ["female vocalist", "progressive", "lush", "complex", "pastoral"],
+			"spotifyUrl": "https://open.spotify.com/search/Black%20Country%2C%20New%20Road%20Forever%20Howlong",
+			"appleMusicUrl": "https://music.apple.com/search?term=Black%20Country%2C%20New%20Road%20Forever%20Howlong",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 20 Best Albums of 2025 - Rate Your Music_files/12986981"
+		}
+	],
+	"importMeta": {
+		"source": "rym-saved-html",
+		"sourceFile": "Top 20 Best Albums of 2025 - Rate Your Music.html",
+		"expectedAlbumCount": 20,
+		"warnings": [
+			"Rating buckets sum to 159 while stated total is 157. Percentages will use 157 as denominator."
+		]
+	}
+}
