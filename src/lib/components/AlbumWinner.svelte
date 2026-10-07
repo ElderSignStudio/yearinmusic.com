@@ -9,7 +9,9 @@
 	const rank = $derived(formatRank(album.rank));
 </script>
 
-<article class="grid gap-7 lg:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] lg:items-end lg:gap-16">
+<article
+	class="grid gap-7 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:items-end lg:gap-12 xl:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] xl:gap-16"
+>
 	<p class="-ml-[0.04em] rank-numeral text-[7rem] xs:text-[8rem] lg:hidden" aria-hidden="true">
 		{rank}
 	</p>
@@ -17,13 +19,13 @@
 	<AlbumArtwork
 		{album}
 		priority
-		sizes="(min-width: 1024px) 480px, calc(100vw - 2.5rem)"
+		sizes="(min-width: 1280px) 480px, (min-width: 1024px) 384px, calc(100vw - 2.5rem)"
 		class="w-full"
 	/>
 
 	<div class="min-w-0">
 		<p
-			class="-ml-[0.05em] hidden rank-numeral text-[13rem] lg:block xl:text-[16rem]"
+			class="-ml-[0.05em] hidden rank-numeral lg:block lg:text-[11rem] xl:text-[16rem]"
 			aria-hidden="true"
 		>
 			{rank}
@@ -32,7 +34,7 @@
 			<span class="sr-only">#{album.rank} · </span>{album.artist}
 		</p>
 		<h3
-			class="mt-3 font-display text-4xl leading-[1.02] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl"
+			class="mt-3 font-display text-4xl leading-[1.02] font-medium tracking-tight text-balance sm:text-5xl xl:text-6xl"
 		>
 			{album.album}
 		</h3>

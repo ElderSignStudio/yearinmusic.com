@@ -1,6 +1,8 @@
 /**
  * Finds the best available source image for an album, in order of preference:
- *   1. a hand-supplied file in imports/artwork/{year}/{slug}.(jpg|jpeg|png|webp)
+ *   1. a hand-supplied file in imports/artwork/{year}/ named after the album slug
+ *      (`moron-police-pachinko.jpg`) or, when unambiguous within the year, after the
+ *      album title in any casing (`Pachinko.jpeg`)
  *   2. the CDN reference captured from the saved page (fetched as-is)
  *   3. the thumbnail the browser saved into the page's *_files folder
  *
@@ -9,6 +11,7 @@
  */
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { slugify } from '../../src/lib/utils/slug.ts';
 import { importsDir } from '../lib/generated.ts';
 
 export type SourceKind = 'manual' | 'cdn' | 'local-saved';
@@ -31,25 +34,32 @@ function resolveInside(base: string, relative: string): string | undefined {
 	return resolved === base || resolved.startsWith(base + path.sep) ? resolved : undefined;
 }
 
-export async function findManualOverride(
-	year: number,
-	slug: string
-): Promise<SourceImage | undefined> {
-	const dir = path.join(importsDir, 'artwork', String(year));
+export interface OverrideLookup {
+	year: number;
+	slug: string;
+	/** Album title, accepted as a filename when no other album in the year shares it. */
+	title: string;
+	titleIsUnique: boolean;
+}
+
+export async function findManualOverride(lookup: OverrideLookup): Promise<SourceImage | undefined> {
+	const dir = path.join(importsDir, 'artwork', String(lookup.year));
 	const entries = await readdir(dir).catch(() => [] as string[]);
-	for (const ext of MANUAL_EXTENSIONS) {
-		const name = `${slug}.${ext}`;
-		if (!entries.includes(name)) continue;
-		const file = path.join(dir, name);
-		const info = await stat(file);
-		return {
-			kind: 'manual',
-			label: path.relative(importsDir, file),
-			data: await readFile(file),
-			mtimeMs: info.mtimeMs
-		};
-	}
-	return undefined;
+	const accepted = new Set([lookup.slug]);
+	if (lookup.titleIsUnique) accepted.add(slugify(lookup.title));
+	const match = entries.find((name) => {
+		const m = /^(.+)\.([a-z0-9]+)$/i.exec(name);
+		return !!m && MANUAL_EXTENSIONS.includes(m[2].toLowerCase()) && accepted.has(slugify(m[1]));
+	});
+	if (!match) return undefined;
+	const file = path.join(dir, match);
+	const info = await stat(file);
+	return {
+		kind: 'manual',
+		label: path.relative(importsDir, file),
+		data: await readFile(file),
+		mtimeMs: info.mtimeMs
+	};
 }
 
 export function isCdnReference(source: string): boolean {

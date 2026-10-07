@@ -32,7 +32,8 @@ export interface ImportedAlbum {
 	spotifyUrl: string;
 	/** Search URL fallback until an exact album link is supplied during enrichment. */
 	appleMusicUrl: string;
-	streamingLinksAreSearchFallbacks: true;
+	/** True while both service links above are search URLs rather than exact album pages. */
+	streamingLinksAreSearchFallbacks: boolean;
 	/**
 	 * Import metadata only: the artwork reference found in the saved page
 	 * (a path into the page's `*_files` folder or a CDN URL). Not used by the site.

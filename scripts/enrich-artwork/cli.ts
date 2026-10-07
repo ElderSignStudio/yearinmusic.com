@@ -9,7 +9,7 @@
 import { mkdir, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import type { ImportedAlbum, ImportedYearData } from '../../src/lib/types/imported.ts';
-import { assignAlbumSlugs } from '../../src/lib/utils/slug.ts';
+import { assignAlbumSlugs, slugify } from '../../src/lib/utils/slug.ts';
 import {
 	generatedDir,
 	generatedPath,
@@ -30,6 +30,7 @@ import {
 	fetchCdn,
 	findManualOverride,
 	isCdnReference,
+	type OverrideLookup,
 	readLocalSaved,
 	sleep,
 	type SourceImage
@@ -69,10 +70,9 @@ async function existingOutputIsValid(file: string): Promise<ImageInfo | undefine
 
 async function pickSource(
 	album: ImportedAlbum,
-	year: number,
-	slug: string
+	lookup: OverrideLookup
 ): Promise<SourceImage | undefined> {
-	const manual = await findManualOverride(year, slug);
+	const manual = await findManualOverride(lookup);
 	if (manual) return manual;
 	const ref = album.artworkSource;
 	if (!ref) return undefined;
@@ -97,8 +97,20 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 	const slugs = albums.map((a) => a.slug || canonical.get(a) || `release-${a.rank}`);
 	const results: AlbumResult[] = [];
 
+	const titleCounts = new Map<string, number>();
+	for (const a of albums) {
+		const key = slugify(a.album);
+		titleCounts.set(key, (titleCounts.get(key) ?? 0) + 1);
+	}
+
 	for (const [index, album] of albums.entries()) {
 		const slug = slugs[index];
+		const lookup: OverrideLookup = {
+			year,
+			slug,
+			title: album.album,
+			titleIsUnique: (titleCounts.get(slugify(album.album)) ?? 0) === 1
+		};
 		const outFile = path.join(outputDir, `${slug}.webp`);
 		const publicPath = `/artwork/${year}/${slug}.webp`;
 		const result: AlbumResult = {
@@ -114,7 +126,7 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 		try {
 			// Reuse a valid existing file unless forced or a newer manual override exists.
 			const existing = force ? undefined : await existingOutputIsValid(outFile);
-			const manual = await findManualOverride(year, slug);
+			const manual = await findManualOverride(lookup);
 			const existingStat = existing ? await stat(outFile) : undefined;
 			const overrideIsNewer = !!(
 				manual &&
@@ -137,7 +149,7 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 				continue;
 			}
 
-			const source = await pickSource(album, year, slug);
+			const source = await pickSource(album, lookup);
 			if (!source)
 				throw new Error(
 					album.artworkSource

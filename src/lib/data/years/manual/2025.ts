@@ -10,20 +10,20 @@ import type { ManualYearOverrides } from './types.ts';
 export const overrides2025: ManualYearOverrides = {
 	// 01 — Moron Police — Pachinko
 	'moron-police-pachinko': {
-		spotifyUrl: '',
-		appleMusicUrl: ''
+		spotifyUrl: 'https://open.spotify.com/album/7o3USW1Df2IziCfX741xxt',
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/pachinko/1834221625'
 	},
 
 	// 02 — Ghost — Skeletá
 	'ghost-skeleta': {
-		spotifyUrl: '',
-		appleMusicUrl: ''
+		spotifyUrl: 'https://open.spotify.com/album/2PFJKjBqXpYrRcdClhfcnX',
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/skelet%C3%A1/1796483834'
 	},
 
 	// 03 — Bon Iver — Sable, Fable
 	'bon-iver-sable-fable': {
-		spotifyUrl: '',
-		appleMusicUrl: ''
+		spotifyUrl: 'https://open.spotify.com/album/3L3UjpXtom6T0Plt1j6l1T',
+		appleMusicUrl: 'https://geo.music.apple.com/nz/album/sable-fable/1791161215'
 	},
 
 	// 04 — Amorphis — Borderland

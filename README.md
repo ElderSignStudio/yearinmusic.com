@@ -57,7 +57,9 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    npm run check:overrides -- 2025
    ```
 
-8. Publish the year (register it in `src/lib/data/years/index.ts`; this step is not automated).
+8. Publish the year: create `src/lib/data/years/<year>.ts` that calls `createYear(generated, overrides, editorial)` with the accent, the Brazilian Portuguese intro and any other editorial values (see `2025.ts`), then add it to `src/lib/data/years/index.ts`. The newest registered year becomes `/`.
+
+**Composition.** `src/lib/data/years/compose.ts` turns the three inputs (generated JSON, manual links, editorial config) into the `YearData` the page renders. Exact manual links win per service; empty ones fall back to the generated search links. Components never see import-specific fields.
 
 **Generated vs hand-authored.** `src/lib/data/years/generated/<year>.json` and `static/artwork/<year>/` are written by the scripts and tracked in Git; re-running the scripts is safe and deterministic. `src/lib/data/years/manual/<year>.ts` is written by hand and never touched by any script; for a new year, copy the structure of an existing file and register it in `manual/index.ts`. Hand-authored presentation data such as `src/lib/data/years/<year>.ts` is likewise never regenerated.
 
