@@ -5,6 +5,7 @@
  */
 import * as cheerio from 'cheerio';
 import type { ImportedAlbum, ImportedYearData } from '../../src/lib/types/imported.ts';
+import { assignAlbumSlugs } from '../../src/lib/utils/slug.ts';
 import { appleMusicSearchUrl, spotifySearchUrl } from '../../src/lib/utils/streaming.ts';
 import { Diagnostics } from './diagnostics.ts';
 import { descriptionToLines, parseDescription } from './description.ts';
@@ -121,6 +122,7 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 
 		albums.push({
 			rank,
+			slug: '', // assigned once all rows are known, see below
 			artist,
 			album,
 			releaseYear,
@@ -137,6 +139,7 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 
 	if (albums.length === 0) diagnostics.fail('No ranked albums found in the page.');
 	albums.sort((a, b) => a.rank - b.rank);
+	for (const [album, slug] of assignAlbumSlugs(albums)) album.slug = slug;
 
 	// ---- rank integrity ----
 	const ranks = albums.map((a) => a.rank);

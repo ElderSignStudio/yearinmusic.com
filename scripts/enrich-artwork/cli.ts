@@ -9,7 +9,7 @@
 import { mkdir, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import type { ImportedAlbum, ImportedYearData } from '../../src/lib/types/imported.ts';
-import { slugify, uniqueSlugs } from '../../src/lib/utils/slug.ts';
+import { assignAlbumSlugs } from '../../src/lib/utils/slug.ts';
 import {
 	generatedDir,
 	generatedPath,
@@ -92,7 +92,9 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 	await mkdir(outputDir, { recursive: true });
 
 	const albums = [...data.albums].sort((a, b) => a.rank - b.rank);
-	const slugs = uniqueSlugs(albums, (a) => slugify(a.artist, a.album) || `release-${a.rank}`);
+	// Older generated files may predate the slug field; derive it the canonical way then.
+	const canonical = assignAlbumSlugs(albums);
+	const slugs = albums.map((a) => a.slug || canonical.get(a) || `release-${a.rank}`);
 	const results: AlbumResult[] = [];
 
 	for (const [index, album] of albums.entries()) {

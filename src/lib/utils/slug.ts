@@ -18,6 +18,23 @@ export function slugify(...parts: string[]): string {
 		.replace(/^-+|-+$/g, '');
 }
 
+/** The stable id for an album used by artwork files and manual overrides. */
+export function albumSlug(artist: string, album: string): string {
+	return slugify(artist, album);
+}
+
+/**
+ * Canonical slug assignment for a year's albums: by rank, collisions resolved in rank order.
+ * Importer, artwork enricher and manual overrides must all go through this function.
+ */
+export function assignAlbumSlugs<T extends { rank: number; artist: string; album: string }>(
+	albums: readonly T[]
+): Map<T, string> {
+	const sorted = [...albums].sort((a, b) => a.rank - b.rank);
+	const slugs = uniqueSlugs(sorted, (a) => albumSlug(a.artist, a.album) || `release-${a.rank}`);
+	return new Map(sorted.map((album, i) => [album, slugs[i]]));
+}
+
 /**
  * Assigns a unique slug to every item in order. Colliding slugs get `-2`, `-3`, …
  * appended in input order, so the result is stable for a stable input order.

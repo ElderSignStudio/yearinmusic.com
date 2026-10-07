@@ -16,6 +16,11 @@ export interface ImportedRatingBucket {
 
 export interface ImportedAlbum {
 	rank: number;
+	/**
+	 * Stable id derived from artist + album (see `assignAlbumSlugs`). Artwork files and
+	 * manual overrides are keyed by it, so ranks can change without breaking references.
+	 */
+	slug: string;
 	artist: string;
 	album: string;
 	releaseYear?: number;

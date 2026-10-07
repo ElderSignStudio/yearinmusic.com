@@ -58,6 +58,7 @@
 	"albums": [
 		{
 			"rank": 1,
+			"slug": "moron-police-pachinko",
 			"artist": "Moron Police",
 			"album": "Pachinko",
 			"releaseYear": 2025,
@@ -80,6 +81,7 @@
 		},
 		{
 			"rank": 2,
+			"slug": "ghost-skeleta",
 			"artist": "Ghost",
 			"album": "Skeletá",
 			"releaseYear": 2025,
@@ -95,6 +97,7 @@
 		},
 		{
 			"rank": 3,
+			"slug": "bon-iver-sable-fable",
 			"artist": "Bon Iver",
 			"album": "Sable, Fable",
 			"releaseYear": 2025,
@@ -110,6 +113,7 @@
 		},
 		{
 			"rank": 4,
+			"slug": "amorphis-borderland",
 			"artist": "Amorphis",
 			"album": "Borderland",
 			"releaseYear": 2025,
@@ -125,6 +129,7 @@
 		},
 		{
 			"rank": 5,
+			"slug": "a-c-t-eternal-winter",
 			"artist": "A.C.T",
 			"album": "Eternal Winter",
 			"releaseYear": 2025,
@@ -146,6 +151,7 @@
 		},
 		{
 			"rank": 6,
+			"slug": "everon-shells",
 			"artist": "Everon",
 			"album": "Shells",
 			"releaseYear": 2025,
@@ -161,6 +167,7 @@
 		},
 		{
 			"rank": 7,
+			"slug": "ollie-wride-the-pressure-point",
 			"artist": "Ollie Wride",
 			"album": "The Pressure Point",
 			"releaseYear": 2025,
@@ -176,6 +183,7 @@
 		},
 		{
 			"rank": 8,
+			"slug": "men-i-trust-equus-caballus",
 			"artist": "Men I Trust",
 			"album": "Equus caballus",
 			"releaseYear": 2025,
@@ -191,6 +199,7 @@
 		},
 		{
 			"rank": 9,
+			"slug": "nourished-by-time-the-passionate-ones",
 			"artist": "Nourished by Time",
 			"album": "The Passionate Ones",
 			"releaseYear": 2025,
@@ -206,6 +215,7 @@
 		},
 		{
 			"rank": 10,
+			"slug": "hayden-pedigo-i-ll-be-waving-as-you-drive-away",
 			"artist": "Hayden Pedigo",
 			"album": "I'll Be Waving as You Drive Away",
 			"releaseYear": 2025,
@@ -221,6 +231,7 @@
 		},
 		{
 			"rank": 11,
+			"slug": "dragonknight-legions",
 			"artist": "Dragonknight",
 			"album": "Legions",
 			"releaseYear": 2025,
@@ -236,6 +247,7 @@
 		},
 		{
 			"rank": 12,
+			"slug": "fractal-universe-the-great-filters",
 			"artist": "Fractal Universe",
 			"album": "The Great Filters",
 			"releaseYear": 2025,
@@ -257,6 +269,7 @@
 		},
 		{
 			"rank": 13,
+			"slug": "ichiko-aoba-luminescent-creatures",
 			"artist": "青葉市子 [Ichiko Aoba]",
 			"album": "Luminescent Creatures",
 			"releaseYear": 2025,
@@ -272,6 +285,7 @@
 		},
 		{
 			"rank": 14,
+			"slug": "steven-wilson-the-overview",
 			"artist": "Steven Wilson",
 			"album": "The Overview",
 			"releaseYear": 2025,
@@ -287,6 +301,7 @@
 		},
 		{
 			"rank": 15,
+			"slug": "messa-the-spin",
 			"artist": "Messa",
 			"album": "The Spin",
 			"releaseYear": 2025,
@@ -302,6 +317,7 @@
 		},
 		{
 			"rank": 16,
+			"slug": "spellling-portrait-of-my-heart",
 			"artist": "SPELLLING",
 			"album": "Portrait of My Heart",
 			"releaseYear": 2025,
@@ -317,6 +333,7 @@
 		},
 		{
 			"rank": 17,
+			"slug": "oneohtrix-point-never-tranquilizer",
 			"artist": "Oneohtrix Point Never",
 			"album": "Tranquilizer",
 			"releaseYear": 2025,
@@ -332,6 +349,7 @@
 		},
 		{
 			"rank": 18,
+			"slug": "jim-ghedi-wasteland",
 			"artist": "Jim Ghedi",
 			"album": "Wasteland",
 			"releaseYear": 2025,
@@ -347,6 +365,7 @@
 		},
 		{
 			"rank": 19,
+			"slug": "the-night-flight-orchestra-give-us-the-moon",
 			"artist": "The Night Flight Orchestra",
 			"album": "Give Us the Moon",
 			"releaseYear": 2025,
@@ -362,6 +381,7 @@
 		},
 		{
 			"rank": 20,
+			"slug": "black-country-new-road-forever-howlong",
 			"artist": "Black Country, New Road",
 			"album": "Forever Howlong",
 			"releaseYear": 2025,
