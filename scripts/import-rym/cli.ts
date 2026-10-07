@@ -5,15 +5,11 @@
  * JSON to src/lib/data/years/generated/{year}.json. Hand-authored files are
  * never touched. Exit code 1 if any file fails.
  */
-import { readdir, readFile, stat, writeFile, mkdir } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import prettier from 'prettier';
+import { writeGenerated } from '../lib/generated.ts';
 import { parseRymListHtml } from './parse.ts';
 import { formatReport } from './report.ts';
-
-const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-const outputDir = path.join(projectRoot, 'src', 'lib', 'data', 'years', 'generated');
 
 async function collectHtmlFiles(target: string): Promise<string[]> {
 	const info = await stat(target).catch(() => undefined);
@@ -29,22 +25,12 @@ async function collectHtmlFiles(target: string): Promise<string[]> {
 		.sort();
 }
 
-async function writeGenerated(data: object, year: number): Promise<string> {
-	const file = path.join(outputDir, `${year}.json`);
-	await mkdir(outputDir, { recursive: true });
-	const json = JSON.stringify(data, null, '\t') + '\n';
-	const config = (await prettier.resolveConfig(file)) ?? {};
-	const formatted = await prettier.format(json, { ...config, filepath: file });
-	await writeFile(file, formatted, 'utf8');
-	return path.relative(projectRoot, file);
-}
-
 async function importFile(file: string): Promise<boolean> {
 	const sourceFile = path.basename(file);
 	const html = await readFile(file, 'utf8');
 	const result = parseRymListHtml(html, sourceFile);
 	let outputPath: string | undefined;
-	if (result.data) outputPath = await writeGenerated(result.data, result.data.year);
+	if (result.data) outputPath = await writeGenerated(result.data);
 	console.log(formatReport(sourceFile, result, outputPath));
 	return !result.diagnostics.fatal;
 }

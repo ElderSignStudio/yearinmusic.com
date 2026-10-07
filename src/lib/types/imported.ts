@@ -30,9 +30,14 @@ export interface ImportedAlbum {
 	streamingLinksAreSearchFallbacks: true;
 	/**
 	 * Import metadata only: the artwork reference found in the saved page
-	 * (usually a path into the page's `*_files` folder). Not used by the site.
+	 * (a path into the page's `*_files` folder or a CDN URL). Not used by the site.
 	 */
 	artworkSource?: string;
+	/**
+	 * Production artwork written by `npm run enrich:artwork`: a public site path
+	 * under `/artwork/{year}/`. Absent until enrichment succeeds for the album.
+	 */
+	artwork?: string;
 }
 
 export interface ImportedYearData {

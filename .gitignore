@@ -33,3 +33,7 @@ npm-debug.log*
 # session data, so nothing in here (pages or their *_files folders) is tracked.
 /imports/rym/*
 !/imports/rym/.gitkeep
+
+# Optional hand-supplied high-resolution covers for the artwork enricher
+/imports/artwork/*
+!/imports/artwork/.gitkeep

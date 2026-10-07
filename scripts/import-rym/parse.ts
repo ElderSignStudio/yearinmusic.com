@@ -113,8 +113,10 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 			.map((d) => d.trim())
 			.filter(Boolean);
 
+		// Lazy-loaded covers carry the real reference in data-src and a 1×1 blank.png in src.
 		const img = row.find('td.list_art img').first();
-		const artworkSource = img.attr('data-src') || img.attr('src') || undefined;
+		const isPlaceholder = (value?: string) => !value || /(^|\/)blank\.png$/i.test(value);
+		const artworkSource = [img.attr('data-src'), img.attr('src')].find((v) => !isPlaceholder(v));
 		if (artworkSource) withArtwork++;
 
 		albums.push({
