@@ -3,13 +3,20 @@
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import { formatPercent } from '#lib/utils/format.js';
 
-	let { buckets, total }: { buckets: RatingBucket[]; total: number } = $props();
+	interface Props {
+		buckets: RatingBucket[];
+		total: number;
+		/** Extra classes for the heading, e.g. to hide it where a toggle carries the title instead. */
+		titleClass?: string;
+	}
+
+	let { buckets, total, titleClass = '' }: Props = $props();
 	const t = $derived(locale.t);
 	const maxCount = $derived(Math.max(1, ...buckets.map((b) => b.count)));
 </script>
 
 <div>
-	<h3 class="kicker text-ink-muted">{t.distributionTitle}</h3>
+	<h3 class="kicker text-ink-muted {titleClass}">{t.distributionTitle}</h3>
 
 	<!--
 		Mobile: rating · label · count · % on one line, bar beneath.
