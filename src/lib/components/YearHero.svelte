@@ -24,6 +24,7 @@
 				decoding="async"
 				class="hero-collage h-full w-full object-cover"
 			/>
+			<div class="hero-accent-glow absolute inset-0"></div>
 			<div class="hero-collage-overlay absolute inset-0"></div>
 		</div>
 	{:else if winner}
@@ -37,6 +38,7 @@
 				decoding="async"
 				class="hero-wash h-full w-full scale-125 object-cover"
 			/>
+			<div class="hero-accent-glow absolute inset-0"></div>
 		</div>
 	{/if}
 
@@ -61,6 +63,21 @@
 </section>
 
 <style>
+	/* Year-accent atmosphere: ~10% effective, sitting behind the charcoal overlay. */
+	.hero-accent-glow {
+		background:
+			radial-gradient(
+				70% 90% at 22% 45%,
+				color-mix(in oklab, var(--year-accent) 14%, transparent) 0%,
+				transparent 70%
+			),
+			radial-gradient(
+				50% 60% at 85% 20%,
+				color-mix(in oklab, var(--year-accent) 7%, transparent) 0%,
+				transparent 70%
+			);
+	}
+
 	.hero-collage {
 		opacity: 0.85;
 	}

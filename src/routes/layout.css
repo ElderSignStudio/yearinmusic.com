@@ -197,12 +197,12 @@
 	}
 }
 
-/* Understated text link with accent on hover. */
+/* Understated text link that takes the year accent on hover/focus. */
 @utility quiet-link {
 	color: var(--ink-muted);
 	transition: color var(--motion-fast) var(--ease-out);
 	&:hover,
 	&:focus-visible {
-		color: var(--ink);
+		color: var(--year-accent);
 	}
 }
