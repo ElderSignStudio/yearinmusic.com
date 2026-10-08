@@ -20,13 +20,15 @@
 		spans the full width and the two derived figures share a second row.
 	-->
 	<ul class="grid max-w-[52rem] grid-cols-2 gap-y-10 sm:grid-cols-3 sm:gap-x-8">
-		<li class="col-span-2 sm:col-span-1">
+		<li class="col-span-2 flex flex-col sm:col-span-1">
 			<p class="-ml-[0.04em] numeral-display text-[5rem] leading-[0.9] md:text-[6rem]">
 				{stats.totalAlbumsRated}
 			</p>
 			<p class="mt-4 kicker">{t.albumsRated}</p>
 			{#if stats.delta !== undefined}
-				<p class="mt-2.5 inline-flex items-center gap-1.5 text-sm text-ink-muted tabular-nums">
+				<p
+					class="mt-auto inline-flex items-center gap-1.5 pt-2.5 text-sm text-ink-muted tabular-nums"
+				>
 					<span class="font-medium text-year">{formatDelta(stats.delta, locale.current)}</span>
 					{#if stats.delta > 0}
 						<ArrowUpRight class="size-3.5 text-year" aria-hidden="true" />
@@ -38,23 +40,23 @@
 			{/if}
 		</li>
 
-		<li class="border-l border-line pl-5 sm:pl-8">
+		<li class="flex flex-col border-l border-line pl-5 sm:pl-8">
 			<p class="-ml-[0.04em] numeral-display text-[5rem] leading-[0.9] md:text-[6rem]">
-				{stats.masterpieces.count}
+				{stats.amazing.count}
 			</p>
-			<p class="mt-4 kicker">{t.masterpieces}</p>
-			<p class="mt-2.5 text-sm text-ink-muted tabular-nums">
-				{formatPercent(stats.masterpieces.share, locale.current)}
+			<p class="mt-4 kicker">{t.amazing}</p>
+			<p class="mt-auto pt-2.5 text-sm text-ink-muted tabular-nums">
+				{formatPercent(stats.amazing.share, locale.current)}
 			</p>
 		</li>
 
-		<li class="border-l border-line pl-5 sm:pl-8">
+		<li class="flex flex-col border-l border-line pl-5 sm:pl-8">
 			<p class="-ml-[0.04em] numeral-display text-[5rem] leading-[0.9] md:text-[6rem]">
-				{stats.fourPlus.count}
+				{stats.greatOrBetter.count}
 			</p>
-			<p class="mt-4 kicker">{t.fourPlus}</p>
-			<p class="mt-2.5 text-sm text-ink-muted tabular-nums">
-				{formatPercent(stats.fourPlus.share, locale.current)}
+			<p class="mt-4 kicker">{t.greatOrBetter}</p>
+			<p class="mt-auto pt-2.5 text-sm text-ink-muted tabular-nums">
+				{formatPercent(stats.greatOrBetter.share, locale.current)}
 			</p>
 		</li>
 	</ul>

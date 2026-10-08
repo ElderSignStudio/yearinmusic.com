@@ -22,10 +22,10 @@ export interface YearStatistics {
 	previousYearAlbumsRated?: number;
 	/** `total − previous`, only when the previous total is known. */
 	delta?: number;
-	/** Albums rated exactly 5.0. */
-	masterpieces: CountShare;
-	/** Albums rated 4.0, 4.5 or 5.0. */
-	fourPlus: CountShare;
+	/** Albums rated exactly 5.0 ("Amazing"). */
+	amazing: CountShare;
+	/** Albums rated 4.0, 4.5 or 5.0 ("Great or better"). */
+	greatOrBetter: CountShare;
 }
 
 function countWhere(data: YearData, predicate: (rating: number) => boolean): number {
@@ -46,11 +46,11 @@ export function deriveYearStatistics(data: YearData, previous?: number): YearSta
 		totalAlbumsRated: total,
 		previousYearAlbumsRated: previous,
 		delta: previous === undefined ? undefined : total - previous,
-		masterpieces: countShare(
+		amazing: countShare(
 			countWhere(data, (r) => r === 5),
 			total
 		),
-		fourPlus: countShare(
+		greatOrBetter: countShare(
 			countWhere(data, (r) => r >= 4),
 			total
 		)
