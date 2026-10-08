@@ -17,7 +17,7 @@ npm run format
 
 1. Create `src/lib/data/years/<year>.ts` exporting a `YearData` object (see `src/lib/types/year.ts`).
 2. Put artwork in `static/artwork/<year>/01.webp … 20.webp` and reference it from the data.
-3. Register the year in `src/lib/data/years/index.ts`. The newest year becomes `/`, and `/<year>` is prerendered automatically.
+3. Register the year in `src/lib/data/years/index.ts`. The newest year becomes `/`, and `/<year>` is prerendered automatically. The cross-year page at `/stats` is derived from the registered years (`src/lib/data/years/acrossYears.ts`), so it updates on its own.
 
 Each year chooses its own accent via `theme.accent`; everything else comes from the shared design system in `src/routes/layout.css`.
 

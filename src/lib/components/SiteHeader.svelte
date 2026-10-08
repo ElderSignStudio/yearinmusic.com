@@ -6,6 +6,9 @@
 	const t = $derived(locale.t);
 	// Year pages have their own archive section; elsewhere fall back to the newest year's.
 	const archiveHref = $derived(page.data.year ? `${page.url.pathname}#archive` : '/#archive');
+	const onStats = $derived(page.url.pathname.replace(/\/$/, '') === '/stats');
+	const linkClass =
+		'text-xs font-medium tracking-[0.16em] quiet-link uppercase aria-[current=page]:text-ink';
 </script>
 
 <header>
@@ -14,14 +17,14 @@
 		<a href="/" class="kicker text-ink transition-colors duration-200 hover:text-year">
 			{t.siteName}
 		</a>
-		<div class="flex items-center gap-6">
-			<a
-				href={archiveHref}
-				class="hidden text-xs font-medium tracking-[0.16em] quiet-link uppercase sm:inline"
-			>
-				{t.archiveLink}
+		<nav class="flex items-center gap-5 sm:gap-6" aria-label={t.siteName}>
+			<a href={archiveHref} class="hidden {linkClass} sm:inline">{t.archiveLink}</a>
+			<!-- Phones get the short label so the bar stays uncrowded; the page uses the full term. -->
+			<a href="/stats" class={linkClass} aria-current={onStats ? 'page' : undefined}>
+				<span class="sm:hidden">{t.statsLinkShort}</span>
+				<span class="hidden sm:inline">{t.statsLink}</span>
 			</a>
 			<LanguageSwitch />
-		</div>
+		</nav>
 	</div>
 </header>

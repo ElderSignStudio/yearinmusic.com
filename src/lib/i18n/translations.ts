@@ -1,5 +1,63 @@
 import type { Locale } from '#lib/types/year.js';
 
+const NUMBER_WORDS: Record<Locale, string[]> = {
+	'pt-BR': [
+		'zero',
+		'um',
+		'dois',
+		'três',
+		'quatro',
+		'cinco',
+		'seis',
+		'sete',
+		'oito',
+		'nove',
+		'dez',
+		'onze',
+		'doze',
+		'treze',
+		'catorze',
+		'quinze',
+		'dezesseis',
+		'dezessete',
+		'dezoito',
+		'dezenove',
+		'vinte'
+	],
+	en: [
+		'zero',
+		'one',
+		'two',
+		'three',
+		'four',
+		'five',
+		'six',
+		'seven',
+		'eight',
+		'nine',
+		'ten',
+		'eleven',
+		'twelve',
+		'thirteen',
+		'fourteen',
+		'fifteen',
+		'sixteen',
+		'seventeen',
+		'eighteen',
+		'nineteen',
+		'twenty'
+	]
+};
+
+/** Small counts as words for editorial copy ("Ten years…"); larger ones stay numeric. */
+function numberWord(n: number, locale: Locale): string {
+	return NUMBER_WORDS[locale][n] ?? String(n);
+}
+
+function capitalize(text: string): string {
+	return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 const ptBR = {
 	siteName: 'Year in Music',
 	siteTagline: 'Um arquivo pessoal de álbuns do ano',
@@ -26,6 +84,45 @@ const ptBR = {
 	archiveKicker: 'Desde 2015',
 	archiveTitle: 'O arquivo',
 	archiveLink: 'Arquivo',
+	statsLink: 'Estatísticas',
+	/** Header label on phones, where the full word would crowd the bar. */
+	statsLinkShort: 'Números',
+	acrossTitle: 'Ao longo dos anos',
+	acrossTagline: (years: number) =>
+		years === 1
+			? 'Um ano ouvindo, avaliando e escolhendo meus discos favoritos.'
+			: `${capitalize(numberWord(years, 'pt-BR'))} anos ouvindo, avaliando e escolhendo meus discos favoritos.`,
+	acrossDescription: (first: number, latest: number) =>
+		`Um olhar estatístico e editorial sobre as listas anuais de música do Dan Eisenberg, de ${first} a ${latest}.`,
+	bigPictureKicker: 'O panorama',
+	yearsLabel: 'Anos',
+	byYearKicker: 'Por ano',
+	listenedTitle: 'Quanto eu ouvi',
+	listenedLede: 'Álbuns avaliados em cada ano.',
+	greatShareTitle: 'Ótimos ou melhores',
+	greatShareLede: 'Parcela dos álbuns avaliados com nota 4,0 ou mais.',
+	rarestKicker: 'A nota mais rara',
+	amazingTitle: 'Incríveis',
+	amazingLede: 'Álbuns com nota 5,0 em cada ano.',
+	allYearsKicker: 'Todos os anos',
+	profileTitle: 'Distribuição das notas',
+	profileLede: (total: string) => `Todas as notas dadas a ${total} álbuns.`,
+	artistsKicker: 'Artistas',
+	recurringTitle: 'Presenças recorrentes',
+	recurringLede: 'Quem mais voltou às listas anuais.',
+	appearances: (n: number) => (n === 1 ? '1 presença' : `${n} presenças`),
+	topFiveTimes: (n: number) => `${n}× Top 5`,
+	genresKicker: 'Gêneros',
+	soundTitle: 'O som dos anos',
+	soundLede: (albums: number) => `Gêneros principais dos ${albums} álbuns ranqueados.`,
+	albumsCount: (n: number) => (n === 1 ? '1 álbum' : `${n} álbuns`),
+	winnersKicker: 'O nº 1 de cada ano',
+	winnersTitle: 'Os vencedores',
+	openYear: (year: number) => `Abrir ${year}`,
+	albumsRatedIn: (year: number, n: number) => `${year}: ${n} álbuns avaliados`,
+	greatShareIn: (year: number, pct: string) => `${year}: ${pct} com nota 4,0 ou mais`,
+	amazingIn: (year: number, n: number) =>
+		`${year}: ${n === 1 ? '1 álbum' : `${n} álbuns`} com nota 5,0`,
 	comingSoon: 'Em breve',
 	currentYear: 'Ano atual',
 	previousYear: 'Ano anterior',
@@ -73,6 +170,43 @@ const en: Dictionary = {
 	archiveKicker: 'Since 2015',
 	archiveTitle: 'The archive',
 	archiveLink: 'Archive',
+	statsLink: 'Stats',
+	statsLinkShort: 'Stats',
+	acrossTitle: 'Across the years',
+	acrossTagline: (years) =>
+		years === 1
+			? 'One year of listening, rating and choosing my favorite records.'
+			: `${capitalize(numberWord(years, 'en'))} years of listening, rating and choosing my favorite records.`,
+	acrossDescription: (first, latest) =>
+		`A statistical, editorial look across Dan Eisenberg's annual music lists, ${first} to ${latest}.`,
+	bigPictureKicker: 'The big picture',
+	yearsLabel: 'Years',
+	byYearKicker: 'By year',
+	listenedTitle: 'How much I listened',
+	listenedLede: 'Albums rated each year.',
+	greatShareTitle: 'Great or better',
+	greatShareLede: 'Share of the albums rated that scored 4.0 or higher.',
+	rarestKicker: 'The rarest rating',
+	amazingTitle: 'Amazing',
+	amazingLede: 'Albums rated 5.0 in each year.',
+	allYearsKicker: 'All years',
+	profileTitle: 'Rating distribution',
+	profileLede: (total) => `Every rating given to ${total} albums.`,
+	artistsKicker: 'Artists',
+	recurringTitle: 'Repeat appearances',
+	recurringLede: 'Who kept coming back to the yearly lists.',
+	appearances: (n) => (n === 1 ? '1 appearance' : `${n} appearances`),
+	topFiveTimes: (n) => `${n}× Top 5`,
+	genresKicker: 'Genres',
+	soundTitle: 'The sound of the years',
+	soundLede: (albums) => `Primary genres across the ${albums} ranked albums.`,
+	albumsCount: (n) => (n === 1 ? '1 album' : `${n} albums`),
+	winnersKicker: "Every year's #1",
+	winnersTitle: 'The winners',
+	openYear: (year) => `Open ${year}`,
+	albumsRatedIn: (year, n) => `${year}: ${n} albums rated`,
+	greatShareIn: (year, pct) => `${year}: ${pct} rated 4.0 or higher`,
+	amazingIn: (year, n) => `${year}: ${n === 1 ? '1 album' : `${n} albums`} rated 5.0`,
 	comingSoon: 'Coming soon',
 	currentYear: 'Current year',
 	previousYear: 'Previous year',

@@ -38,5 +38,26 @@ export function yearMeta(data: YearData, locale: Locale): PageMeta {
 	};
 }
 
+/** Metadata for the cross-year statistics page. */
+export function statsMeta(
+	locale: Locale,
+	range: { first: number; latest: number },
+	image: string | undefined
+): PageMeta {
+	const t = translations[locale];
+	return {
+		title: `${t.siteName} — ${t.acrossTitle}`,
+		description: t.acrossDescription(range.first, range.latest),
+		url: absoluteUrl('/stats'),
+		image: absoluteUrl(image ?? ''),
+		ogLocale: OG_LOCALE[locale],
+		ogLocaleAlternate: (Object.keys(OG_LOCALE) as Locale[])
+			.filter((l) => l !== locale)
+			.map((l) => OG_LOCALE[l]),
+		siteName: t.siteName,
+		author: SITE_AUTHOR
+	};
+}
+
 /** Whether absolute URLs are available (needed for valid canonical/og:url tags). */
 export const hasSiteUrl = SITE_URL !== '';
