@@ -19,6 +19,12 @@ const RATING_LINE =
 	/^(\d+(?:\.\d+)?)\s*stars?\s*(?:\(([^)]*)\))?\s*:\s*(\d[\d,]*)\s*(?:\([^)]*%\s*\))?\s*$/i;
 const LOOKS_LIKE_RATING_LINE = /\bstars?\b.*:/i;
 const STATED_TOTAL = /\brated\s+(\d[\d,]*)\s+albums?\b/i;
+/**
+ * Older descriptions state an overall count first and the year's subset after it:
+ * "In 2018 I rated 229 albums, 96 (42%) of them released in 2018." The subset is the
+ * site's "albums rated" figure, so it takes precedence when it names a four-digit year.
+ */
+const RELEASED_SUBSET = /(\d[\d,]*)\s*(?:\(\d+%\))?\s+of\s+them\s+released\s+in\s+\d{4}\b/i;
 const SPOTIFY_PLAYLIST = /^https?:\/\/open\.spotify\.com\/playlist\/[A-Za-z0-9]+/i;
 const URL_LINE = /^https?:\/\/\S+$/i;
 
@@ -108,7 +114,9 @@ export function parseDescription(lines: string[], diagnostics: Diagnostics): Par
 	flush();
 
 	const introEn = paragraphs.map((p) => p.trim()).filter(Boolean);
-	const totalMatch = introEn.map((p) => STATED_TOTAL.exec(p)).find(Boolean);
+	const totalMatch =
+		introEn.map((p) => RELEASED_SUBSET.exec(p)).find(Boolean) ??
+		introEn.map((p) => STATED_TOTAL.exec(p)).find(Boolean);
 	const statedTotal = totalMatch ? Number(totalMatch[1].replace(/,/g, '')) : undefined;
 
 	// Highest rating first; drop exact duplicates while warning.

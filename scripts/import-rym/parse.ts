@@ -165,9 +165,12 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 		diagnostics.warn(`${albums.length - withArtwork} album(s) have no artwork source.`);
 
 	// ---- description: intro, statistics, playlist ----
+	// Per-album notes are rendered with the same class inside the list table, so only
+	// blocks outside an album row can be the list description; take the longest of those.
 	const descriptionBlock = $('.rendered_text')
 		.toArray()
 		.map((el) => $(el))
+		.filter((el) => el.closest('.main_entry, #user_list').length === 0)
 		.sort((a, b) => b.text().length - a.text().length)[0];
 	let description = parseDescription([], diagnostics);
 	if (descriptionBlock && descriptionBlock.text().trim()) {

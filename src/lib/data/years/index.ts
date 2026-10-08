@@ -1,4 +1,8 @@
 import type { YearData } from '#lib/types/year.js';
+import { year2016 } from './2016.js';
+import { year2017 } from './2017.js';
+import { year2018 } from './2018.js';
+import { year2019 } from './2019.js';
 import { year2020 } from './2020.js';
 import { year2021 } from './2021.js';
 import { year2022 } from './2022.js';
@@ -16,7 +20,11 @@ export const years: readonly YearData[] = [
 	year2023,
 	year2022,
 	year2021,
-	year2020
+	year2020,
+	year2019,
+	year2018,
+	year2017,
+	year2016
 ].sort((a, b) => b.year - a.year);
 
 export const newestYear: YearData = years[0];

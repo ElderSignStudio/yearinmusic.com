@@ -1,0 +1,238 @@
+{
+	"year": 2019,
+	"listTitle": "Top 10 Best Albums of 2019",
+	"rymListUrl": "https://rateyourmusic.com/list/Flict/top-10-best-albums-of-2019/",
+	"introEn": [
+		"Welcome to my top 10 best albums released in 2019!",
+		"2019 was a slower musical year for me. (Having a son does that to you) That's the reason for a top10 this year, and not a top20 like always.",
+		"I rated 68 albums released in 2019. (In 2018 I rated 111 released in that year.)"
+	],
+	"totalAlbumsRated": 68,
+	"ratingDistribution": [
+		{
+			"rating": 5,
+			"labelEn": "Masterpieces",
+			"count": 4
+		},
+		{
+			"rating": 4.5,
+			"labelEn": "Amazing",
+			"count": 4
+		},
+		{
+			"rating": 4,
+			"labelEn": "Great",
+			"count": 13
+		},
+		{
+			"rating": 3.5,
+			"labelEn": "Good",
+			"count": 20
+		},
+		{
+			"rating": 3,
+			"labelEn": "Above Average",
+			"count": 12
+		},
+		{
+			"rating": 2.5,
+			"labelEn": "Nothing Special",
+			"count": 10
+		},
+		{
+			"rating": 2,
+			"labelEn": "Bad",
+			"count": 5
+		},
+		{
+			"rating": 1,
+			"labelEn": "Horrible",
+			"count": 0
+		},
+		{
+			"rating": 0,
+			"labelEn": "Filth",
+			"count": 0
+		}
+	],
+	"albums": [
+		{
+			"rank": 1,
+			"slug": "devin-townsend-empath",
+			"artist": "Devin Townsend",
+			"album": "Empath",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/devin-townsend/empath/",
+			"primaryGenres": ["Progressive Metal", "Avant-Garde Metal"],
+			"secondaryGenres": ["Symphonic Metal", "Progressive Rock", "Orchestral Music"],
+			"descriptors": ["epic", "male vocalist", "eclectic", "uplifting", "choral"],
+			"spotifyUrl": "https://open.spotify.com/search/Devin%20Townsend%20Empath",
+			"appleMusicUrl": "https://music.apple.com/search?term=Devin%20Townsend%20Empath",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/69103ae9ae4b274e624dbf89ed863e6f/7338367",
+			"artwork": "/artwork/2019/devin-townsend-empath.webp"
+		},
+		{
+			"rank": 2,
+			"slug": "insomnium-heart-like-a-grave",
+			"artist": "Insomnium",
+			"album": "Heart Like a Grave",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/insomnium/heart-like-a-grave/",
+			"primaryGenres": ["Melodic Death Metal"],
+			"secondaryGenres": ["Progressive Metal"],
+			"descriptors": ["male vocalist", "melodic", "heavy", "sombre", "aggressive"],
+			"spotifyUrl": "https://open.spotify.com/search/Insomnium%20Heart%20Like%20a%20Grave",
+			"appleMusicUrl": "https://music.apple.com/search?term=Insomnium%20Heart%20Like%20a%20Grave",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/56cb02322d70470ea90f8ae5586229d8/7648332",
+			"artwork": "/artwork/2019/insomnium-heart-like-a-grave.webp"
+		},
+		{
+			"rank": 3,
+			"slug": "cheeto-s-magazine-amazingous",
+			"artist": "Cheeto's Magazine",
+			"album": "Amazingous",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/cheetos-magazine/amazingous/",
+			"primaryGenres": ["Symphonic Prog", "Progressive Rock"],
+			"secondaryGenres": ["Progressive Metal", "Neo-Prog", "Comedy Rock"],
+			"descriptors": ["quirky", "melodic", "eclectic", "male vocalist", "happy"],
+			"spotifyUrl": "https://open.spotify.com/search/Cheeto's%20Magazine%20Amazingous",
+			"appleMusicUrl": "https://music.apple.com/search?term=Cheeto's%20Magazine%20Amazingous",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/282547b9f3f8a6b70edc6ac85ef484d5/7319816",
+			"artwork": "/artwork/2019/cheeto-s-magazine-amazingous.webp"
+		},
+		{
+			"rank": 4,
+			"slug": "clement-belio-patience",
+			"artist": "Clément Belio",
+			"album": "Patience",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/clement-belio/patience/",
+			"primaryGenres": ["Symphonic Prog", "Progressive Rock"],
+			"secondaryGenres": [
+				"Jazz Fusion",
+				"Djent",
+				"Modern Classical",
+				"Occitan Folk Music",
+				"Experimental Rock"
+			],
+			"descriptors": ["eclectic", "lush", "rhythmic", "peaceful", "progressive"],
+			"spotifyUrl": "https://open.spotify.com/search/Cl%C3%A9ment%20Belio%20Patience",
+			"appleMusicUrl": "https://music.apple.com/search?term=Cl%C3%A9ment%20Belio%20Patience",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/7dd259151c3910ef13db68558b8fc2df/7527378",
+			"artwork": "/artwork/2019/clement-belio-patience.webp"
+		},
+		{
+			"rank": 5,
+			"slug": "arch-echo-you-won-t-believe-what-happens-next",
+			"artist": "Arch Echo",
+			"album": "You Won't Believe What Happens Next!",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/arch-echo/you-wont-believe-what-happens-next/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Jazz Fusion", "Djent"],
+			"descriptors": ["instrumental", "technical", "progressive", "melodic", "uplifting"],
+			"spotifyUrl": "https://open.spotify.com/search/Arch%20Echo%20You%20Won't%20Believe%20What%20Happens%20Next!",
+			"appleMusicUrl": "https://music.apple.com/search?term=Arch%20Echo%20You%20Won't%20Believe%20What%20Happens%20Next!",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/c0ea03f1d7a60f73d6b6fe194ea93058/7463742",
+			"artwork": "/artwork/2019/arch-echo-you-won-t-believe-what-happens-next.webp"
+		},
+		{
+			"rank": 6,
+			"slug": "wilderun-veil-of-imagination",
+			"artist": "Wilderun",
+			"album": "Veil of Imagination",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/wilderun/veil-of-imagination/",
+			"primaryGenres": ["Progressive Metal", "Symphonic Metal"],
+			"secondaryGenres": ["Melodic Death Metal"],
+			"descriptors": ["epic", "melodic", "male vocalist", "triumphant", "progressive"],
+			"spotifyUrl": "https://open.spotify.com/search/Wilderun%20Veil%20of%20Imagination",
+			"appleMusicUrl": "https://music.apple.com/search?term=Wilderun%20Veil%20of%20Imagination",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2019 - Rate Your Music_files/12827827",
+			"artwork": "/artwork/2019/wilderun-veil-of-imagination.webp"
+		},
+		{
+			"rank": 7,
+			"slug": "richard-henshall-the-cocoon",
+			"artist": "Richard Henshall",
+			"album": "The Cocoon",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/richard-henshall/the-cocoon/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Djent", "Progressive Rock", "Jazz Fusion"],
+			"descriptors": [
+				"progressive",
+				"uncommon time signatures",
+				"technical",
+				"energetic",
+				"male vocalist"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Richard%20Henshall%20The%20Cocoon",
+			"appleMusicUrl": "https://music.apple.com/search?term=Richard%20Henshall%20The%20Cocoon",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2019 - Rate Your Music_files/7672527",
+			"artwork": "/artwork/2019/richard-henshall-the-cocoon.webp"
+		},
+		{
+			"rank": 8,
+			"slug": "nick-cave-and-the-bad-seeds-ghosteen",
+			"artist": "Nick Cave and The Bad Seeds",
+			"album": "Ghosteen",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/nick-cave-and-the-bad-seeds/ghosteen/",
+			"primaryGenres": ["Singer-Songwriter", "Ambient Pop"],
+			"secondaryGenres": ["Ambient", "Spoken Word", "New Age"],
+			"descriptors": ["death", "melancholic", "ethereal", "poetic", "male vocalist"],
+			"spotifyUrl": "https://open.spotify.com/search/Nick%20Cave%20and%20The%20Bad%20Seeds%20Ghosteen",
+			"appleMusicUrl": "https://music.apple.com/search?term=Nick%20Cave%20and%20The%20Bad%20Seeds%20Ghosteen",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2019 - Rate Your Music_files/9570184",
+			"artwork": "/artwork/2019/nick-cave-and-the-bad-seeds-ghosteen.webp"
+		},
+		{
+			"rank": 9,
+			"slug": "carly-rae-jepsen-dedicated",
+			"artist": "Carly Rae Jepsen",
+			"album": "Dedicated",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/carly-rae-jepsen/dedicated/",
+			"primaryGenres": ["Dance-Pop", "Synthpop"],
+			"secondaryGenres": ["Synth Funk", "Electropop", "Contemporary R&B", "Electro-Disco"],
+			"descriptors": ["female vocalist", "love", "melodic", "romantic", "sensual"],
+			"spotifyUrl": "https://open.spotify.com/search/Carly%20Rae%20Jepsen%20Dedicated",
+			"appleMusicUrl": "https://music.apple.com/search?term=Carly%20Rae%20Jepsen%20Dedicated",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2019 - Rate Your Music_files/8042712",
+			"artwork": "/artwork/2019/carly-rae-jepsen-dedicated.webp"
+		},
+		{
+			"rank": 10,
+			"slug": "bon-iver-i-i",
+			"artist": "Bon Iver",
+			"album": "i,i",
+			"releaseYear": 2019,
+			"rymUrl": "https://rateyourmusic.com/release/album/bon-iver/i_i/",
+			"primaryGenres": ["Art Pop"],
+			"secondaryGenres": ["Folktronica", "Ambient Pop", "Glitch Pop", "Pop Soul"],
+			"descriptors": ["male vocalist", "abstract", "uplifting", "spiritual", "cryptic"],
+			"spotifyUrl": "https://open.spotify.com/search/Bon%20Iver%20i%2Ci",
+			"appleMusicUrl": "https://music.apple.com/search?term=Bon%20Iver%20i%2Ci",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2019 - Rate Your Music_files/10085900",
+			"artwork": "/artwork/2019/bon-iver-i-i.webp"
+		}
+	],
+	"importMeta": {
+		"source": "rym-saved-html",
+		"sourceFile": "Top 10 Best Albums of 2019 - Rate Your Music.html",
+		"expectedAlbumCount": 10,
+		"warnings": ["No Spotify playlist URL found in the description."]
+	}
+}
