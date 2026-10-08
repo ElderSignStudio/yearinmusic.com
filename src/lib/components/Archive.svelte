@@ -15,14 +15,14 @@
 	<ol class="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
 		{#each published as entry (entry.year)}
 			{@const data = entry.data!}
-			{@const winner = data.albums[0]}
+			{@const winner = data.rankedAlbums[0]}
 			{@const isCurrent = entry.year === currentYear}
 			<li style="--year-accent: {data.theme.accent}">
 				<a
 					href="/{entry.year}"
 					class="group block"
 					aria-current={isCurrent ? 'page' : undefined}
-					aria-label="{entry.year} · {t.topN(data.albums.length)}{isCurrent
+					aria-label="{entry.year} · {t.topN(data.rankedAlbums.length)}{isCurrent
 						? ` (${t.currentYear})`
 						: ''}"
 				>
@@ -48,7 +48,7 @@
 						>
 							{entry.year}
 						</span>
-						<span class="kicker text-ink-muted">{t.topN(data.albums.length)}</span>
+						<span class="kicker text-ink-muted">{t.topN(data.rankedAlbums.length)}</span>
 					</span>
 				</a>
 			</li>

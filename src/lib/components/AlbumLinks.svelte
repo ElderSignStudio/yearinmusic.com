@@ -1,12 +1,12 @@
 <script lang="ts">
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
-	import type { Album } from '#lib/types/year.js';
+	import type { AlbumEntry } from '#lib/types/year.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import SpotifyIcon from './icons/SpotifyIcon.svelte';
 	import AppleMusicIcon from './icons/AppleMusicIcon.svelte';
 
 	interface Props {
-		album: Album;
+		album: AlbumEntry;
 		/** Show text labels next to the brand icons (used for the most prominent entries). */
 		labels?: boolean;
 		class?: string;

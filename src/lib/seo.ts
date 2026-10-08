@@ -1,6 +1,6 @@
 import type { Locale, YearData } from '#lib/types/year.js';
 import { translations } from '#lib/i18n/translations.js';
-import { absoluteUrl, SITE_URL } from './site.js';
+import { absoluteUrl, SITE_AUTHOR, SITE_URL } from './site.js';
 
 const OG_LOCALE: Record<Locale, string> = { 'pt-BR': 'pt_BR', en: 'en_US' };
 
@@ -16,6 +16,7 @@ export interface PageMeta {
 	ogLocale: string;
 	ogLocaleAlternate: string[];
 	siteName: string;
+	author: string;
 }
 
 export function yearMeta(data: YearData, locale: Locale): PageMeta {
@@ -25,14 +26,15 @@ export function yearMeta(data: YearData, locale: Locale): PageMeta {
 		title: `${t.siteName} — ${data.year}`,
 		description: t.pageDescription(data.year),
 		url: absoluteUrl(`/${data.year}`),
-		image: absoluteUrl(shareImage ?? data.albums[0]?.artwork ?? ''),
+		image: absoluteUrl(shareImage ?? data.rankedAlbums[0]?.artwork ?? ''),
 		imageWidth: shareImage ? 1200 : undefined,
 		imageHeight: shareImage ? 630 : undefined,
 		ogLocale: OG_LOCALE[locale],
 		ogLocaleAlternate: (Object.keys(OG_LOCALE) as Locale[])
 			.filter((l) => l !== locale)
 			.map((l) => OG_LOCALE[l]),
-		siteName: t.siteName
+		siteName: t.siteName,
+		author: SITE_AUTHOR
 	};
 }
 

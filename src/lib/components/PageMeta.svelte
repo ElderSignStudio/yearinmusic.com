@@ -8,6 +8,7 @@
 <svelte:head>
 	<title>{meta.title}</title>
 	<meta name="description" content={meta.description} />
+	<meta name="author" content={meta.author} />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content={meta.siteName} />

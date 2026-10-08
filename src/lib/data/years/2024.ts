@@ -17,5 +17,7 @@ export const year2024 = createYear(generated as ImportedYearData, overrides2024,
 			'Avaliei 168 álbuns lançados em 2024, bem mais do que em 2023 (quando avaliei 104 álbuns).'
 		]
 	},
-	previousYearAlbumsRated: 104
+	previousYearAlbumsRated: 104,
+	// The list is a Top 20 plus one unranked extra; RYM shows it as #21.
+	bonusSlugs: ['allie-x-girl-with-no-face']
 });

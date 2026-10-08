@@ -10,12 +10,13 @@
 	let { data }: { data: YearData } = $props();
 	const t = $derived(locale.t);
 
-	const winner = $derived(data.albums[0]);
-	const featured = $derived(data.albums.slice(1, 5));
-	const rest = $derived(data.albums.slice(5));
+	const winner = $derived(data.rankedAlbums[0]);
+	const featured = $derived(data.rankedAlbums.slice(1, 5));
+	const rest = $derived(data.rankedAlbums.slice(5));
+	const bonus = $derived(data.bonusAlbums);
 </script>
 
-<Section id="ranking" kicker={t.rankingKicker} title={t.rankingTitle(data.albums.length)}>
+<Section id="ranking" kicker={t.rankingKicker} title={t.rankingTitle(data.rankedAlbums.length)}>
 	<div class="mt-12 md:mt-16">
 		{#if winner}
 			<ol aria-label="#01">
@@ -37,9 +38,21 @@
 				class="mt-20 grid grid-cols-1 gap-x-5 gap-y-12 xs:grid-cols-2 md:mt-28 md:grid-cols-3 md:gap-x-8 lg:block lg:border-t lg:border-line"
 			>
 				{#each rest as album (album.rank)}
-					<li><AlbumListItem {album} /></li>
+					<li><AlbumListItem {album} rank={album.rank} /></li>
 				{/each}
 			</ol>
+		{/if}
+
+		{#if bonus.length}
+			<!-- Unranked extras: same compact treatment, a kicker where the numeral would be, no number. -->
+			<ul
+				aria-label={t.bonusListLabel}
+				class="mt-16 grid grid-cols-1 gap-x-5 gap-y-12 xs:grid-cols-2 md:mt-20 md:grid-cols-3 md:gap-x-8 lg:mt-12 lg:block lg:border-t lg:border-line"
+			>
+				{#each bonus as album (album.rymUrl + album.album)}
+					<li><AlbumListItem {album} label={t.bonusKicker} /></li>
+				{/each}
+			</ul>
 		{/if}
 
 		<p class="mt-14">

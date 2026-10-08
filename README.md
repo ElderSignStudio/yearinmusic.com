@@ -63,7 +63,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    npm run generate:hero -- 2025
    ```
 
-9. Publish the year: create `src/lib/data/years/<year>.ts` that calls `createYear(generated, overrides, editorial)` with the accent, the Brazilian Portuguese intro and any other editorial values (see `2025.ts`), then add it to `src/lib/data/years/index.ts`. The newest registered year becomes `/`.
+9. Publish the year: create `src/lib/data/years/<year>.ts` that calls `createYear(generated, overrides, editorial)` with the accent, the Brazilian Portuguese intro and any other editorial values (see `2025.ts`), then add it to `src/lib/data/years/index.ts`. The newest registered year becomes `/`. If the list is a Top N plus unranked extras, name those extras in `bonusSlugs` (see `2024.ts`); they are rendered after the ranking without a number, and the remaining albums must form a contiguous 1..N list that matches the list title.
 
 **Composition.** `src/lib/data/years/compose.ts` turns the three inputs (generated JSON, manual links, editorial config) into the `YearData` the page renders. Exact manual links win per service; empty ones fall back to the generated search links. Components never see import-specific fields.
 

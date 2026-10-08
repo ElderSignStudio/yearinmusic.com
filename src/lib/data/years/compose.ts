@@ -7,7 +7,7 @@
  *
  * Components only ever see `YearData`; nothing downstream knows about RYM.
  */
-import type { Album, Locale, YearData } from '#lib/types/year.js';
+import type { Album, BonusAlbum, Locale, YearData } from '#lib/types/year.js';
 import type { ImportedAlbum, ImportedYearData } from '#lib/types/imported.js';
 import type { ManualYearOverrides } from './manual/types.ts';
 import { ratingLabel } from '#lib/data/ratingLabels.js';
@@ -24,6 +24,12 @@ export interface YearEditorial {
 	shareImage?: string;
 	/** Hero collage path; defaults to the file `npm run generate:hero` writes. `null` disables it. */
 	heroCollage?: string | null;
+	/**
+	 * Slugs of imported albums that are unranked bonus selections rather than part of
+	 * the Top N. They keep their source rank in the generated data but are never shown
+	 * with a number. Must be named explicitly: an extra album is not assumed to be a bonus.
+	 */
+	bonusSlugs?: string[];
 }
 
 export function defaultHeroCollage(year: number): string {
@@ -34,7 +40,7 @@ function toAlbum(
 	imported: ImportedAlbum,
 	manual: ManualYearOverrides | undefined,
 	fallbackRymUrl: string
-): Album {
+): BonusAlbum {
 	if (!imported.artwork) {
 		throw new Error(
 			`Album #${imported.rank} "${imported.artist} — ${imported.album}" has no local artwork. Run: npm run enrich:artwork -- <year>`
@@ -42,7 +48,6 @@ function toAlbum(
 	}
 	const links = resolveServiceLinks(imported, manual?.[imported.slug]);
 	return {
-		rank: imported.rank,
 		artist: imported.artist,
 		album: imported.album,
 		artwork: imported.artwork,
@@ -53,11 +58,47 @@ function toAlbum(
 	};
 }
 
+/**
+ * Separates the imported list into the ranked Top N and the explicitly named bonus
+ * selections, then checks that what remains really is a contiguous 1..N ranking.
+ * A count that does not match the list title is treated as an error, not a bonus.
+ */
+function splitAlbums(
+	generated: ImportedYearData,
+	bonusSlugs: readonly string[]
+): { ranked: ImportedAlbum[]; bonus: ImportedAlbum[] } {
+	const bySlug = new Set(generated.albums.map((a) => a.slug));
+	for (const slug of bonusSlugs) {
+		if (!bySlug.has(slug)) {
+			throw new Error(`${generated.year}: bonus slug "${slug}" is not in the imported list.`);
+		}
+	}
+	const sorted = [...generated.albums].sort((a, b) => a.rank - b.rank);
+	const bonus = sorted.filter((a) => bonusSlugs.includes(a.slug));
+	const ranked = sorted.filter((a) => !bonusSlugs.includes(a.slug));
+
+	ranked.forEach((a, i) => {
+		if (a.rank !== i + 1) {
+			throw new Error(
+				`${generated.year}: ranked albums are not a contiguous 1..${ranked.length} list (found rank ${a.rank} at position ${i + 1}). Mark bonus albums with bonusSlugs or fix the import.`
+			);
+		}
+	});
+	const expected = generated.importMeta.expectedAlbumCount;
+	if (expected !== undefined && expected !== ranked.length) {
+		throw new Error(
+			`${generated.year}: the list title implies a Top ${expected} but ${ranked.length} ranked albums remain after removing ${bonus.length} bonus album(s).`
+		);
+	}
+	return { ranked, bonus };
+}
+
 export function createYear(
 	generated: ImportedYearData,
 	manual: ManualYearOverrides | undefined,
 	editorial: YearEditorial
 ): YearData {
+	const { ranked, bonus } = splitAlbums(generated, editorial.bonusSlugs ?? []);
 	const intro: Record<Locale, string[]> = {
 		'pt-BR': editorial.intro['pt-BR'],
 		en: editorial.intro.en ?? generated.introEn
@@ -78,8 +119,10 @@ export function createYear(
 			editorial.heroCollage === null
 				? undefined
 				: (editorial.heroCollage ?? defaultHeroCollage(generated.year)),
-		albums: [...generated.albums]
-			.sort((a, b) => a.rank - b.rank)
-			.map((a) => toAlbum(a, manual, generated.rymListUrl))
+		rankedAlbums: ranked.map((a): Album => ({
+			rank: a.rank,
+			...toAlbum(a, manual, generated.rymListUrl)
+		})),
+		bonusAlbums: bonus.map((a): BonusAlbum => toAlbum(a, manual, generated.rymListUrl))
 	};
 }

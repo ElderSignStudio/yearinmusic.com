@@ -4,7 +4,6 @@
 	import { yearMeta } from '#lib/seo.js';
 	import PageMeta from './PageMeta.svelte';
 	import YearHero from './YearHero.svelte';
-	import YearIntro from './YearIntro.svelte';
 	import YearStats from './YearStats.svelte';
 	import AlbumRanking from './AlbumRanking.svelte';
 	import Playlist from './Playlist.svelte';
@@ -17,7 +16,6 @@
 <PageMeta {meta} />
 
 <YearHero {data} />
-<YearIntro {data} />
 <YearStats {data} />
 <AlbumRanking {data} />
 <Playlist {data} />

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Album } from '#lib/types/year.js';
+	import type { AlbumEntry } from '#lib/types/year.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 
 	interface Props {
-		album: Album;
+		album: AlbumEntry;
 		/** Eager-load with high priority (for artwork visible near the top of the page). */
 		priority?: boolean;
 		sizes?: string;

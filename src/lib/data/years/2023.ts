@@ -37,7 +37,7 @@ export const year2023: YearData = {
 	],
 	rymListUrl: 'https://rateyourmusic.com/list/PLACEHOLDER/2023/',
 	spotifyPlaylistUrl: 'https://open.spotify.com/playlist/37i9dQZF1DX4JAvHpjipBk',
-	albums: [
+	rankedAlbums: [
 		{
 			rank: 1,
 			artist: 'Linnea Vasquez',
@@ -102,5 +102,6 @@ export const year2023: YearData = {
 			primaryGenres: ['Fado', 'Art Pop'],
 			...placeholderLinks('fado-eletrico')
 		}
-	]
+	],
+	bonusAlbums: []
 };

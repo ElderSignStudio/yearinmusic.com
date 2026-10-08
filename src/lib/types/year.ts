@@ -10,8 +10,8 @@ export interface YearTheme {
 	accent: string;
 }
 
-export interface Album {
-	rank: number;
+/** Everything an album entry shows regardless of whether it carries a rank. */
+export interface AlbumEntry {
 	artist: string;
 	album: string;
 	/** Local path under `static/`, e.g. `/artwork/2024/01.webp`. */
@@ -22,6 +22,14 @@ export interface Album {
 	appleMusicUrl?: string;
 	rymUrl: string;
 }
+
+/** A ranked list entry: `rank` is 1-based and contiguous within a year. */
+export interface Album extends AlbumEntry {
+	rank: number;
+}
+
+/** An unranked extra selection shown after the Top N. Never displays a number. */
+export type BonusAlbum = AlbumEntry;
 
 export interface RatingBucket {
 	/** RateYourMusic star rating, 0–5 in half steps. */
@@ -54,6 +62,8 @@ export interface YearData {
 	 * (`npm run generate:hero`). Without it the hero uses a wash of the #1 artwork.
 	 */
 	heroCollage?: string;
-	/** Must be sorted by rank ascending. */
-	albums: Album[];
+	/** The Top N, sorted by rank ascending (1..N, no gaps). */
+	rankedAlbums: Album[];
+	/** Unranked bonus selections rendered after the ranking. Empty for most years. */
+	bonusAlbums: BonusAlbum[];
 }
