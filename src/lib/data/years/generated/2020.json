@@ -1,0 +1,240 @@
+{
+	"year": 2020,
+	"listTitle": "Top 10 Best Albums of 2020",
+	"rymListUrl": "https://rateyourmusic.com/list/Flict/top-10-best-albums-of-2020/",
+	"introEn": [
+		"Welcome to my top 10 best albums released in 2020!",
+		"I rated 56 albums released in 2020. (In 2019, I rated 68 albums released that year)"
+	],
+	"totalAlbumsRated": 56,
+	"ratingDistribution": [
+		{
+			"rating": 5,
+			"labelEn": "Masterpieces",
+			"count": 1
+		},
+		{
+			"rating": 4.5,
+			"labelEn": "Amazing",
+			"count": 5
+		},
+		{
+			"rating": 4,
+			"labelEn": "Great",
+			"count": 10
+		},
+		{
+			"rating": 3.5,
+			"labelEn": "Good",
+			"count": 20
+		},
+		{
+			"rating": 3,
+			"labelEn": "Above Average",
+			"count": 10
+		},
+		{
+			"rating": 2.5,
+			"labelEn": "Nothing Special",
+			"count": 7
+		},
+		{
+			"rating": 2,
+			"labelEn": "Bad",
+			"count": 3
+		},
+		{
+			"rating": 1,
+			"labelEn": "Horrible",
+			"count": 0
+		},
+		{
+			"rating": 0,
+			"labelEn": "Filth",
+			"count": 0
+		}
+	],
+	"albums": [
+		{
+			"rank": 1,
+			"slug": "pendragon-love-over-fear",
+			"artist": "Pendragon",
+			"album": "Love Over Fear",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/pendragon/love-over-fear/",
+			"primaryGenres": ["Neo-Prog"],
+			"secondaryGenres": ["Symphonic Prog"],
+			"descriptors": ["melodic", "male vocalist", "soothing", "passionate", "uplifting"],
+			"spotifyUrl": "https://open.spotify.com/search/Pendragon%20Love%20Over%20Fear",
+			"appleMusicUrl": "https://music.apple.com/search?term=Pendragon%20Love%20Over%20Fear",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/edf911607731e0b6af94acd842182218/8044650",
+			"artwork": "/artwork/2020/pendragon-love-over-fear.webp"
+		},
+		{
+			"rank": 2,
+			"slug": "droid-bishop-music",
+			"artist": "Droid Bishop",
+			"album": "Music",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/droid-bishop/music/",
+			"primaryGenres": ["Synthwave"],
+			"secondaryGenres": ["Synthpop", "Synth Funk"],
+			"descriptors": ["futuristic", "uplifting", "space", "male vocalist", "passionate"],
+			"spotifyUrl": "https://open.spotify.com/search/Droid%20Bishop%20Music",
+			"appleMusicUrl": "https://music.apple.com/search?term=Droid%20Bishop%20Music",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/601bf4c47f781b8c33fd8bc6c7c7c5fd/8407508",
+			"artwork": "/artwork/2020/droid-bishop-music.webp"
+		},
+		{
+			"rank": 3,
+			"slug": "arch-echo-story-i",
+			"artist": "Arch Echo",
+			"album": "Story I",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/ep/arch-echo/story-i/",
+			"primaryGenres": ["Progressive Metal", "Djent"],
+			"secondaryGenres": ["Jazz Fusion"],
+			"descriptors": ["instrumental", "energetic", "warm", "lush", "technical"],
+			"spotifyUrl": "https://open.spotify.com/search/Arch%20Echo%20Story%20I",
+			"appleMusicUrl": "https://music.apple.com/search?term=Arch%20Echo%20Story%20I",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/45c7f331a8d6dc3a4fef23d27d26cf7f/8505245",
+			"artwork": "/artwork/2020/arch-echo-story-i.webp"
+		},
+		{
+			"rank": 4,
+			"slug": "jessie-ware-what-s-your-pleasure",
+			"artist": "Jessie Ware",
+			"album": "What's Your Pleasure?",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/jessie-ware/whats-your-pleasure/",
+			"primaryGenres": ["Dance-Pop", "Disco"],
+			"secondaryGenres": [
+				"Nu-Disco",
+				"Synthpop",
+				"Synth Funk",
+				"Smooth Soul",
+				"Boogie",
+				"Contemporary R&B",
+				"House",
+				"Freestyle"
+			],
+			"descriptors": ["sensual", "lush", "female vocalist", "love", "nocturnal"],
+			"spotifyUrl": "https://open.spotify.com/search/Jessie%20Ware%20What's%20Your%20Pleasure%3F",
+			"appleMusicUrl": "https://music.apple.com/search?term=Jessie%20Ware%20What's%20Your%20Pleasure%3F",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/620c19ef9d622c31c8324166aa02514f/8630756",
+			"artwork": "/artwork/2020/jessie-ware-what-s-your-pleasure.webp"
+		},
+		{
+			"rank": 5,
+			"slug": "adrianne-lenker-songs",
+			"artist": "Adrianne Lenker",
+			"album": "Songs",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/adrianne-lenker/songs/",
+			"primaryGenres": ["Singer-Songwriter", "Contemporary Folk"],
+			"secondaryGenres": ["Indie Folk"],
+			"descriptors": ["pastoral", "acoustic", "soothing", "soft", "bittersweet"],
+			"spotifyUrl": "https://open.spotify.com/search/Adrianne%20Lenker%20Songs",
+			"appleMusicUrl": "https://music.apple.com/search?term=Adrianne%20Lenker%20Songs",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/99e184add95928ec0716d1a58f40b776/10091012",
+			"artwork": "/artwork/2020/adrianne-lenker-songs.webp"
+		},
+		{
+			"rank": 6,
+			"slug": "protest-the-hero-palimpsest",
+			"artist": "Protest the Hero",
+			"album": "Palimpsest",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/protest-the-hero/palimpsest/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Melodic Metalcore", "Symphonic Metal"],
+			"descriptors": ["male vocalist", "technical", "concept album", "history", "conscious"],
+			"spotifyUrl": "https://open.spotify.com/search/Protest%20the%20Hero%20Palimpsest",
+			"appleMusicUrl": "https://music.apple.com/search?term=Protest%20the%20Hero%20Palimpsest",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2020 - Rate Your Music_files/8262162",
+			"artwork": "/artwork/2020/protest-the-hero-palimpsest.webp"
+		},
+		{
+			"rank": 7,
+			"slug": "ichiko-aoba-windswept-adan",
+			"artist": "青葉市子 [Ichiko Aoba]",
+			"album": "アダンの風 [Windswept Adan]",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/%E9%9D%92%E8%91%89%E5%B8%82%E5%AD%90/%E3%82%A2%E3%83%80%E3%83%B3%E3%81%AE%E9%A2%A8/",
+			"primaryGenres": ["Chamber Folk", "Singer-Songwriter"],
+			"secondaryGenres": ["Ambient", "New Age", "Nature Recordings"],
+			"descriptors": ["peaceful", "ethereal", "aquatic", "female vocalist", "calm"],
+			"spotifyUrl": "https://open.spotify.com/search/Ichiko%20Aoba%20%E3%82%A2%E3%83%80%E3%83%B3%E3%81%AE%E9%A2%A8%20%5BWindswept%20Adan%5D",
+			"appleMusicUrl": "https://music.apple.com/search?term=Ichiko%20Aoba%20%E3%82%A2%E3%83%80%E3%83%B3%E3%81%AE%E9%A2%A8%20%5BWindswept%20Adan%5D",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2020 - Rate Your Music_files/8578261",
+			"artwork": "/artwork/2020/ichiko-aoba-windswept-adan.webp"
+		},
+		{
+			"rank": 8,
+			"slug": "haken-virus",
+			"artist": "Haken",
+			"album": "Virus",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/haken/virus/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Djent", "Progressive Rock"],
+			"descriptors": [
+				"uncommon time signatures",
+				"technical",
+				"male vocalist",
+				"complex",
+				"energetic"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Haken%20Virus",
+			"appleMusicUrl": "https://music.apple.com/search?term=Haken%20Virus",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2020 - Rate Your Music_files/9132013",
+			"artwork": "/artwork/2020/haken-virus.webp"
+		},
+		{
+			"rank": 9,
+			"slug": "laura-marling-song-for-our-daughter",
+			"artist": "Laura Marling",
+			"album": "Song for Our Daughter",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/laura-marling/song-for-our-daughter/",
+			"primaryGenres": ["Contemporary Folk", "Singer-Songwriter"],
+			"secondaryGenres": ["Chamber Folk"],
+			"descriptors": ["female vocalist", "introspective", "sentimental", "lush", "mellow"],
+			"spotifyUrl": "https://open.spotify.com/search/Laura%20Marling%20Song%20for%20Our%20Daughter",
+			"appleMusicUrl": "https://music.apple.com/search?term=Laura%20Marling%20Song%20for%20Our%20Daughter",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2020 - Rate Your Music_files/9570127",
+			"artwork": "/artwork/2020/laura-marling-song-for-our-daughter.webp"
+		},
+		{
+			"rank": 10,
+			"slug": "fish-weltschmerz",
+			"artist": "Fish",
+			"album": "Weltschmerz",
+			"releaseYear": 2020,
+			"rymUrl": "https://rateyourmusic.com/release/album/fish/weltschmerz/",
+			"primaryGenres": ["Progressive Rock"],
+			"secondaryGenres": ["Art Rock", "Folk Rock", "Symphonic Rock"],
+			"descriptors": ["dark", "introspective", "melancholic", "male vocalist", "passionate"],
+			"spotifyUrl": "https://open.spotify.com/search/Fish%20Weltschmerz",
+			"appleMusicUrl": "https://music.apple.com/search?term=Fish%20Weltschmerz",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2020 - Rate Your Music_files/8371178",
+			"artwork": "/artwork/2020/fish-weltschmerz.webp"
+		}
+	],
+	"importMeta": {
+		"source": "rym-saved-html",
+		"sourceFile": "Top 10 Best Albums of 2020 - Rate Your Music.html",
+		"expectedAlbumCount": 10,
+		"warnings": ["No Spotify playlist URL found in the description."]
+	}
+}

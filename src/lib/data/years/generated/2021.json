@@ -1,0 +1,256 @@
+{
+	"year": 2021,
+	"listTitle": "Top 10 Best Albums of 2021",
+	"rymListUrl": "https://rateyourmusic.com/list/Flict/top-10-best-albums-of-2021/",
+	"introEn": [
+		"Welcome to my top 10 best albums released in 2021!",
+		"I rated 130 albums released in 2021, almost three times more than in 2020 (I rated 56 albums released that year)."
+	],
+	"totalAlbumsRated": 130,
+	"ratingDistribution": [
+		{
+			"rating": 5,
+			"labelEn": "Masterpieces",
+			"count": 2
+		},
+		{
+			"rating": 4.5,
+			"labelEn": "Amazing",
+			"count": 2
+		},
+		{
+			"rating": 4,
+			"labelEn": "Great",
+			"count": 20
+		},
+		{
+			"rating": 3.5,
+			"labelEn": "Good",
+			"count": 50
+		},
+		{
+			"rating": 3,
+			"labelEn": "Above Average",
+			"count": 31
+		},
+		{
+			"rating": 2.5,
+			"labelEn": "Nothing Special",
+			"count": 19
+		},
+		{
+			"rating": 2,
+			"labelEn": "Bad",
+			"count": 3
+		},
+		{
+			"rating": 1,
+			"labelEn": "Horrible",
+			"count": 3
+		},
+		{
+			"rating": 0,
+			"labelEn": "Filth",
+			"count": 0
+		}
+	],
+	"albums": [
+		{
+			"rank": 1,
+			"slug": "spellling-the-turning-wheel",
+			"artist": "SPELLLING",
+			"album": "The Turning Wheel",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/spellling/the-turning-wheel/",
+			"primaryGenres": ["Art Pop", "Baroque Pop"],
+			"secondaryGenres": ["Progressive Pop", "Psychedelic Soul", "Neo-Psychedelia", "Darkwave"],
+			"descriptors": ["lush", "fantasy", "female vocalist", "triumphant", "ethereal"],
+			"spotifyUrl": "https://open.spotify.com/search/SPELLLING%20The%20Turning%20Wheel",
+			"appleMusicUrl": "https://music.apple.com/search?term=SPELLLING%20The%20Turning%20Wheel",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/2ef5ee84ed730198aec26f85b510e2fb/9134808",
+			"artwork": "/artwork/2021/spellling-the-turning-wheel.webp"
+		},
+		{
+			"rank": 2,
+			"slug": "leprous-aphelion",
+			"artist": "Leprous",
+			"album": "Aphelion",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/leprous/aphelion/",
+			"primaryGenres": ["Progressive Rock", "Art Rock"],
+			"secondaryGenres": ["Art Pop", "Progressive Metal"],
+			"descriptors": ["male vocalist", "melodic", "progressive", "atmospheric", "introspective"],
+			"spotifyUrl": "https://open.spotify.com/search/Leprous%20Aphelion",
+			"appleMusicUrl": "https://music.apple.com/search?term=Leprous%20Aphelion",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/0a78c18e145eefbe8c6a14ad2c3f28b8/9166395",
+			"artwork": "/artwork/2021/leprous-aphelion.webp"
+		},
+		{
+			"rank": 3,
+			"slug": "the-weather-station-ignorance",
+			"artist": "The Weather Station",
+			"album": "Ignorance",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/the-weather-station/ignorance/",
+			"primaryGenres": ["Sophisti-Pop", "Art Pop"],
+			"secondaryGenres": [
+				"Chamber Pop",
+				"Progressive Pop",
+				"Indie Pop",
+				"Baroque Pop",
+				"Soft Rock"
+			],
+			"descriptors": ["female vocalist", "introspective", "serious", "bittersweet", "rhythmic"],
+			"spotifyUrl": "https://open.spotify.com/search/The%20Weather%20Station%20Ignorance",
+			"appleMusicUrl": "https://music.apple.com/search?term=The%20Weather%20Station%20Ignorance",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/a2f12885f17730cccda2955d8893bb28/10107880",
+			"artwork": "/artwork/2021/the-weather-station-ignorance.webp"
+		},
+		{
+			"rank": 4,
+			"slug": "james-blake-friends-that-break-your-heart",
+			"artist": "James Blake",
+			"album": "Friends That Break Your Heart",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/james-blake/friends-that-break-your-heart/",
+			"primaryGenres": ["Alternative R&B"],
+			"secondaryGenres": ["Ambient Pop", "Pop Soul", "Trap"],
+			"descriptors": ["introspective", "longing", "atmospheric", "melancholic", "male vocalist"],
+			"spotifyUrl": "https://open.spotify.com/search/James%20Blake%20Friends%20That%20Break%20Your%20Heart",
+			"appleMusicUrl": "https://music.apple.com/search?term=James%20Blake%20Friends%20That%20Break%20Your%20Heart",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/c611eff7019ad73b4214435c726ca146/9183654",
+			"artwork": "/artwork/2021/james-blake-friends-that-break-your-heart.webp"
+		},
+		{
+			"rank": 5,
+			"slug": "dalriada-oszelo",
+			"artist": "Dalriada",
+			"album": "Őszelő",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/dalriada/oszelo/",
+			"primaryGenres": ["Folk Metal", "Power Metal"],
+			"secondaryGenres": ["Hungarian Folk Music"],
+			"descriptors": ["folklore", "epic", "melodic", "female vocalist", "male vocalist"],
+			"spotifyUrl": "https://open.spotify.com/search/Dalriada%20%C5%90szel%C5%91",
+			"appleMusicUrl": "https://music.apple.com/search?term=Dalriada%20%C5%90szel%C5%91",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/709e003a5fd733be4fbf2be8ca46acfc/9051846",
+			"artwork": "/artwork/2021/dalriada-oszelo.webp"
+		},
+		{
+			"rank": 6,
+			"slug": "steven-wilson-the-future-bites",
+			"artist": "Steven Wilson",
+			"album": "The Future Bites",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/steven-wilson/the-future-bites/",
+			"primaryGenres": ["Art Pop"],
+			"secondaryGenres": ["Progressive Pop", "Synthpop", "Art Rock"],
+			"descriptors": ["conscious", "male vocalist", "futuristic", "introspective", "concept album"],
+			"spotifyUrl": "https://open.spotify.com/search/Steven%20Wilson%20The%20Future%20Bites",
+			"appleMusicUrl": "https://music.apple.com/search?term=Steven%20Wilson%20The%20Future%20Bites",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/fa5f8e36df1065b1dd02bbc255f389a3/8044651",
+			"artwork": "/artwork/2021/steven-wilson-the-future-bites.webp"
+		},
+		{
+			"rank": 7,
+			"slug": "raven-sad-the-leaf-and-the-wing",
+			"artist": "Raven Sad",
+			"album": "The Leaf and the Wing",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/raven-sad/the-leaf-and-the-wing/",
+			"primaryGenres": ["Progressive Rock", "Neo-Prog"],
+			"secondaryGenres": [],
+			"descriptors": ["male vocalist", "progressive"],
+			"spotifyUrl": "https://open.spotify.com/search/Raven%20Sad%20The%20Leaf%20and%20the%20Wing",
+			"appleMusicUrl": "https://music.apple.com/search?term=Raven%20Sad%20The%20Leaf%20and%20the%20Wing",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2021 - Rate Your Music_files/8759267",
+			"artwork": "/artwork/2021/raven-sad-the-leaf-and-the-wing.webp"
+		},
+		{
+			"rank": 8,
+			"slug": "wheel-resident-human",
+			"artist": "Wheel",
+			"album": "Resident Human",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/wheel/resident-human/",
+			"primaryGenres": ["Progressive Metal", "Progressive Rock"],
+			"secondaryGenres": ["Alternative Metal", "Djent"],
+			"descriptors": ["sombre", "progressive", "complex", "heavy", "male vocalist"],
+			"spotifyUrl": "https://open.spotify.com/search/Wheel%20Resident%20Human",
+			"appleMusicUrl": "https://music.apple.com/search?term=Wheel%20Resident%20Human",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2021 - Rate Your Music_files/12866997",
+			"artwork": "/artwork/2021/wheel-resident-human.webp"
+		},
+		{
+			"rank": 9,
+			"slug": "liquid-tension-experiment-liquid-tension-experiment-3",
+			"artist": "Liquid Tension Experiment",
+			"album": "Liquid Tension Experiment 3",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/liquid-tension-experiment/liquid-tension-experiment-3/",
+			"primaryGenres": ["Progressive Metal"],
+			"secondaryGenres": ["Progressive Rock", "Jazz Fusion"],
+			"descriptors": [
+				"instrumental",
+				"technical",
+				"uncommon time signatures",
+				"complex",
+				"melodic"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Liquid%20Tension%20Experiment%20Liquid%20Tension%20Experiment%203",
+			"appleMusicUrl": "https://music.apple.com/search?term=Liquid%20Tension%20Experiment%20Liquid%20Tension%20Experiment%203",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2021 - Rate Your Music_files/8706952",
+			"artwork": "/artwork/2021/liquid-tension-experiment-liquid-tension-experiment-3.webp"
+		},
+		{
+			"rank": 10,
+			"slug": "anneke-van-giersbergen-the-darkest-skies-are-the-brightest",
+			"artist": "Anneke van Giersbergen",
+			"album": "The Darkest Skies Are the Brightest",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/anneke-van-giersbergen/the-darkest-skies-are-the-brightest/",
+			"primaryGenres": ["Singer-Songwriter", "Folk Rock"],
+			"secondaryGenres": ["Chamber Pop", "Folk Pop"],
+			"descriptors": ["female vocalist", "melodic", "acoustic", "bittersweet", "introspective"],
+			"spotifyUrl": "https://open.spotify.com/search/Anneke%20van%20Giersbergen%20The%20Darkest%20Skies%20Are%20the%20Brightest",
+			"appleMusicUrl": "https://music.apple.com/search?term=Anneke%20van%20Giersbergen%20The%20Darkest%20Skies%20Are%20the%20Brightest",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2021 - Rate Your Music_files/8817508",
+			"artwork": "/artwork/2021/anneke-van-giersbergen-the-darkest-skies-are-the-brightest.webp"
+		},
+		{
+			"rank": 11,
+			"slug": "magdalena-bay-mercurial-world",
+			"artist": "Magdalena Bay",
+			"album": "Mercurial World",
+			"releaseYear": 2021,
+			"rymUrl": "https://rateyourmusic.com/release/album/magdalena-bay/mercurial-world/",
+			"primaryGenres": ["Synthpop", "Dance-Pop"],
+			"secondaryGenres": ["Electropop", "Contemporary R&B", "Chillwave", "Dance-Pop", "House"],
+			"descriptors": ["lush", "melodic", "ethereal", "female vocalist", "playful"],
+			"spotifyUrl": "https://open.spotify.com/search/Magdalena%20Bay%20Mercurial%20World",
+			"appleMusicUrl": "https://music.apple.com/search?term=Magdalena%20Bay%20Mercurial%20World",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Top 10 Best Albums of 2021 - Rate Your Music_files/9335918",
+			"artwork": "/artwork/2021/magdalena-bay-mercurial-world.webp"
+		}
+	],
+	"importMeta": {
+		"source": "rym-saved-html",
+		"sourceFile": "Top 10 Best Albums of 2021 - Rate Your Music.html",
+		"expectedAlbumCount": 10,
+		"warnings": [
+			"The list title implies 10 albums but 11 ranked albums were found.",
+			"No Spotify playlist URL found in the description."
+		]
+	}
+}

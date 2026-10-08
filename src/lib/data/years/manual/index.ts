@@ -4,12 +4,16 @@
  * Node directly; Vite and svelte-check accept them too.
  */
 import type { ManualYearOverrides } from './types.ts';
+import { overrides2020 } from './2020.ts';
+import { overrides2021 } from './2021.ts';
 import { overrides2022 } from './2022.ts';
 import { overrides2023 } from './2023.ts';
 import { overrides2024 } from './2024.ts';
 import { overrides2025 } from './2025.ts';
 
 export const manualOverrides: Record<number, ManualYearOverrides> = {
+	2020: overrides2020,
+	2021: overrides2021,
 	2022: overrides2022,
 	2023: overrides2023,
 	2024: overrides2024,
