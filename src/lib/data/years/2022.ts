@@ -17,7 +17,7 @@ export const year2022 = createYear(generated as ImportedYearData, overrides2022,
 			'Avaliei 107 álbuns lançados em 2022, menos do que em 2021 (quando avaliei 130 álbuns).'
 		]
 	},
-	previousYearAlbumsRated: 130
-	// The RYM description for 2022 has no playlist link. Add it here when available:
-	// spotifyPlaylistUrl: 'https://open.spotify.com/playlist/...'
+	previousYearAlbumsRated: 130,
+	// The RYM description for 2022 has no playlist link; the playlist was made later.
+	spotifyPlaylistUrl: 'https://open.spotify.com/playlist/0CvICc1yw6D5SUVklMUX2X'
 });
