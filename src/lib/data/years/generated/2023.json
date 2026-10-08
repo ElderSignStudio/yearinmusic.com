@@ -1,0 +1,350 @@
+{
+	"year": 2023,
+	"listTitle": "Top 15 Best Albums of 2023",
+	"rymListUrl": "https://rateyourmusic.com/list/Flict/top-15-best-albums-of-2023/",
+	"introEn": [
+		"Welcome to my top 15 best albums released in 2023!",
+		"I rated 104 albums released in 2023, less than in 2022 (I rated 107 albums released that year)."
+	],
+	"totalAlbumsRated": 104,
+	"ratingDistribution": [
+		{
+			"rating": 5,
+			"labelEn": "Masterpieces",
+			"count": 3
+		},
+		{
+			"rating": 4.5,
+			"labelEn": "Amazing",
+			"count": 6
+		},
+		{
+			"rating": 4,
+			"labelEn": "Great",
+			"count": 24
+		},
+		{
+			"rating": 3.5,
+			"labelEn": "Good",
+			"count": 43
+		},
+		{
+			"rating": 3,
+			"labelEn": "Above Average",
+			"count": 19
+		},
+		{
+			"rating": 2.5,
+			"labelEn": "Nothing Special",
+			"count": 6
+		},
+		{
+			"rating": 2,
+			"labelEn": "Bad",
+			"count": 3
+		},
+		{
+			"rating": 1,
+			"labelEn": "Horrible",
+			"count": 0
+		},
+		{
+			"rating": 0,
+			"labelEn": "Filth",
+			"count": 0
+		}
+	],
+	"spotifyPlaylistUrl": "https://open.spotify.com/playlist/6FpMXLv6960OygTSe6Y0Ao",
+	"albums": [
+		{
+			"rank": 1,
+			"slug": "hayden-pedigo-the-happiest-times-i-ever-ignored",
+			"artist": "Hayden Pedigo",
+			"album": "The Happiest Times I Ever Ignored",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/hayden-pedigo/the-happiest-times-i-ever-ignored/",
+			"primaryGenres": ["American Primitivism"],
+			"secondaryGenres": ["Ambient Americana"],
+			"descriptors": ["instrumental", "atmospheric", "pastoral", "mellow", "calm"],
+			"spotifyUrl": "https://open.spotify.com/search/Hayden%20Pedigo%20The%20Happiest%20Times%20I%20Ever%20Ignored",
+			"appleMusicUrl": "https://music.apple.com/search?term=Hayden%20Pedigo%20The%20Happiest%20Times%20I%20Ever%20Ignored",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/e8f4e70477a137be1fae4438ace5ff43/10883714",
+			"artwork": "/artwork/2023/hayden-pedigo-the-happiest-times-i-ever-ignored.webp"
+		},
+		{
+			"rank": 2,
+			"slug": "the-lemon-twigs-everything-harmony",
+			"artist": "The Lemon Twigs",
+			"album": "Everything Harmony",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/the-lemon-twigs/everything-harmony/",
+			"primaryGenres": ["Soft Rock", "Pop Rock"],
+			"secondaryGenres": [
+				"Baroque Pop",
+				"Folk Pop",
+				"Jangle Pop",
+				"Power Pop",
+				"Psychedelic Pop",
+				"Sunshine Pop"
+			],
+			"descriptors": ["melodic", "male vocalist", "sentimental", "soft", "lush"],
+			"spotifyUrl": "https://open.spotify.com/search/The%20Lemon%20Twigs%20Everything%20Harmony",
+			"appleMusicUrl": "https://music.apple.com/search?term=The%20Lemon%20Twigs%20Everything%20Harmony",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/7a52e2c19bf4f64a37ff5fa9c18e75af/10706695",
+			"artwork": "/artwork/2023/the-lemon-twigs-everything-harmony.webp"
+		},
+		{
+			"rank": 3,
+			"slug": "haken-fauna",
+			"artist": "Haken",
+			"album": "Fauna",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/haken/fauna/",
+			"primaryGenres": ["Progressive Metal", "Progressive Rock"],
+			"secondaryGenres": ["Djent"],
+			"descriptors": [
+				"male vocalist",
+				"uncommon time signatures",
+				"technical",
+				"eclectic",
+				"energetic"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Haken%20Fauna",
+			"appleMusicUrl": "https://music.apple.com/search?term=Haken%20Fauna",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/153a110cf728aa4c642444f29b991105/10588171",
+			"artwork": "/artwork/2023/haken-fauna.webp"
+		},
+		{
+			"rank": 4,
+			"slug": "peter-gabriel-i-o",
+			"artist": "Peter Gabriel",
+			"album": "i/o",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/peter-gabriel/i_o/",
+			"primaryGenres": ["Art Pop", "Art Rock"],
+			"secondaryGenres": ["Ambient Pop", "Pop Rock", "Progressive Pop", "Downtempo"],
+			"descriptors": ["male vocalist", "atmospheric", "eclectic", "conscious", "existential"],
+			"spotifyUrl": "https://open.spotify.com/search/Peter%20Gabriel%20i%2Fo",
+			"appleMusicUrl": "https://music.apple.com/search?term=Peter%20Gabriel%20i%2Fo",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/37e31e08fd0d3a618e8f4f67fc2f164a/11423909",
+			"artwork": "/artwork/2023/peter-gabriel-i-o.webp"
+		},
+		{
+			"rank": 5,
+			"slug": "a-c-t-falling",
+			"artist": "A.C.T",
+			"album": "Falling",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/ep/a_c_t/falling/",
+			"primaryGenres": ["Progressive Rock"],
+			"secondaryGenres": ["AOR", "Progressive Metal"],
+			"descriptors": ["male vocalist", "uncommon time signatures", "quirky", "melodic"],
+			"spotifyUrl": "https://open.spotify.com/search/A.C.T%20Falling",
+			"appleMusicUrl": "https://music.apple.com/search?term=A.C.T%20Falling",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/45f3ada2db0f77255afe79ca351513c8/10763550",
+			"artwork": "/artwork/2023/a-c-t-falling.webp"
+		},
+		{
+			"rank": 6,
+			"slug": "einar-solberg-16",
+			"artist": "Einar Solberg",
+			"album": "16",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/einar-solberg/16-1/",
+			"primaryGenres": ["Progressive Pop", "Art Rock", "Art Pop"],
+			"secondaryGenres": ["Symphonic Rock", "Progressive Rock"],
+			"descriptors": [
+				"uncommon time signatures",
+				"eclectic",
+				"progressive",
+				"male vocalist",
+				"melodic"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Einar%20Solberg%2016",
+			"appleMusicUrl": "https://music.apple.com/search?term=Einar%20Solberg%2016",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/cda3195b2480127d4eb8b16c32955530/11026748",
+			"artwork": "/artwork/2023/einar-solberg-16.webp"
+		},
+		{
+			"rank": 7,
+			"slug": "susanne-sundfor-blomi",
+			"artist": "Susanne Sundfør",
+			"album": "Blómi",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/susanne-sundfor/blo%CC%81mi-2/",
+			"primaryGenres": ["Singer-Songwriter", "Contemporary Folk", "Art Pop"],
+			"secondaryGenres": [
+				"Chamber Folk",
+				"Spoken Word",
+				"Electroacoustic",
+				"Art Pop",
+				"Vocal Jazz",
+				"Chamber Jazz"
+			],
+			"descriptors": ["female vocalist", "ethereal", "peaceful", "introspective", "calm"],
+			"spotifyUrl": "https://open.spotify.com/search/Susanne%20Sundf%C3%B8r%20Blo%CC%81mi",
+			"appleMusicUrl": "https://music.apple.com/search?term=Susanne%20Sundf%C3%B8r%20Blo%CC%81mi",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/11a253cbb4809d5acfb67c964a4abef2/10994884",
+			"artwork": "/artwork/2023/susanne-sundfor-blomi.webp"
+		},
+		{
+			"rank": 8,
+			"slug": "riverside-id-entity",
+			"artist": "Riverside",
+			"album": "ID.Entity",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/riverside/id_entity/",
+			"primaryGenres": ["Progressive Rock"],
+			"secondaryGenres": ["Progressive Metal", "Synthwave"],
+			"descriptors": [
+				"male vocalist",
+				"melodic",
+				"uncommon time signatures",
+				"concept album",
+				"atmospheric"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Riverside%20ID.Entity",
+			"appleMusicUrl": "https://music.apple.com/search?term=Riverside%20ID.Entity",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "//cdn.sonemic.net/i/150/w/3a4f89817265e657d7b0466c2f8a8bfb/10358279",
+			"artwork": "/artwork/2023/riverside-id-entity.webp"
+		},
+		{
+			"rank": 9,
+			"slug": "cicada-seeking-the-sources-of-streams",
+			"artist": "Cicada",
+			"album": "Seeking the Sources of Streams",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/cicada/seeking-the-sources-of-streams/",
+			"primaryGenres": ["Neoclassical New Age", "Chamber Music"],
+			"secondaryGenres": ["Ambient"],
+			"descriptors": ["peaceful", "instrumental", "soothing", "acoustic", "soft"],
+			"spotifyUrl": "https://open.spotify.com/search/Cicada%20Seeking%20the%20Sources%20of%20Streams",
+			"appleMusicUrl": "https://music.apple.com/search?term=Cicada%20Seeking%20the%20Sources%20of%20Streams",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "https://cdn.sonemic.net/i/150/w/b6aa658f87dc395ea491bc4ceb5fcdf7/10508686",
+			"artwork": "/artwork/2023/cicada-seeking-the-sources-of-streams.webp"
+		},
+		{
+			"rank": 10,
+			"slug": "m83-fantasy",
+			"artist": "M83",
+			"album": "Fantasy",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/m83/fantasy/",
+			"primaryGenres": ["Dream Pop", "Indietronica"],
+			"secondaryGenres": [
+				"Synthpop",
+				"Space Ambient",
+				"Post-Rock",
+				"Shoegaze",
+				"Progressive Electronic"
+			],
+			"descriptors": ["ethereal", "fantasy", "atmospheric", "male vocalist", "lush"],
+			"spotifyUrl": "https://open.spotify.com/search/M83%20Fantasy",
+			"appleMusicUrl": "https://music.apple.com/search?term=M83%20Fantasy",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "https://cdn.sonemic.net/i/150/w/93294cb01b46890a7192f54642c1a63e/10805150",
+			"artwork": "/artwork/2023/m83-fantasy.webp"
+		},
+		{
+			"rank": 11,
+			"slug": "scar-symmetry-the-singularity-phase-ii-xenotaph",
+			"artist": "Scar Symmetry",
+			"album": "The Singularity (Phase II - Xenotaph)",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/scar-symmetry/the-singularity-phase-ii-xenotaph/",
+			"primaryGenres": ["Melodic Death Metal", "Progressive Metal"],
+			"secondaryGenres": ["Power Metal"],
+			"descriptors": ["technical", "science fiction", "heavy", "male vocalist", "aggressive"],
+			"spotifyUrl": "https://open.spotify.com/search/Scar%20Symmetry%20The%20Singularity%20(Phase%20II%20-%20Xenotaph)",
+			"appleMusicUrl": "https://music.apple.com/search?term=Scar%20Symmetry%20The%20Singularity%20(Phase%20II%20-%20Xenotaph)",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Fattura 2014 Gebara Eisenberg_files/10926315",
+			"artwork": "/artwork/2023/scar-symmetry-the-singularity-phase-ii-xenotaph.webp"
+		},
+		{
+			"rank": 12,
+			"slug": "insomnium-anno-1696",
+			"artist": "Insomnium",
+			"album": "Anno 1696",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/insomnium/anno-1696/",
+			"primaryGenres": ["Melodic Death Metal"],
+			"secondaryGenres": ["Progressive Metal", "Neofolk"],
+			"descriptors": ["concept album", "male vocalist", "history", "melancholic", "melodic"],
+			"spotifyUrl": "https://open.spotify.com/search/Insomnium%20Anno%201696",
+			"appleMusicUrl": "https://music.apple.com/search?term=Insomnium%20Anno%201696",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Fattura 2014 Gebara Eisenberg_files/10396152",
+			"artwork": "/artwork/2023/insomnium-anno-1696.webp"
+		},
+		{
+			"rank": 13,
+			"slug": "jethro-tull-rokflote",
+			"artist": "Jethro Tull",
+			"album": "RökFlöte",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/jethro-tull/rokflote/",
+			"primaryGenres": ["Folk Rock", "Progressive Rock"],
+			"secondaryGenres": ["Progressive Folk", "Hard Rock"],
+			"descriptors": ["male vocalist", "progressive", "complex", "melodic", "energetic"],
+			"spotifyUrl": "https://open.spotify.com/search/Jethro%20Tull%20R%C3%B6kFl%C3%B6te",
+			"appleMusicUrl": "https://music.apple.com/search?term=Jethro%20Tull%20R%C3%B6kFl%C3%B6te",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Fattura 2014 Gebara Eisenberg_files/10629246",
+			"artwork": "/artwork/2023/jethro-tull-rokflote.webp"
+		},
+		{
+			"rank": 14,
+			"slug": "erik-hall-canto-ostinato",
+			"artist": "Erik Hall",
+			"album": "Canto Ostinato",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/erik-hall/canto-ostinato/",
+			"primaryGenres": ["Minimalism", "Process Music"],
+			"secondaryGenres": ["Process Music"],
+			"descriptors": [
+				"instrumental",
+				"uncommon time signatures",
+				"repetitive",
+				"hypnotic",
+				"minimalistic"
+			],
+			"spotifyUrl": "https://open.spotify.com/search/Erik%20Hall%20Canto%20Ostinato",
+			"appleMusicUrl": "https://music.apple.com/search?term=Erik%20Hall%20Canto%20Ostinato",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Fattura 2014 Gebara Eisenberg_files/10451626",
+			"artwork": "/artwork/2023/erik-hall-canto-ostinato.webp"
+		},
+		{
+			"rank": 15,
+			"slug": "caroline-polachek-desire-i-want-to-turn-into-you",
+			"artist": "Caroline Polachek",
+			"album": "Desire, I Want to Turn Into You",
+			"releaseYear": 2023,
+			"rymUrl": "https://rateyourmusic.com/release/album/caroline-polachek/desire-i-want-to-turn-into-you/",
+			"primaryGenres": ["Art Pop", "Alt-Pop", "Electronic"],
+			"secondaryGenres": ["Downtempo", "UK Garage"],
+			"descriptors": ["female vocalist", "eclectic", "warm", "love", "tropical"],
+			"spotifyUrl": "https://open.spotify.com/search/Caroline%20Polachek%20Desire%2C%20I%20Want%20to%20Turn%20Into%20You",
+			"appleMusicUrl": "https://music.apple.com/search?term=Caroline%20Polachek%20Desire%2C%20I%20Want%20to%20Turn%20Into%20You",
+			"streamingLinksAreSearchFallbacks": true,
+			"artworkSource": "./Fattura 2014 Gebara Eisenberg_files/10489945",
+			"artwork": "/artwork/2023/caroline-polachek-desire-i-want-to-turn-into-you.webp"
+		}
+	],
+	"importMeta": {
+		"source": "rym-saved-html",
+		"sourceFile": "Top 20 Best Albums of 2023 - Rate Your Music_files.htm",
+		"expectedAlbumCount": 15,
+		"warnings": []
+	}
+}

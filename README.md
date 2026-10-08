@@ -78,4 +78,4 @@ The source of truth for each year is a RateYourMusic list page saved from the br
 ## Notes
 
 - SvelteKit 3: `#lib/...` imports of TS modules need a file extension; param matchers live in `src/params.ts` via `defineParams`; `browser` comes from `$app/env`.
-- Current 2024 and 2023 data are sample placeholders (artists, albums, links, artwork, playlist IDs).
+- 2023, 2024 and 2025 are published from real imported data. Earlier years are listed as coming soon until imported.
