@@ -1,4 +1,5 @@
 import type { YearData } from '#lib/types/year.js';
+import { year2022 } from './2022.js';
 import { year2023 } from './2023.js';
 import { year2024 } from './2024.js';
 import { year2025 } from './2025.js';
@@ -7,7 +8,7 @@ import { year2025 } from './2025.js';
 export const FIRST_YEAR = 2015;
 
 /** Every published year, newest first. Adding a year = import it and add it here. */
-export const years: readonly YearData[] = [year2025, year2024, year2023].sort(
+export const years: readonly YearData[] = [year2025, year2024, year2023, year2022].sort(
 	(a, b) => b.year - a.year
 );
 

@@ -51,7 +51,8 @@ export interface YearData {
 	previousYearAlbumsRated?: number;
 	ratingDistribution: RatingBucket[];
 	rymListUrl: string;
-	spotifyPlaylistUrl: string;
+	/** Absent when the year has no playlist yet; the playlist section is then not rendered. */
+	spotifyPlaylistUrl?: string;
 	/**
 	 * Optional 1200×630 social preview image (local path under `static/`).
 	 * Falls back to the #1 artwork when omitted.

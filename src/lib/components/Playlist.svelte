@@ -6,9 +6,10 @@
 	import Section from './Section.svelte';
 	import SpotifyIcon from './icons/SpotifyIcon.svelte';
 
-	let { data }: { data: YearData } = $props();
+	/** Rendered only when the year has a playlist URL. */
+	let { data, url }: { data: YearData; url: string } = $props();
 	const t = $derived(locale.t);
-	const playlistId = $derived(spotifyPlaylistId(data.spotifyPlaylistUrl));
+	const playlistId = $derived(spotifyPlaylistId(url));
 </script>
 
 <Section id="songs" kicker={t.songsKicker} title={t.bestSongs(data.year)}>
@@ -28,7 +29,7 @@
 		{/if}
 
 		<a
-			href={data.spotifyPlaylistUrl}
+			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
 			class="mt-6 inline-flex items-center gap-2 text-sm quiet-link"

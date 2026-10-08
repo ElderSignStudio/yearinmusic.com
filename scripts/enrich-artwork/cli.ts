@@ -9,7 +9,7 @@
 import { mkdir, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import type { ImportedAlbum, ImportedYearData } from '../../src/lib/types/imported.ts';
-import { assignAlbumSlugs, slugify } from '../../src/lib/utils/slug.ts';
+import { assignAlbumSlugs } from '../../src/lib/utils/slug.ts';
 import {
 	generatedDir,
 	generatedPath,
@@ -30,10 +30,12 @@ import {
 	fetchCdn,
 	findManualOverride,
 	isCdnReference,
+	nameKey,
 	type OverrideLookup,
 	readLocalSaved,
 	sleep,
-	type SourceImage
+	type SourceImage,
+	titleVariants
 } from './sources.ts';
 
 const REQUEST_PAUSE_MS = 400;
@@ -97,10 +99,12 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 	const slugs = albums.map((a) => a.slug || canonical.get(a) || `release-${a.rank}`);
 	const results: AlbumResult[] = [];
 
-	const titleCounts = new Map<string, number>();
+	// A title variant may only name a file when no other album in the year could claim it.
+	const keyCounts = new Map<string, number>();
 	for (const a of albums) {
-		const key = slugify(a.album);
-		titleCounts.set(key, (titleCounts.get(key) ?? 0) + 1);
+		for (const key of new Set(titleVariants(a.album).map(nameKey))) {
+			keyCounts.set(key, (keyCounts.get(key) ?? 0) + 1);
+		}
 	}
 
 	for (const [index, album] of albums.entries()) {
@@ -108,8 +112,9 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 		const lookup: OverrideLookup = {
 			year,
 			slug,
-			title: album.album,
-			titleIsUnique: (titleCounts.get(slugify(album.album)) ?? 0) === 1
+			keys: [...new Set(titleVariants(album.album).map(nameKey))].filter(
+				(key) => key && keyCounts.get(key) === 1
+			)
 		};
 		const outFile = path.join(outputDir, `${slug}.webp`);
 		const publicPath = `/artwork/${year}/${slug}.webp`;

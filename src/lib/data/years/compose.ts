@@ -20,6 +20,8 @@ export interface YearEditorial {
 	intro: { 'pt-BR': string[]; en?: string[] };
 	/** Fallback for the year-over-year comparison when the previous year is not published. */
 	previousYearAlbumsRated?: number;
+	/** Playlist URL when the RYM description does not contain one (or to replace it). */
+	spotifyPlaylistUrl?: string;
 	/** Optional 1200×630 share image; otherwise the #1 artwork is used. */
 	shareImage?: string;
 	/** Hero collage path; defaults to the file `npm run generate:hero` writes. `null` disables it. */
@@ -113,7 +115,7 @@ export function createYear(
 			.sort((a, b) => b.rating - a.rating)
 			.map((b) => ({ rating: b.rating, label: ratingLabel(b.rating, b.labelEn), count: b.count })),
 		rymListUrl: generated.rymListUrl,
-		spotifyPlaylistUrl: generated.spotifyPlaylistUrl ?? '',
+		spotifyPlaylistUrl: editorial.spotifyPlaylistUrl ?? generated.spotifyPlaylistUrl,
 		shareImage: editorial.shareImage,
 		heroCollage:
 			editorial.heroCollage === null

@@ -18,5 +18,7 @@
 <YearHero {data} />
 <YearStats {data} />
 <AlbumRanking {data} />
-<Playlist {data} />
+{#if data.spotifyPlaylistUrl}
+	<Playlist {data} url={data.spotifyPlaylistUrl} />
+{/if}
 <Archive currentYear={data.year} />

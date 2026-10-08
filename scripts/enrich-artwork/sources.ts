@@ -2,9 +2,11 @@
  * Finds the best available source image for an album, in order of preference:
  *   1. a hand-supplied file in imports/artwork/{year}/ named after the album slug
  *      (`moron-police-pachinko.jpg`) or, when unambiguous within the year, after the
- *      album title in any casing (`Pachinko.jpeg`). A title that contains a dot may be
- *      saved without an extension (`ID.Entity`); such files are accepted when their
- *      bytes are a JPEG, PNG or WebP image.
+ *      album title in any casing (`Pachinko.jpeg`). Names are compared Unicode-aware,
+ *      so non-Latin titles work, and a title's bracketed suffixes (`Dreamkiller [neon
+ *      violet vinyl]`, `αριθμός τέσσερα [Number Four]`) are optional in the file name.
+ *      A title that contains a dot may be saved without an extension (`ID.Entity`);
+ *      such files are accepted when their bytes are a JPEG, PNG or WebP image.
  *   2. the CDN reference captured from the saved page (fetched as-is)
  *   3. the thumbnail the browser saved into the page's *_files folder
  *
@@ -13,7 +15,6 @@
  */
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { slugify } from '../../src/lib/utils/slug.ts';
 import { importsDir } from '../lib/generated.ts';
 
 export type SourceKind = 'manual' | 'cdn' | 'local-saved';
@@ -55,21 +56,45 @@ function resolveInside(base: string, relative: string): string | undefined {
 	return resolved === base || resolved.startsWith(base + path.sep) ? resolved : undefined;
 }
 
+/**
+ * Unicode-aware comparison key for file stems and titles: case, accents and
+ * punctuation are ignored, letters of any script are kept (`αριθμός τέσσερα` → `αριθμος-τεσσερα`).
+ */
+export function nameKey(text: string): string {
+	return text
+		.normalize('NFKD')
+		.replace(/\p{M}+/gu, '')
+		.toLowerCase()
+		.replace(/&/g, ' and ')
+		.replace(/[^\p{L}\p{N}]+/gu, '-')
+		.replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Names a cover file may carry for a title: the title itself, the title without its
+ * bracketed suffixes, and each bracketed part on its own (RYM's Latin transliterations).
+ */
+export function titleVariants(title: string): string[] {
+	const variants = [title];
+	const stripped = title.replace(/\s*[[(][^\]()]*[\])]\s*$/g, '').trim();
+	if (stripped && stripped !== title) variants.push(stripped);
+	for (const m of title.matchAll(/[[(]([^\]()]+)[\])]/g)) variants.push(m[1].trim());
+	return variants;
+}
+
 export interface OverrideLookup {
 	year: number;
 	slug: string;
-	/** Album title, accepted as a filename when no other album in the year shares it. */
-	title: string;
-	titleIsUnique: boolean;
+	/** `nameKey`s a file may be named by: the slug plus title variants unique within the year. */
+	keys: readonly string[];
 }
 
 export async function findManualOverride(lookup: OverrideLookup): Promise<SourceImage | undefined> {
 	const dir = path.join(importsDir, 'artwork', String(lookup.year));
 	const entries = await readdir(dir).catch(() => [] as string[]);
-	const accepted = new Set([lookup.slug]);
-	if (lookup.titleIsUnique) accepted.add(slugify(lookup.title));
+	const accepted = new Set([lookup.slug, ...lookup.keys].filter(Boolean));
 	for (const name of entries.sort()) {
-		if (!manualNameCandidates(name).some((stem) => accepted.has(slugify(stem)))) continue;
+		if (!manualNameCandidates(name).some((stem) => accepted.has(nameKey(stem)))) continue;
 		const file = path.join(dir, name);
 		const info = await stat(file);
 		if (!info.isFile()) continue;
