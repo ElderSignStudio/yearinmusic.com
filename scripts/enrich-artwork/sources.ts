@@ -2,7 +2,9 @@
  * Finds the best available source image for an album, in order of preference:
  *   1. a hand-supplied file in imports/artwork/{year}/ named after the album slug
  *      (`moron-police-pachinko.jpg`) or, when unambiguous within the year, after the
- *      album title in any casing (`Pachinko.jpeg`)
+ *      album title in any casing (`Pachinko.jpeg`). A title that contains a dot may be
+ *      saved without an extension (`ID.Entity`); such files are accepted when their
+ *      bytes are a JPEG, PNG or WebP image.
  *   2. the CDN reference captured from the saved page (fetched as-is)
  *   3. the thumbnail the browser saved into the page's *_files folder
  *
@@ -28,6 +30,25 @@ export interface SourceImage {
 const USER_AGENT = 'YearInMusic-artwork-enricher/1.0 (personal static site importer)';
 const MANUAL_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
 
+/** Names the file could be matched under: its stem, or the whole name when the "extension" is not an image one. */
+function manualNameCandidates(name: string): string[] {
+	const m = /^(.+)\.([a-z0-9]+)$/i.exec(name);
+	if (m && MANUAL_EXTENSIONS.includes(m[2].toLowerCase())) return [m[1]];
+	return [name];
+}
+
+/** Magic-byte check so an extension-less match is only used when it really is an image. */
+function looksLikeImage(data: Buffer): boolean {
+	const jpeg = data[0] === 0xff && data[1] === 0xd8 && data[2] === 0xff;
+	const png = data
+		.subarray(0, 8)
+		.equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+	const webp =
+		data.subarray(0, 4).toString('ascii') === 'RIFF' &&
+		data.subarray(8, 12).toString('ascii') === 'WEBP';
+	return jpeg || png || webp;
+}
+
 /** Resolves `relative` inside `base`, rejecting anything that escapes it. */
 function resolveInside(base: string, relative: string): string | undefined {
 	const resolved = path.resolve(base, relative);
@@ -47,19 +68,16 @@ export async function findManualOverride(lookup: OverrideLookup): Promise<Source
 	const entries = await readdir(dir).catch(() => [] as string[]);
 	const accepted = new Set([lookup.slug]);
 	if (lookup.titleIsUnique) accepted.add(slugify(lookup.title));
-	const match = entries.find((name) => {
-		const m = /^(.+)\.([a-z0-9]+)$/i.exec(name);
-		return !!m && MANUAL_EXTENSIONS.includes(m[2].toLowerCase()) && accepted.has(slugify(m[1]));
-	});
-	if (!match) return undefined;
-	const file = path.join(dir, match);
-	const info = await stat(file);
-	return {
-		kind: 'manual',
-		label: path.relative(importsDir, file),
-		data: await readFile(file),
-		mtimeMs: info.mtimeMs
-	};
+	for (const name of entries.sort()) {
+		if (!manualNameCandidates(name).some((stem) => accepted.has(slugify(stem)))) continue;
+		const file = path.join(dir, name);
+		const info = await stat(file);
+		if (!info.isFile()) continue;
+		const data = await readFile(file);
+		if (!looksLikeImage(data)) continue;
+		return { kind: 'manual', label: path.relative(importsDir, file), data, mtimeMs: info.mtimeMs };
+	}
+	return undefined;
 }
 
 export function isCdnReference(source: string): boolean {
