@@ -49,6 +49,11 @@ export interface YearData {
 	 * Falls back to the #1 artwork when omitted.
 	 */
 	shareImage?: string;
+	/**
+	 * Optional pre-rendered collage of the year's artwork for the hero background
+	 * (`npm run generate:hero`). Without it the hero uses a wash of the #1 artwork.
+	 */
+	heroCollage?: string;
 	/** Must be sorted by rank ascending. */
 	albums: Album[];
 }

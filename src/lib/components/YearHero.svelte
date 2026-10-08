@@ -9,8 +9,24 @@
 </script>
 
 <section class="relative isolate overflow-hidden">
-	<!-- Atmospheric wash derived from the #1 artwork. Kept faint so text stays dominant. -->
-	{#if winner}
+	<!--
+		Background: a pre-rendered, shuffled collage of the year's artwork when the year has one,
+		otherwise a faint wash of the #1 artwork. Either way a charcoal overlay keeps the type legible.
+	-->
+	{#if data.heroCollage}
+		<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+			<img
+				src={data.heroCollage}
+				alt=""
+				width="1800"
+				height="1000"
+				loading="eager"
+				decoding="async"
+				class="hero-collage h-full w-full object-cover"
+			/>
+			<div class="hero-collage-overlay absolute inset-0"></div>
+		</div>
+	{:else if winner}
 		<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
 			<img
 				src={winner.artwork}
@@ -45,6 +61,50 @@
 </section>
 
 <style>
+	.hero-collage {
+		opacity: 0.85;
+	}
+
+	/* Directional charcoal overlay: heaviest behind the year, lighter to the right, solid at the base. */
+	.hero-collage-overlay {
+		background:
+			linear-gradient(
+				90deg,
+				color-mix(in oklab, var(--bg) 80%, transparent) 0%,
+				color-mix(in oklab, var(--bg) 62%, transparent) 50%,
+				color-mix(in oklab, var(--bg) 38%, transparent) 100%
+			),
+			linear-gradient(
+				180deg,
+				color-mix(in oklab, var(--bg) 20%, transparent) 0%,
+				transparent 35%,
+				var(--bg) 100%
+			);
+	}
+
+	/* Phones: darker and more abstract, since the type spans most of the width. */
+	@media (max-width: 47.9rem) {
+		.hero-collage {
+			opacity: 0.7;
+			transform: scale(1.12);
+			filter: blur(10px) saturate(0.7);
+		}
+		.hero-collage-overlay {
+			background:
+				linear-gradient(
+					90deg,
+					color-mix(in oklab, var(--bg) 82%, transparent),
+					color-mix(in oklab, var(--bg) 62%, transparent)
+				),
+				linear-gradient(
+					180deg,
+					color-mix(in oklab, var(--bg) 35%, transparent) 0%,
+					transparent 40%,
+					var(--bg) 100%
+				);
+		}
+	}
+
 	.hero-wash {
 		opacity: 0.22;
 		filter: blur(90px) saturate(1.3);

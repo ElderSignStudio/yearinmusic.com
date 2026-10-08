@@ -14,7 +14,8 @@
 		"format": "prettier --write .",
 		"import:rym": "node --no-warnings scripts/import-rym/cli.ts",
 		"enrich:artwork": "node --no-warnings scripts/enrich-artwork/cli.ts",
-		"check:overrides": "node --no-warnings scripts/check-overrides/cli.ts"
+		"check:overrides": "node --no-warnings scripts/check-overrides/cli.ts",
+		"generate:hero": "node --no-warnings scripts/generate-hero/cli.ts"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

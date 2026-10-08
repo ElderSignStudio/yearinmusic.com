@@ -22,6 +22,12 @@ export interface YearEditorial {
 	previousYearAlbumsRated?: number;
 	/** Optional 1200×630 share image; otherwise the #1 artwork is used. */
 	shareImage?: string;
+	/** Hero collage path; defaults to the file `npm run generate:hero` writes. `null` disables it. */
+	heroCollage?: string | null;
+}
+
+export function defaultHeroCollage(year: number): string {
+	return `/artwork/${year}/hero-collage.webp`;
 }
 
 function toAlbum(
@@ -68,6 +74,10 @@ export function createYear(
 		rymListUrl: generated.rymListUrl,
 		spotifyPlaylistUrl: generated.spotifyPlaylistUrl ?? '',
 		shareImage: editorial.shareImage,
+		heroCollage:
+			editorial.heroCollage === null
+				? undefined
+				: (editorial.heroCollage ?? defaultHeroCollage(generated.year)),
 		albums: [...generated.albums]
 			.sort((a, b) => a.rank - b.rank)
 			.map((a) => toAlbum(a, manual, generated.rymListUrl))
