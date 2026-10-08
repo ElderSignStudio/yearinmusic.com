@@ -101,6 +101,13 @@ export function createYear(
 	editorial: YearEditorial
 ): YearData {
 	const { ranked, bonus } = splitAlbums(generated, editorial.bonusSlugs ?? []);
+	// The official total is the sum of the rating buckets; refuse data that disagrees.
+	const bucketSum = generated.ratingDistribution.reduce((sum, b) => sum + b.count, 0);
+	if (generated.ratingDistribution.length && generated.totalAlbumsRated !== bucketSum) {
+		throw new Error(
+			`${generated.year}: totalAlbumsRated is ${generated.totalAlbumsRated} but the rating buckets sum to ${bucketSum}. Re-run: npm run import:rym`
+		);
+	}
 	const intro: Record<Locale, string[]> = {
 		'pt-BR': editorial.intro['pt-BR'],
 		en: editorial.intro.en ?? generated.introEn

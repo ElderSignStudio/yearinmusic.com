@@ -41,7 +41,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    npm run import:rym -- imports/rym
    ```
 
-3. Read the import report. Warnings (for example, rating buckets that don't add up to the stated total) still produce output; structural errors (no albums, no year) do not.
+3. Read the import report. Warnings (for example, a total written in the text that differs from the sum of the rating buckets) still produce output; structural errors (no albums, no year) do not.
 4. Optionally drop higher-resolution covers into `imports/artwork/<year>/<artist-album>.(jpg|png|webp)`. The artwork report lists each album's slug.
 5. Resolve the artwork:
 
@@ -69,7 +69,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
 
 **Generated vs hand-authored.** `src/lib/data/years/generated/<year>.json` and `static/artwork/<year>/` are written by the scripts and tracked in Git; re-running the scripts is safe and deterministic. `src/lib/data/years/manual/<year>.ts` is written by hand and never touched by any script; for a new year, copy the structure of an existing file and register it in `manual/index.ts`. Hand-authored presentation data such as `src/lib/data/years/<year>.ts` is likewise never regenerated.
 
-**Import.** The importer reads only the fields the site needs: list title and URL, the introduction paragraphs, the stated statistics, the yearly playlist URL and each ranked album's stable slug, artist, title, release year, RYM URL, genres, descriptors and artwork reference. Percentages are never copied from the page; the site derives them from each bucket count and the stated total, which stays authoritative even when the buckets disagree. Spotify and Apple Music links are search fallbacks (`streamingLinksAreSearchFallbacks: true`) until exact links are supplied in the manual file.
+**Import.** The importer reads only the fields the site needs: list title and URL, the introduction paragraphs, the stated statistics, the yearly playlist URL and each ranked album's stable slug, artist, title, release year, RYM URL, genres, descriptors and artwork reference. Percentages are never copied from the page; the site derives them from each bucket count and the year's total, which is the sum of the rating buckets. A total written in the text is only a cross-check and is reported when it disagrees. Re-importing a year keeps the artwork paths that enrichment already wrote. Spotify and Apple Music links are search fallbacks (`streamingLinksAreSearchFallbacks: true`) until exact links are supplied in the manual file.
 
 **Artwork.** The enricher copies or downloads each cover, checks its real dimensions, and stores one normalized WebP per album at `static/artwork/<year>/<artist-album>.webp`, recording the public path in the album's `artwork` field; the site never depends on RYM image URLs. Sources are tried in order: a hand-supplied file, the CDN reference captured from the saved page, then the thumbnail the browser saved. RYM's CDN only serves each rendition under its own hash, so a saved page yields 150px covers at best. Images are never enlarged, cropped, filtered or recolored; non-square covers are kept as-is and flagged.
 

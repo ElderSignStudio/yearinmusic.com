@@ -179,18 +179,20 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 		diagnostics.warn('No list description found; introduction, statistics and playlist are empty.');
 	}
 
+	// The official total for a year is the sum of its rating buckets. A "rated N albums"
+	// sentence in the text is only a cross-check: it is reported when it disagrees, never used.
 	const bucketSum = description.ratingDistribution.reduce((sum, b) => sum + b.count, 0);
-	let totalAlbumsRated = description.statedTotal;
-	if (totalAlbumsRated === undefined) {
+	let totalAlbumsRated = bucketSum;
+	if (!description.ratingDistribution.length) {
+		totalAlbumsRated = description.statedTotal ?? 0;
 		diagnostics.warn(
-			description.ratingDistribution.length
-				? `No stated "rated N albums" total found; using the rating bucket sum (${bucketSum}) instead.`
-				: 'No stated total of albums rated and no rating buckets found.'
+			description.statedTotal === undefined
+				? 'No rating buckets and no stated total found; albums rated is 0.'
+				: `No rating buckets found; falling back to the stated total (${description.statedTotal}).`
 		);
-		totalAlbumsRated = bucketSum;
-	} else if (description.ratingDistribution.length && bucketSum !== totalAlbumsRated) {
+	} else if (description.statedTotal !== undefined && description.statedTotal !== bucketSum) {
 		diagnostics.warn(
-			`Rating buckets sum to ${bucketSum} while stated total is ${totalAlbumsRated}. Percentages will use ${totalAlbumsRated} as denominator.`
+			`The text states ${description.statedTotal} albums rated but the rating buckets sum to ${bucketSum}; using ${bucketSum}.`
 		);
 	}
 	if (!description.ratingDistribution.length)

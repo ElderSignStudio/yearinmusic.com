@@ -2,9 +2,9 @@
  * Derived yearly statistics, kept out of the visual components so the same
  * numbers can later feed a cross-year view.
  *
- * Data rules: the stated total albums rated is always the denominator, even when
- * the rating buckets do not sum to it exactly; percentages are never copied from
- * the source text. Shares are fractions (0–1) for `formatPercent`.
+ * Data rules: the albums-rated total is the sum of the rating buckets (never a figure
+ * quoted from the source text) and is the denominator for every share; percentages
+ * are never copied from the source. Shares are fractions (0–1) for `formatPercent`.
  */
 import type { YearData } from '#lib/types/year.js';
 import { previousYearTotal } from './index.js';

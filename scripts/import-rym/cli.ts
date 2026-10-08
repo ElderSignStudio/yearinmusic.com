@@ -7,7 +7,8 @@
  */
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { writeGenerated } from '../lib/generated.ts';
+import type { ImportedYearData } from '../../src/lib/types/imported.ts';
+import { generatedPath, readGenerated, writeGenerated } from '../lib/generated.ts';
 import { parseRymListHtml } from './parse.ts';
 import { formatReport } from './report.ts';
 
@@ -30,9 +31,26 @@ async function importFile(file: string): Promise<boolean> {
 	const html = await readFile(file, 'utf8');
 	const result = parseRymListHtml(html, sourceFile);
 	let outputPath: string | undefined;
-	if (result.data) outputPath = await writeGenerated(result.data);
+	if (result.data) {
+		await carryOverArtwork(result.data);
+		outputPath = await writeGenerated(result.data);
+	}
 	console.log(formatReport(sourceFile, result, outputPath));
 	return !result.diagnostics.fatal;
+}
+
+/**
+ * Re-importing a year must not undo `npm run enrich:artwork`: keep the local artwork
+ * path of every album whose slug already exists in the previous generated file.
+ */
+async function carryOverArtwork(data: ImportedYearData): Promise<void> {
+	const previous = await readGenerated(generatedPath(data.year)).catch(() => undefined);
+	if (!previous) return;
+	const artworkBySlug = new Map(previous.albums.map((a) => [a.slug, a.artwork] as const));
+	for (const album of data.albums) {
+		const artwork = artworkBySlug.get(album.slug);
+		if (artwork && !album.artwork) album.artwork = artwork;
+	}
 }
 
 async function main() {

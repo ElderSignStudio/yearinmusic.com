@@ -6,7 +6,7 @@
 		"Welcome to my top 20 best albums released in 2025!",
 		"I rated 157 albums released in 2025, just a bit less than in 2024 (I rated 168 albums released that year)."
 	],
-	"totalAlbumsRated": 157,
+	"totalAlbumsRated": 159,
 	"ratingDistribution": [
 		{
 			"rating": 5,
@@ -400,8 +400,6 @@
 		"source": "rym-saved-html",
 		"sourceFile": "Top 20 Best Albums of 2025 - Rate Your Music.html",
 		"expectedAlbumCount": 20,
-		"warnings": [
-			"Rating buckets sum to 159 while stated total is 157. Percentages will use 157 as denominator."
-		]
+		"warnings": ["The text states 157 albums rated but the rating buckets sum to 159; using 159."]
 	}
 }

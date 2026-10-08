@@ -10,7 +10,7 @@ export interface ImportedRatingBucket {
 	rating: number;
 	/** English label as written on RYM, e.g. "Masterpieces". */
 	labelEn?: string;
-	/** Count exactly as stated in the list description. Percentages are derived, never stored. */
+	/** Count exactly as written on the rating line. Percentages are derived, never stored. */
 	count: number;
 }
 
@@ -52,7 +52,10 @@ export interface ImportedYearData {
 	rymListUrl: string;
 	/** Editorial introduction paragraphs, without rating or playlist lines. */
 	introEn: string[];
-	/** Stated total exactly as written. Authoritative denominator for percentages. */
+	/**
+	 * Sum of the rating bucket counts: the official albums-rated figure and the
+	 * denominator for every percentage. A total written in the text is only a cross-check.
+	 */
 	totalAlbumsRated: number;
 	/** Ordered from the highest rating to the lowest. */
 	ratingDistribution: ImportedRatingBucket[];

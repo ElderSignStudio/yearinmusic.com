@@ -31,9 +31,8 @@ export function formatReport(sourceFile: string, result: ParseResult, outputPath
 		);
 		lines.push(`Spotify playlist: ${data.spotifyPlaylistUrl ? `found ${OK}` : `missing ${WARN}`}`);
 		lines.push(`Intro paragraphs: ${data.introEn.length} ${data.introEn.length ? OK : WARN}`, '');
-		lines.push(`Stated albums rated: ${data.totalAlbumsRated}`);
 		lines.push(
-			`Rating bucket sum: ${stats.bucketSum} ${stats.bucketSum === data.totalAlbumsRated ? OK : WARN}`
+			`Albums rated (sum of rating buckets): ${data.totalAlbumsRated} ${data.ratingDistribution.length ? OK : WARN}`
 		);
 	}
 
