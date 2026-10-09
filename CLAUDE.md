@@ -4,7 +4,7 @@
 
 This is a personal annual music website for Dan.
 
-Every year since 2015, Dan has created a ranked list of his favorite albums released that year and a Spotify playlist containing his favorite songs of the year.
+Every year since 2016, Dan has created a ranked list of his favorite albums released that year and a Spotify playlist containing his favorite songs of the year.
 
 The website replaces the collection of RateYourMusic and Spotify links that was previously shared manually with friends over WhatsApp.
 
@@ -186,7 +186,7 @@ The intended URL model is:
 `/2024`
 etc.
 
-The archive ultimately goes back to 2015.
+The archive goes back to 2016, the first edition.
 
 Do not hardcode routing around any single year.
 

@@ -11,6 +11,7 @@
 	import RecurringArtists from './RecurringArtists.svelte';
 	import GenreBars from './GenreBars.svelte';
 	import Winners from './Winners.svelte';
+	import Callout from './Callout.svelte';
 
 	let { stats }: { stats: AcrossYearsStatistics } = $props();
 	const t = $derived(locale.t);
@@ -45,6 +46,34 @@
 	// Enough to show real repetition without listing every pair.
 	const recurring = $derived(stats.recurringArtists.slice(0, 12));
 	const genres = $derived(stats.genres.slice(0, 12));
+
+	// Callout copy: facts from the helper, sentences from the locale templates.
+	const h = $derived(stats.highlights);
+	const yearList = (items: { year: number }[]) => t.joinList(items.map((i) => String(i.year)));
+	const pct = (share: number) => formatPercent(share, locale.current);
+	const mostActiveCopy = $derived(
+		h.mostActive.tied
+			? t.mostActiveTieCopy(yearList(h.mostActive.items), h.mostActive.total)
+			: t.mostActiveCopy(String(h.mostActive.items[0].year), h.mostActive.total)
+	);
+	const strongestCopy = $derived(
+		h.strongest.tied
+			? t.strongestTieCopy(yearList(h.strongest.items), pct(h.strongest.share))
+			: t.strongestCopy(String(h.strongest.items[0].year), pct(h.strongest.share))
+	);
+	const toughestCopy = $derived(
+		h.toughest.tied
+			? t.toughestTieCopy(yearList(h.toughest.items), pct(h.toughest.share))
+			: t.toughestCopy(String(h.toughest.items[0].year), pct(h.toughest.share))
+	);
+	// Every year sharing one rate would make "high and low" meaningless; skip it then.
+	const showHighLow = $derived(h.strongest.share !== h.toughest.share);
+	const topGenreCopy = $derived(
+		h.topGenre &&
+			(h.topGenre.tied
+				? t.topGenreTieCopy(t.joinList(h.topGenre.items.map((g) => g.genre)), h.topGenre.albums)
+				: t.topGenreCopy(h.topGenre.items[0].genre, h.topGenre.albums))
+	);
 </script>
 
 <section class="relative isolate overflow-hidden">
@@ -74,6 +103,7 @@
 	<div class="mt-10 max-w-[52rem]">
 		<YearColumns points={listened} title={t.listenedTitle} />
 	</div>
+	<Callout kicker={t.mostActiveKicker}>{mostActiveCopy}</Callout>
 </Section>
 
 <Section id="great-or-better" kicker={t.byYearKicker} title={t.greatShareTitle}>
@@ -81,6 +111,9 @@
 	<div class="mt-12 max-w-[52rem]">
 		<ShareLine points={greatShare} title={t.greatShareTitle} />
 	</div>
+	{#if showHighLow}
+		<Callout kicker={t.highLowKicker}>{strongestCopy} {toughestCopy}</Callout>
+	{/if}
 </Section>
 
 <Section id="amazing" kicker={t.rarestKicker} title={t.amazingTitle}>
@@ -117,6 +150,9 @@
 	<div class="mt-8 max-w-[52rem]">
 		<GenreBars {genres} />
 	</div>
+	{#if topGenreCopy}
+		<Callout kicker={t.recurringSoundKicker}>{topGenreCopy}</Callout>
+	{/if}
 </Section>
 
 <Section id="winners" kicker={t.winnersKicker} title={t.winnersTitle}>

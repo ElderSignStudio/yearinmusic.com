@@ -39,6 +39,26 @@ export interface GenreFrequency {
 	share: number;
 }
 
+/** A superlative that may be shared: `items` holds every tied entry, in chronological or alphabetical order. */
+export interface Superlative<T> {
+	items: T[];
+	tied: boolean;
+}
+
+/** Facts for the editorial callouts; the presentation layer turns them into sentences. */
+export interface Highlights {
+	/** Year(s) with the most albums rated. */
+	mostActive: Superlative<YearPoint> & { total: number };
+	/** Year(s) with the highest share rated 4.0 or higher. */
+	strongest: Superlative<YearPoint> & { share: number };
+	/** Year(s) with the lowest share rated 4.0 or higher. */
+	toughest: Superlative<YearPoint> & { share: number };
+	/** Primary genre(s) on the most ranked albums. */
+	topGenre?: Superlative<GenreFrequency> & { albums: number };
+	/** Artist(s) with the most ranked appearances. */
+	topArtist?: Superlative<RecurringArtist> & { appearances: number };
+}
+
 export interface Winner {
 	year: number;
 	accent: string;
@@ -66,6 +86,38 @@ export interface AcrossYearsStatistics {
 	genres: GenreFrequency[];
 	/** Every year's #1, chronological. */
 	winners: Winner[];
+	highlights: Highlights;
+}
+
+/** Every item whose measure equals the extreme (max or min), keeping input order. */
+function superlative<T>(
+	items: readonly T[],
+	measure: (item: T) => number,
+	pick: 'max' | 'min'
+): Superlative<T> {
+	const values = items.map(measure);
+	const extreme = pick === 'max' ? Math.max(...values) : Math.min(...values);
+	const tiedItems = items.filter((_, i) => values[i] === extreme);
+	return { items: tiedItems, tied: tiedItems.length > 1 };
+}
+
+function highlights(
+	perYear: YearPoint[],
+	genres: GenreFrequency[],
+	artists: RecurringArtist[]
+): Highlights {
+	const mostActive = superlative(perYear, (y) => y.totalAlbumsRated, 'max');
+	const strongest = superlative(perYear, (y) => y.greatOrBetter.share, 'max');
+	const toughest = superlative(perYear, (y) => y.greatOrBetter.share, 'min');
+	const topGenre = genres.length ? superlative(genres, (g) => g.albums, 'max') : undefined;
+	const topArtist = artists.length ? superlative(artists, (a) => a.appearances, 'max') : undefined;
+	return {
+		mostActive: { ...mostActive, total: mostActive.items[0].totalAlbumsRated },
+		strongest: { ...strongest, share: strongest.items[0].greatOrBetter.share },
+		toughest: { ...toughest, share: toughest.items[0].greatOrBetter.share },
+		topGenre: topGenre && { ...topGenre, albums: topGenre.items[0].albums },
+		topArtist: topArtist && { ...topArtist, appearances: topArtist.items[0].appearances }
+	};
 }
 
 function share(count: number, total: number): CountShare {
@@ -156,6 +208,11 @@ export function getAcrossYearsStatistics(
 	if (years.length === 0) return undefined;
 
 	const perYear = years.map(toYearPoint);
+	const genres = genreFrequencies(
+		years,
+		years.reduce((sum, y) => sum + y.rankedAlbums.length, 0)
+	);
+	const artists = recurringArtists(years);
 	const totalAlbumsRated = perYear.reduce((sum, y) => sum + y.totalAlbumsRated, 0);
 	const amazingCount = perYear.reduce((sum, y) => sum + y.amazing, 0);
 	const greatCount = perYear.reduce((sum, y) => sum + y.greatOrBetter.count, 0);
@@ -181,10 +238,11 @@ export function getAcrossYearsStatistics(
 		highestGreatOrBetterShareYear,
 		cumulativeDistribution: cumulativeDistribution(years),
 		rankedAlbumCount,
-		recurringArtists: recurringArtists(years),
-		genres: genreFrequencies(years, rankedAlbumCount),
+		recurringArtists: artists,
+		genres,
 		winners: years
 			.filter((y) => y.rankedAlbums.length > 0)
-			.map((y) => ({ year: y.year, accent: y.theme.accent, album: y.rankedAlbums[0] }))
+			.map((y) => ({ year: y.year, accent: y.theme.accent, album: y.rankedAlbums[0] })),
+		highlights: highlights(perYear, genres, artists)
 	};
 }

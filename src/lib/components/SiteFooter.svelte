@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FIRST_YEAR, newestYear } from '#lib/data/years/index.js';
+	import { earliestYear, newestYear } from '#lib/data/years/index.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import { SITE_AUTHOR } from '#lib/site.js';
 
@@ -16,6 +16,6 @@
 			>
 		</p>
 		<p>{t.footerNote}</p>
-		<p class="tabular-nums">{FIRST_YEAR}–{newestYear.year}</p>
+		<p class="tabular-nums">{earliestYear.year}–{newestYear.year}</p>
 	</div>
 </footer>

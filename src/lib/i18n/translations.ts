@@ -81,7 +81,7 @@ const ptBR = {
 	oneSongPerArtist: 'Uma música por artista.',
 	openInSpotify: 'Abrir no Spotify',
 	playlistEmbedTitle: (year: number) => `Playlist no Spotify: melhores músicas de ${year}`,
-	archiveKicker: 'Desde 2015',
+	archiveKicker: (first: number) => `Desde ${first}`,
 	archiveTitle: 'O arquivo',
 	archiveLink: 'Arquivo',
 	statsLink: 'Estatísticas',
@@ -97,8 +97,30 @@ const ptBR = {
 	bigPictureKicker: 'O panorama',
 	yearsLabel: 'Anos',
 	byYearKicker: 'Por ano',
-	listenedTitle: 'Quanto eu ouvi',
-	listenedLede: 'Álbuns avaliados em cada ano.',
+	listenedTitle: 'Álbuns avaliados por ano',
+	listenedLede: 'Álbuns avaliados a cada ano.',
+	/** "2017, 2019 e 2021" */
+	joinList: (items: string[]) =>
+		items.length <= 1
+			? (items[0] ?? '')
+			: `${items.slice(0, -1).join(', ')} e ${items[items.length - 1]}`,
+	mostActiveKicker: 'Ano mais ativo',
+	mostActiveCopy: (year: string, total: number) =>
+		`${year} foi o ano com mais álbuns avaliados: ${total}.`,
+	mostActiveTieCopy: (years: string, total: number) =>
+		`${years} empataram como os anos com mais álbuns avaliados, ${total} cada.`,
+	highLowKicker: 'O auge e o vale',
+	strongestCopy: (year: string, pct: string) =>
+		`${year} teve a maior proporção de álbuns com nota 4,0 ou superior: ${pct}.`,
+	strongestTieCopy: (years: string, pct: string) =>
+		`${years} dividiram a maior proporção de álbuns com nota 4,0 ou superior: ${pct}.`,
+	toughestCopy: (year: string, pct: string) => `${year} teve a menor, ${pct}.`,
+	toughestTieCopy: (years: string, pct: string) => `${years} dividiram a menor, ${pct}.`,
+	recurringSoundKicker: 'O som recorrente',
+	topGenreCopy: (genre: string, albums: number) =>
+		`${genre} apareceu em ${albums} álbuns ranqueados, mais do que qualquer outro gênero principal.`,
+	topGenreTieCopy: (genres: string, albums: number) =>
+		`${genres} empataram como os gêneros principais mais frequentes, em ${albums} álbuns ranqueados cada.`,
 	greatShareTitle: 'Ótimos ou melhores',
 	greatShareLede: 'Parcela dos álbuns avaliados com nota 4,0 ou mais.',
 	rarestKicker: 'A nota mais rara',
@@ -167,7 +189,7 @@ const en: Dictionary = {
 	oneSongPerArtist: 'One song per artist.',
 	openInSpotify: 'Open in Spotify',
 	playlistEmbedTitle: (year) => `Spotify playlist: best songs of ${year}`,
-	archiveKicker: 'Since 2015',
+	archiveKicker: (first) => `Since ${first}`,
 	archiveTitle: 'The archive',
 	archiveLink: 'Archive',
 	statsLink: 'Stats',
@@ -182,8 +204,25 @@ const en: Dictionary = {
 	bigPictureKicker: 'The big picture',
 	yearsLabel: 'Years',
 	byYearKicker: 'By year',
-	listenedTitle: 'How much I listened',
+	listenedTitle: 'Albums rated by year',
 	listenedLede: 'Albums rated each year.',
+	joinList: (items) =>
+		items.length <= 1
+			? (items[0] ?? '')
+			: `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`,
+	mostActiveKicker: 'Most active year',
+	mostActiveCopy: (year, total) => `${year} led with ${total} albums rated, the most of any year.`,
+	mostActiveTieCopy: (years, total) => `${years} tied for the most albums rated, at ${total} each.`,
+	highLowKicker: 'The high and the low',
+	strongestCopy: (year, pct) => `${year} had the highest Great-or-better rate at ${pct}.`,
+	strongestTieCopy: (years, pct) => `${years} shared the highest Great-or-better rate at ${pct}.`,
+	toughestCopy: (year, pct) => `${year} had the lowest, at ${pct}.`,
+	toughestTieCopy: (years, pct) => `${years} shared the lowest, at ${pct}.`,
+	recurringSoundKicker: 'The recurring sound',
+	topGenreCopy: (genre, albums) =>
+		`${genre} appeared on ${albums} ranked albums, more than any other primary genre.`,
+	topGenreTieCopy: (genres, albums) =>
+		`${genres} tied as the most frequent primary genres, on ${albums} ranked albums each.`,
 	greatShareTitle: 'Great or better',
 	greatShareLede: 'Share of the albums rated that scored 4.0 or higher.',
 	rarestKicker: 'The rarest rating',

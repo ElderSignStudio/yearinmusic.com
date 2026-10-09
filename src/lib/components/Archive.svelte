@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { archiveEntries } from '#lib/data/years/index.js';
+	import { archiveEntries, earliestYear } from '#lib/data/years/index.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import Section from './Section.svelte';
 
@@ -11,7 +11,7 @@
 	const upcoming = entries.filter((e) => e.data === undefined);
 </script>
 
-<Section id="archive" kicker={t.archiveKicker} title={t.archiveTitle}>
+<Section id="archive" kicker={t.archiveKicker(earliestYear.year)} title={t.archiveTitle}>
 	<ol class="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
 		{#each published as entry (entry.year)}
 			{@const data = entry.data!}

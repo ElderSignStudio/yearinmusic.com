@@ -10,9 +10,6 @@ import { year2023 } from './2023.js';
 import { year2024 } from './2024.js';
 import { year2025 } from './2025.js';
 
-/** First year the archive will eventually reach back to. */
-export const FIRST_YEAR = 2015;
-
 /** Every published year, newest first. Adding a year = import it and add it here. */
 export const years: readonly YearData[] = [
 	year2025,
@@ -28,6 +25,8 @@ export const years: readonly YearData[] = [
 ].sort((a, b) => b.year - a.year);
 
 export const newestYear: YearData = years[0];
+/** The first Year in Music edition: derived from the registered years, never hardcoded. */
+export const earliestYear: YearData = years[years.length - 1];
 
 export function getYear(year: number): YearData | undefined {
 	return years.find((y) => y.year === year);
@@ -50,9 +49,11 @@ export interface ArchiveEntry {
 	data?: YearData;
 }
 
-/** Full archive range, newest first, including years not yet imported. */
+/** Full archive range, newest first, including any gap years not yet imported. */
 export function archiveEntries(): ArchiveEntry[] {
 	const entries: ArchiveEntry[] = [];
-	for (let y = newestYear.year; y >= FIRST_YEAR; y--) entries.push({ year: y, data: getYear(y) });
+	for (let y = newestYear.year; y >= earliestYear.year; y--) {
+		entries.push({ year: y, data: getYear(y) });
+	}
 	return entries;
 }
