@@ -1,5 +1,12 @@
 import type { Locale, YearData } from '#lib/types/year.js';
 import { translations } from '#lib/i18n/translations.js';
+import { DEFAULT_LOCALE } from '#lib/i18n/localeUrl.js';
+
+/**
+ * Social and document metadata is deliberately English-first: previews for a
+ * `?lang=pt-BR` share link still read in English, and `?lang` never reaches canonical URLs.
+ */
+const META_LOCALE: Locale = DEFAULT_LOCALE;
 import { absoluteUrl, SITE_AUTHOR, SITE_URL } from './site.js';
 
 const OG_LOCALE: Record<Locale, string> = { 'pt-BR': 'pt_BR', en: 'en_US' };
@@ -19,7 +26,8 @@ export interface PageMeta {
 	author: string;
 }
 
-export function yearMeta(data: YearData, locale: Locale): PageMeta {
+export function yearMeta(data: YearData): PageMeta {
+	const locale = META_LOCALE;
 	const t = translations[locale];
 	const shareImage = data.shareImage;
 	return {
@@ -40,10 +48,10 @@ export function yearMeta(data: YearData, locale: Locale): PageMeta {
 
 /** Metadata for the cross-year statistics page. */
 export function statsMeta(
-	locale: Locale,
 	range: { first: number; latest: number },
 	image: string | undefined
 ): PageMeta {
+	const locale = META_LOCALE;
 	const t = translations[locale];
 	return {
 		title: `${t.siteName} — ${t.acrossTitle}`,

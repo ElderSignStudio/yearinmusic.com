@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '#lib/assets/favicon.svg';
+	import { untrack } from 'svelte';
 	import { page } from '$app/state';
 	import type { LayoutProps } from './$types';
 	import { locale } from '#lib/i18n/locale.svelte.js';
@@ -14,8 +15,14 @@
 	const year = $derived(page.data.year);
 	const accent = $derived(year?.theme.accent ?? 'var(--accent)');
 
+	// Resolve the language before anything renders on the client: ?lang › saved › English.
+	locale.initialize(page.url);
+	// A later client-side navigation can still carry an explicit ?lang (e.g. a pasted link).
+	// Track only the URL: the switcher changes the locale first and the address bar after,
+	// so reacting to the locale here would snap it back to the stale parameter.
 	$effect(() => {
-		locale.restore();
+		const url = page.url;
+		untrack(() => locale.syncFromUrl(url));
 	});
 </script>
 

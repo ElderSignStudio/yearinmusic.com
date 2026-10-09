@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { locale } from '#lib/i18n/locale.svelte.js';
 	/**
 	 * One column per year: a direct value label, a bar and the year, each column a link to
 	 * that year's page. Pure HTML/CSS so labels stay real text at every width.
@@ -33,7 +34,7 @@
 	{#each points as point (point.year)}
 		<li style="--year-accent: {point.accent}">
 			<a
-				href="/{point.year}"
+				href={locale.href(`/${point.year}`)}
 				class="group block rounded-xs text-center outline-none"
 				aria-label={point.description}
 			>

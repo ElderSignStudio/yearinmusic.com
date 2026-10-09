@@ -12,7 +12,7 @@
 <nav aria-label={t.archiveTitle} class="flex items-center gap-4 text-sm tabular-nums {className}">
 	{#if adjacent.previous}
 		<a
-			href="/{adjacent.previous.year}"
+			href={locale.href(`/${adjacent.previous.year}`)}
 			class="inline-flex items-center gap-1.5 quiet-link"
 			aria-label="{t.previousYear}: {adjacent.previous.year}"
 		>
@@ -25,7 +25,7 @@
 	{#if adjacent.next}
 		<span aria-hidden="true" class="text-ink-faint">·</span>
 		<a
-			href="/{adjacent.next.year}"
+			href={locale.href(`/${adjacent.next.year}`)}
 			class="inline-flex items-center gap-1.5 quiet-link"
 			aria-label="{t.nextYear}: {adjacent.next.year}"
 		>

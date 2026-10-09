@@ -19,7 +19,7 @@
 			{@const isCurrent = entry.year === currentYear}
 			<li style="--year-accent: {data.theme.accent}">
 				<a
-					href="/{entry.year}"
+					href={locale.href(`/${entry.year}`)}
 					class="group block"
 					aria-current={isCurrent ? 'page' : undefined}
 					aria-label="{entry.year} · {t.topN(data.rankedAlbums.length)}{isCurrent

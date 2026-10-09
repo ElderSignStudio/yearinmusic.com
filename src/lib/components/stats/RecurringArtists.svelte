@@ -21,7 +21,7 @@
 			<p class="mt-2 flex flex-wrap gap-x-1.5 text-sm tabular-nums">
 				{#each artist.years as year, i (year)}
 					{#if i > 0}<span aria-hidden="true" class="text-ink-faint">·</span>{/if}
-					<a href="/{year}" class="quiet-link">{year}</a>
+					<a href={locale.href(`/${year}`)} class="quiet-link">{year}</a>
 				{/each}
 			</p>
 			{#if artist.topFiveAppearances}

@@ -196,14 +196,21 @@ Do not hardcode routing around any single year.
 
 The website is bilingual:
 
-- Portuguese
-- English
+- English (`en`) — the DEFAULT locale
+- Brazilian Portuguese (`pt-BR`) — the secondary locale
 
-Portuguese is the DEFAULT.
+Users can switch between BR and EN.
 
-Users can switch between PT and EN.
+Portuguese is shareable through the URL: `?lang=pt-BR` (for example `/2025?lang=pt-BR`).
+`?lang=en` is accepted but English URLs are normally clean.
 
-Language preference should persist locally.
+Locale precedence: URL `?lang` › saved preference › English default.
+
+Language preference persists locally. Internal links keep `?lang=pt-BR` while the
+visitor is in Portuguese so the displayed URL stays shareable.
+
+Social/Open Graph metadata is deliberately English-first, even for `?lang=pt-BR`
+share links, and `?lang` never appears in canonical URLs.
 
 Do not duplicate entire page components for each language.
 

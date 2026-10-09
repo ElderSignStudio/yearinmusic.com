@@ -13,7 +13,7 @@
 	{#each winners as winner (winner.year)}
 		<li style="--year-accent: {winner.accent}">
 			<a
-				href="/{winner.year}"
+				href={locale.href(`/${winner.year}`)}
 				class="group block"
 				aria-label="{winner.year}: {winner.album.artist} — {winner.album.album}. {t.openYear(
 					winner.year

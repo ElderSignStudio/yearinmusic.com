@@ -18,6 +18,8 @@
 		<p class="mt-6 max-w-content text-lg text-ink-muted">{t.notFoundBody}</p>
 	{/if}
 	<p class="mt-10">
-		<a href="/" class="text-sm quiet-link underline underline-offset-4">{t.backToNewest}</a>
+		<a href={locale.href('/')} class="text-sm quiet-link underline underline-offset-4">
+			{t.backToNewest}
+		</a>
 	</p>
 </section>

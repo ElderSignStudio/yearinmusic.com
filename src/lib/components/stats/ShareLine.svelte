@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { locale } from '#lib/i18n/locale.svelte.js';
 	/**
 	 * A time series of yearly shares: an SVG line underneath (stretched, non-scaling stroke)
 	 * and one HTML column per year carrying the dot, the percentage and the year label.
@@ -68,7 +69,7 @@
 			{#each points as point, i (point.year)}
 				<li class="relative" style="--year-accent: {point.accent}">
 					<a
-						href="/{point.year}"
+						href={locale.href(`/${point.year}`)}
 						class="group absolute inset-0 block rounded-xs outline-none"
 						aria-label={point.description}
 					>
