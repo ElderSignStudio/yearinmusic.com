@@ -125,6 +125,9 @@ export const overrides2018: ManualYearOverrides = {
 
 	// 20 — Melody's Echo Chamber — Breathe In, Breathe Out
 	'melody-s-echo-chamber-breathe-in-breathe-out': {
+		// The list entry links to the single "Breathe In, Breathe Out"; the album is "Bon Voyage".
+		album: 'Bon Voyage',
+		rymUrl: 'https://rateyourmusic.com/release/album/melodys-echo-chamber/bon-voyage/',
 		spotifyUrl: 'https://open.spotify.com/album/2ejxvsjo229Jnsnluek1zZ',
 		appleMusicUrl: 'https://music.apple.com/gb/album/bon-voyage/1359988806'
 	}
