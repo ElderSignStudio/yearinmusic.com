@@ -10,20 +10,20 @@ import type { ManualYearOverrides } from './types.ts';
 export const overrides2017: ManualYearOverrides = {
 	// 01 — Mike Oldfield — Return to Ommadawn
 	'mike-oldfield-return-to-ommadawn': {
-		spotifyUrl: '',
-		appleMusicUrl: ''
+		spotifyUrl: 'https://open.spotify.com/album/3V3hCBFtp1PMcWPx2bqPyv',
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/return-to-ommadawn/1440893253'
 	},
 
 	// 02 — Fleet Foxes — Crack-Up
 	'fleet-foxes-crack-up': {
-		spotifyUrl: '',
-		appleMusicUrl: ''
+		spotifyUrl: 'https://open.spotify.com/album/0xtTojp4zfartyGtbFKN3v',
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/crack-up/1209098746'
 	},
 
 	// 03 — Alex Cameron — Forced Witness
 	'alex-cameron-forced-witness': {
-		spotifyUrl: '',
-		appleMusicUrl: ''
+		spotifyUrl: 'https://open.spotify.com/album/3fjXYgK9vNOQaWCP01SLGt',
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/forced-witness/1250563294'
 	},
 
 	// 04 — Roger Waters — Is This the Life We Really Want?
