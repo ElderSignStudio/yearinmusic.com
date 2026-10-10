@@ -42,12 +42,18 @@ export function isValidSpotifyAlbumUrl(value: string): boolean {
 	);
 }
 
-/** `https://music.apple.com/<region>/album/<name>/<id>`; the region segment is optional. */
+/**
+ * `https://music.apple.com/<region>/album/<name>/<id>`; the region segment is optional.
+ * The `geo.music.apple.com` redirector is rejected on purpose: it is a legacy iTunes Store
+ * service that, for albums without a store listing, bounces to an iTunes artist search
+ * instead of opening the album in Apple Music. Plain `music.apple.com` links open the
+ * album in the Music app regardless of the storefront in the URL.
+ */
 export function isValidAppleMusicAlbumUrl(value: string): boolean {
 	const url = parseHttpsUrl(value);
 	return (
 		!!url &&
-		(url.hostname === 'music.apple.com' || url.hostname === 'geo.music.apple.com') &&
+		url.hostname === 'music.apple.com' &&
 		/^(\/[a-z]{2})?\/album\/[^/]+(\/\d+)?\/?$/i.test(url.pathname)
 	);
 }
