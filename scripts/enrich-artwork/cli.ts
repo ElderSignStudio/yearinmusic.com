@@ -10,6 +10,7 @@ import { mkdir, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import type { ImportedAlbum, ImportedYearData } from '../../src/lib/types/imported.ts';
 import { assignAlbumSlugs } from '../../src/lib/utils/slug.ts';
+import { manualOverridesFor } from '../../src/lib/data/years/manual/index.ts';
 import {
 	generatedDir,
 	generatedPath,
@@ -100,11 +101,16 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 	const results: AlbumResult[] = [];
 
 	// A title variant may only name a file when no other album in the year could claim it.
+	// A hand-authored display title (manual/{year}.ts) counts as one of the album's names.
+	const overrides = manualOverridesFor(year);
+	const titlesOf = (album: ImportedAlbum, slug: string): string[] => {
+		const manualTitle = overrides?.[slug]?.album;
+		return manualTitle ? [album.album, manualTitle] : [album.album];
+	};
 	const keyCounts = new Map<string, number>();
-	for (const a of albums) {
-		for (const key of new Set(titleVariants(a.album).map(nameKey))) {
-			keyCounts.set(key, (keyCounts.get(key) ?? 0) + 1);
-		}
+	for (const [index, a] of albums.entries()) {
+		const keys = new Set(titlesOf(a, slugs[index]).flatMap(titleVariants).map(nameKey));
+		for (const key of keys) keyCounts.set(key, (keyCounts.get(key) ?? 0) + 1);
 	}
 
 	for (const [index, album] of albums.entries()) {
@@ -112,7 +118,7 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 		const lookup: OverrideLookup = {
 			year,
 			slug,
-			keys: [...new Set(titleVariants(album.album).map(nameKey))].filter(
+			keys: [...new Set(titlesOf(album, slug).flatMap(titleVariants).map(nameKey))].filter(
 				(key) => key && keyCounts.get(key) === 1
 			)
 		};

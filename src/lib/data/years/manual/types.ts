@@ -4,6 +4,13 @@
  */
 
 export interface ManualAlbumOverride {
+	/**
+	 * Album title as it should be displayed, when RYM lists the entry under another
+	 * name (e.g. a single's title). Cover files may also be named after it.
+	 */
+	album?: string;
+	/** RateYourMusic album page, when the list entry links somewhere else (e.g. a single). */
+	rymUrl?: string;
 	/** Exact album page, e.g. https://open.spotify.com/album/… Empty = use the search fallback. */
 	spotifyUrl?: string;
 	/** Exact album page, e.g. https://music.apple.com/br/album/…/123. Empty = use the search fallback. */

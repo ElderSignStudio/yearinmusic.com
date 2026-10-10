@@ -50,7 +50,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    npm run enrich:artwork -- 2025 --force  # re-encode even if files already exist
    ```
 
-6. Paste exact Spotify and Apple Music album URLs into `src/lib/data/years/manual/<year>.ts`. Every album is listed by stable slug with its rank, artist and title in a comment; leave a value empty to keep the generated search link. Exact links are optional: the search fallbacks work on their own, and each service is resolved independently.
+6. Paste exact Spotify and Apple Music album URLs into `src/lib/data/years/manual/<year>.ts`. Every album is listed by stable slug with its rank, artist and title in a comment; leave a value empty to keep the generated search link. Exact links are optional: the search fallbacks work on their own, and each service is resolved independently. The same entry can carry `album: '…'` when RYM lists the release under another name (for example a single's title); the site displays that title and the enricher also accepts cover files named after it; `rymUrl: '…'` likewise replaces the entry's RateYourMusic link when the list points at the wrong release.
 7. Check progress and catch typos:
 
    ```sh

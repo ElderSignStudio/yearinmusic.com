@@ -88,6 +88,9 @@ export const overrides2017: ManualYearOverrides = {
 
 	// 14 — Caligula's Horse — Songs for No One
 	'caligula-s-horse-songs-for-no-one': {
+		// The list entry links to the single "Songs for No One"; the album is "In Contact".
+		album: 'In Contact',
+		rymUrl: 'https://rateyourmusic.com/release/album/caligulas-horse/in-contact/',
 		spotifyUrl: '',
 		appleMusicUrl: ''
 	},

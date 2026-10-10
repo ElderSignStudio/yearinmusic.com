@@ -12,6 +12,7 @@ import type { ImportedAlbum, ImportedYearData } from '#lib/types/imported.js';
 import type { ManualYearOverrides } from './manual/types.ts';
 import { ratingLabel } from '#lib/data/ratingLabels.js';
 import { resolveServiceLinks } from '#lib/utils/serviceLinks.js';
+import { appleMusicSearchUrl, spotifySearchUrl } from '#lib/utils/streaming.js';
 
 export interface YearEditorial {
 	/** Year accent, chosen by hand to complement the #1 artwork. */
@@ -48,15 +49,25 @@ function toAlbum(
 			`Album #${imported.rank} "${imported.artist} — ${imported.album}" has no local artwork. Run: npm run enrich:artwork -- <year>`
 		);
 	}
-	const links = resolveServiceLinks(imported, manual?.[imported.slug]);
+	const override = manual?.[imported.slug];
+	const album = override?.album ?? imported.album;
+	// A display title also drives the search fallbacks, so they look for the real album name.
+	const source = override?.album
+		? {
+				...imported,
+				spotifyUrl: spotifySearchUrl(imported.artist, album),
+				appleMusicUrl: appleMusicSearchUrl(imported.artist, album)
+			}
+		: imported;
+	const links = resolveServiceLinks(source, override);
 	return {
 		artist: imported.artist,
-		album: imported.album,
+		album,
 		artwork: imported.artwork,
 		primaryGenres: imported.primaryGenres,
 		spotifyUrl: links.spotify?.url,
 		appleMusicUrl: links.appleMusic?.url,
-		rymUrl: imported.rymUrl ?? fallbackRymUrl
+		rymUrl: override?.rymUrl ?? imported.rymUrl ?? fallbackRymUrl
 	};
 }
 

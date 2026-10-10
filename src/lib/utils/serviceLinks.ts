@@ -82,5 +82,8 @@ export function invalidManualUrls(manual: ManualAlbumOverride): string[] {
 		problems.push(`spotifyUrl is not an open.spotify.com/album link: ${spotify}`);
 	if (apple && !isValidAppleMusicAlbumUrl(apple))
 		problems.push(`appleMusicUrl is not a music.apple.com album link: ${apple}`);
+	const rym = manual.rymUrl?.trim();
+	if (rym && !/^https:\/\/rateyourmusic\.com\/release\/[^/]+\/[^/]+\/[^/]+\/?$/.test(rym))
+		problems.push(`rymUrl is not a rateyourmusic.com release link: ${rym}`);
 	return problems;
 }
