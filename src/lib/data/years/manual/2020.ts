@@ -18,55 +18,55 @@ export const overrides2020: ManualYearOverrides = {
 	// 02 — Droid Bishop — Music
 	'droid-bishop-music': {
 		spotifyUrl: 'https://open.spotify.com/album/5IdWH09lPLMZiWRyaSoEek',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/music/1527522899'
+		appleMusicUrl: 'https://music.apple.com/us/album/music/1527522899'
 	},
 
 	// 03 — Arch Echo — Story I
 	'arch-echo-story-i': {
 		spotifyUrl: 'https://open.spotify.com/album/3a0BquAREUzoKbXH51pl3x',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/story-i-ep/1528307147'
+		appleMusicUrl: 'https://music.apple.com/gb/album/story-i-ep/1528307147'
 	},
 
 	// 04 — Jessie Ware — What's Your Pleasure?
 	'jessie-ware-what-s-your-pleasure': {
 		spotifyUrl: 'https://open.spotify.com/album/1CTm3ARqDETSm7GfvNYNJp',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/whats-your-pleasure/1498945382'
+		appleMusicUrl: 'https://music.apple.com/us/album/whats-your-pleasure/1498945382'
 	},
 
 	// 05 — Adrianne Lenker — Songs
 	'adrianne-lenker-songs': {
 		spotifyUrl: 'https://open.spotify.com/album/2WKfCjW3EDmgHswj5eVXuG',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/songs/1526437437'
+		appleMusicUrl: 'https://music.apple.com/us/album/songs/1526437437'
 	},
 
 	// 06 — Protest the Hero — Palimpsest
 	'protest-the-hero-palimpsest': {
 		spotifyUrl: 'https://open.spotify.com/album/3heoigEWJd3HfnFiAdDCbV',
 		// Not in the US store; the US-only edition is 1875086357.
-		appleMusicUrl: 'https://geo.music.apple.com/gb/album/palimpsest/1660414725'
+		appleMusicUrl: 'https://music.apple.com/gb/album/palimpsest/1660414725'
 	},
 
 	// 07 — 青葉市子 [Ichiko Aoba] — アダンの風 [Windswept Adan]
 	'ichiko-aoba-windswept-adan': {
 		spotifyUrl: 'https://open.spotify.com/album/0clp0SFljD12UGPDOP0kN4',
-		appleMusicUrl: 'https://geo.music.apple.com/no/album/windswept-adan/1714304663'
+		appleMusicUrl: 'https://music.apple.com/no/album/windswept-adan/1714304663'
 	},
 
 	// 08 — Haken — Virus
 	'haken-virus': {
 		spotifyUrl: 'https://open.spotify.com/album/16dthDo2uTNNhCxhmPAB3b',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/virus/1503491157'
+		appleMusicUrl: 'https://music.apple.com/us/album/virus/1503491157'
 	},
 
 	// 09 — Laura Marling — Song for Our Daughter
 	'laura-marling-song-for-our-daughter': {
 		spotifyUrl: 'https://open.spotify.com/album/0ubXthGSkZfe30Nuj91lcu',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/song-for-our-daughter/1876508740'
+		appleMusicUrl: 'https://music.apple.com/gb/album/song-for-our-daughter/1876508740'
 	},
 
 	// 10 — Fish — Weltschmerz
 	'fish-weltschmerz': {
 		spotifyUrl: 'https://open.spotify.com/album/0jKmtAHbwwBmn0e0USRE7C',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/weltschmerz/1525024531'
+		appleMusicUrl: 'https://music.apple.com/us/album/weltschmerz/1525024531'
 	}
 };

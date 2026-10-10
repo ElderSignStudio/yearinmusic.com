@@ -17,8 +17,9 @@ export interface ManualAlbumOverride {
 	 */
 	spotifyUrl?: string | null;
 	/**
-	 * Exact album page, e.g. https://music.apple.com/br/album/…/123. Empty = use the search fallback.
-	 * `null` = the album is not on Apple Music; no link is shown.
+	 * Exact album page, e.g. https://music.apple.com/br/album/…/123, as copied from the Apple
+	 * Music share sheet. Never use geo.music.apple.com (see isValidAppleMusicAlbumUrl).
+	 * Empty = use the search fallback. `null` = the album is not on Apple Music; no link is shown.
 	 */
 	appleMusicUrl?: string | null;
 	/**
