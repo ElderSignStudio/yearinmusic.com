@@ -43,7 +43,7 @@ export const overrides2019: ManualYearOverrides = {
 	// 06 — Wilderun — Veil of Imagination
 	'wilderun-veil-of-imagination': {
 		spotifyUrl: 'https://open.spotify.com/album/0KO9NudzozMdGwssikEcHz',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/veil-of-imagination/1479174395'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/veil-of-imagination/1510817489'
 	},
 
 	// 07 — Richard Henshall — The Cocoon

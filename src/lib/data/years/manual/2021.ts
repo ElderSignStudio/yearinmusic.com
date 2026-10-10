@@ -41,7 +41,8 @@ export const overrides2021: ManualYearOverrides = {
 	// 06 — Steven Wilson — The Future Bites
 	'steven-wilson-the-future-bites': {
 		spotifyUrl: 'https://open.spotify.com/album/3pKcnjRoxCR1XMIHqBxn3L',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/the-future-bites/1501745058'
+		// Not in the US store, where only the deluxe edition 1582188266 exists.
+		appleMusicUrl: 'https://geo.music.apple.com/gb/album/the-future-bites/1530202084'
 	},
 
 	// 07 — Raven Sad — The Leaf and the Wing
@@ -53,7 +54,7 @@ export const overrides2021: ManualYearOverrides = {
 	// 08 — Wheel — Resident Human
 	'wheel-resident-human': {
 		spotifyUrl: 'https://open.spotify.com/album/0FsuN8gXaI9DgcRHgwICxA',
-		appleMusicUrl: 'https://geo.music.apple.com/de/album/resident-human/1542039404'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/resident-human/1646530774'
 	},
 
 	// 09 — Liquid Tension Experiment — Liquid Tension Experiment 3

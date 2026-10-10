@@ -35,7 +35,7 @@ export const overrides2018: ManualYearOverrides = {
 	// 05 — VOLA — Applause of a Distant Crowd
 	'vola-applause-of-a-distant-crowd': {
 		spotifyUrl: 'https://open.spotify.com/album/2sGgHaebVkUg4PGcNp6XKA',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/applause-of-a-distant-crowd/1423107686'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/applause-of-a-distant-crowd/1600472677'
 	},
 
 	// 06 — Anna von Hausswolff — Dead Magic
@@ -59,7 +59,7 @@ export const overrides2018: ManualYearOverrides = {
 	// 09 — Weedpecker — III
 	'weedpecker-iii': {
 		spotifyUrl: 'https://open.spotify.com/album/22qjs19SoYUoW4ZomQ8Qme',
-		appleMusicUrl: 'https://geo.music.apple.com/fi/album/iii/1390466706'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/iii/1786181328'
 	},
 
 	// 10 — Jonny Greenwood — Phantom Thread

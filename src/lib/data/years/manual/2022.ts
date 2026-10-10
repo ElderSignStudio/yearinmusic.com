@@ -65,7 +65,7 @@ export const overrides2022: ManualYearOverrides = {
 	// 10 — Fellowship — The Saberlight Chronicles
 	'fellowship-the-saberlight-chronicles': {
 		spotifyUrl: 'https://open.spotify.com/album/4uIuOT0E158XzciYBiTfyc',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/the-saberlight-chronicles/1624487063'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/the-saberlight-chronicles/1720255835'
 	},
 
 	// 11 — Black Country, New Road — Ants From Up There
@@ -77,7 +77,7 @@ export const overrides2022: ManualYearOverrides = {
 	// 12 — Amorphis — Halo
 	'amorphis-halo': {
 		spotifyUrl: 'https://open.spotify.com/album/3EATOOixZ8TxrSqvbtF46A',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/halo/1594949780'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/halo/1776761130'
 	},
 
 	// 13 — Culprate — αριθμός τέσσερα [Number Four]
@@ -102,7 +102,8 @@ export const overrides2022: ManualYearOverrides = {
 	// 16 — Elder — Innate Passage
 	'elder-innate-passage': {
 		spotifyUrl: 'https://open.spotify.com/album/5xbbPDo6kAn2UAF8O3Wdpm',
-		appleMusicUrl: 'https://geo.music.apple.com/de/album/innate-passage/1645512144'
+		// Not in the US store; the US-only edition is 1650887504.
+		appleMusicUrl: 'https://geo.music.apple.com/gb/album/innate-passage/1786336851'
 	},
 
 	// 17 — Disillusion — Ayam

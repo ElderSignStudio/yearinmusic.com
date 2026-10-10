@@ -47,7 +47,7 @@ export const overrides2024: ManualYearOverrides = {
 	// 07 — Opeth — The Last Will and Testament
 	'opeth-the-last-will-and-testament': {
 		spotifyUrl: 'https://open.spotify.com/album/1f2Q8urIhVZiuPSiNLcQG6',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/the-last-will-and-testament/1760191052'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/the-last-will-and-testament/1770619023'
 	},
 
 	// 08 — Beardfish — Songs for Beating Hearts
@@ -59,7 +59,7 @@ export const overrides2024: ManualYearOverrides = {
 	// 09 — Laura Marling — Patterns in Repeat
 	'laura-marling-patterns-in-repeat': {
 		spotifyUrl: 'https://open.spotify.com/album/11Y2eh6LX6am0lYyjfCW3W',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/patterns-in-repeat/1753138561'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/patterns-in-repeat/1881586043'
 	},
 
 	// 10 — Herhums — To Save Us All

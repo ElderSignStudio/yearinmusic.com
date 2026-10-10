@@ -18,7 +18,7 @@ export const overrides2023: ManualYearOverrides = {
 	// 02 — The Lemon Twigs — Everything Harmony
 	'the-lemon-twigs-everything-harmony': {
 		spotifyUrl: 'https://open.spotify.com/album/5X0MAnUVN7eEZyO1LjprIk',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/everything-harmony/1669544341'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/everything-harmony/6789811281'
 	},
 
 	// 03 — Haken — Fauna
@@ -68,7 +68,8 @@ export const overrides2023: ManualYearOverrides = {
 	// 10 — M83 — Fantasy
 	'm83-fantasy': {
 		spotifyUrl: 'https://open.spotify.com/album/3OP8x4M096zMaMx3Rk89fw',
-		appleMusicUrl: 'https://geo.music.apple.com/au/album/fantasy/1658838374'
+		// Not in the US store; the US-only edition is 1658645075.
+		appleMusicUrl: 'https://geo.music.apple.com/gb/album/fantasy/1895042063'
 	},
 
 	// 11 — Scar Symmetry — The Singularity (Phase II - Xenotaph)

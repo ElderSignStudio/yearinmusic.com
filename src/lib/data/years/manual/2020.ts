@@ -42,7 +42,8 @@ export const overrides2020: ManualYearOverrides = {
 	// 06 — Protest the Hero — Palimpsest
 	'protest-the-hero-palimpsest': {
 		spotifyUrl: 'https://open.spotify.com/album/3heoigEWJd3HfnFiAdDCbV',
-		appleMusicUrl: 'https://geo.music.apple.com/be/album/palimpsest/1513612398'
+		// Not in the US store; the US-only edition is 1875086357.
+		appleMusicUrl: 'https://geo.music.apple.com/gb/album/palimpsest/1660414725'
 	},
 
 	// 07 — 青葉市子 [Ichiko Aoba] — アダンの風 [Windswept Adan]
@@ -54,13 +55,13 @@ export const overrides2020: ManualYearOverrides = {
 	// 08 — Haken — Virus
 	'haken-virus': {
 		spotifyUrl: 'https://open.spotify.com/album/16dthDo2uTNNhCxhmPAB3b',
-		appleMusicUrl: 'https://geo.music.apple.com/us/album/virus/1503719465'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/virus/1503491157'
 	},
 
 	// 09 — Laura Marling — Song for Our Daughter
 	'laura-marling-song-for-our-daughter': {
 		spotifyUrl: 'https://open.spotify.com/album/0ubXthGSkZfe30Nuj91lcu',
-		appleMusicUrl: 'https://geo.music.apple.com/gb/album/song-for-our-daughter/1504725670'
+		appleMusicUrl: 'https://geo.music.apple.com/us/album/song-for-our-daughter/1876508740'
 	},
 
 	// 10 — Fish — Weltschmerz
