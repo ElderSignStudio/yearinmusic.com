@@ -67,6 +67,7 @@ function toAlbum(
 		primaryGenres: imported.primaryGenres,
 		spotifyUrl: links.spotify?.url,
 		appleMusicUrl: links.appleMusic?.url,
+		bandcampUrl: links.bandcamp?.url,
 		rymUrl: override?.rymUrl ?? imported.rymUrl ?? fallbackRymUrl
 	};
 }

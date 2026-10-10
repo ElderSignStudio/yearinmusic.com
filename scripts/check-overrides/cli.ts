@@ -26,7 +26,15 @@ async function main() {
 	const label = (a: { rank: number; artist: string; album: string }) =>
 		`#${String(a.rank).padStart(2, '0')} ${a.artist} — ${a.album}`;
 
-	const counts = { spotifyExact: 0, spotifyFallback: 0, appleExact: 0, appleFallback: 0 };
+	const counts = {
+		spotifyExact: 0,
+		spotifyFallback: 0,
+		spotifyHidden: 0,
+		appleExact: 0,
+		appleFallback: 0,
+		appleHidden: 0,
+		bandcamp: 0
+	};
 	const problems: string[] = [];
 	const missing: string[] = [];
 	const generatedSlugs = new Set(albums.map((a) => a.slug));
@@ -39,8 +47,11 @@ async function main() {
 		const links = resolveServiceLinks(album, override);
 		if (links.spotify?.status === 'exact') counts.spotifyExact++;
 		else if (links.spotify) counts.spotifyFallback++;
+		else counts.spotifyHidden++;
 		if (links.appleMusic?.status === 'exact') counts.appleExact++;
 		else if (links.appleMusic) counts.appleFallback++;
+		else counts.appleHidden++;
+		if (links.bandcamp) counts.bandcamp++;
 	}
 	const unknown = Object.keys(manual ?? {}).filter((slug) => !generatedSlugs.has(slug));
 
@@ -57,10 +68,15 @@ async function main() {
 		'Spotify:',
 		`Exact: ${counts.spotifyExact}`,
 		`Search fallback: ${counts.spotifyFallback}`,
+		`Not on service (hidden): ${counts.spotifyHidden}`,
 		'',
 		'Apple Music:',
 		`Exact: ${counts.appleExact}`,
 		`Search fallback: ${counts.appleFallback}`,
+		`Not on service (hidden): ${counts.appleHidden}`,
+		'',
+		'Bandcamp (optional, exact only):',
+		`Linked: ${counts.bandcamp}`,
 		'',
 		`Invalid manual URLs: ${problems.length} ${problems.length ? FAIL : OK}`,
 		`Unknown override slugs: ${unknown.length} ${unknown.length ? FAIL : OK}`,

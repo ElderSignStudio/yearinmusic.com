@@ -1,7 +1,9 @@
 /**
  * Resolves an album's streaming links: an exact, hand-supplied URL wins; otherwise
  * the generated search-fallback URL is used. Spotify and Apple Music resolve
- * independently. Manual data never mutates the imported data.
+ * independently; a manual `null` hides a service the album is not on. Bandcamp has
+ * no fallback and is only present when supplied by hand. Manual data never mutates
+ * the imported data.
  */
 import type { ManualAlbumOverride } from '#lib/data/years/manual/types.js';
 
@@ -15,6 +17,7 @@ export interface ResolvedLink {
 export interface ResolvedServiceLinks {
 	spotify?: ResolvedLink;
 	appleMusic?: ResolvedLink;
+	bandcamp?: ResolvedLink;
 }
 
 export interface ServiceLinkSources {
@@ -49,11 +52,22 @@ export function isValidAppleMusicAlbumUrl(value: string): boolean {
 	);
 }
 
+/** `https://<artist>.bandcamp.com/album/<slug>`. */
+export function isValidBandcampAlbumUrl(value: string): boolean {
+	const url = parseHttpsUrl(value);
+	return (
+		!!url &&
+		/^[a-z0-9-]+\.bandcamp\.com$/i.test(url.hostname) &&
+		/^\/album\/[^/]+\/?$/.test(url.pathname)
+	);
+}
+
 function resolveOne(
-	manual: string | undefined,
+	manual: string | null | undefined,
 	fallback: string | undefined,
 	isValid: (url: string) => boolean
 ): ResolvedLink | undefined {
+	if (manual === null) return undefined;
 	const exact = manual?.trim();
 	if (exact && isValid(exact)) return { url: exact, status: 'exact' };
 	return fallback ? { url: fallback, status: 'search-fallback' } : undefined;
@@ -69,7 +83,8 @@ export function resolveServiceLinks(
 			manual?.appleMusicUrl,
 			generated.appleMusicUrl,
 			isValidAppleMusicAlbumUrl
-		)
+		),
+		bandcamp: resolveOne(manual?.bandcampUrl, undefined, isValidBandcampAlbumUrl)
 	};
 }
 
@@ -82,6 +97,9 @@ export function invalidManualUrls(manual: ManualAlbumOverride): string[] {
 		problems.push(`spotifyUrl is not an open.spotify.com/album link: ${spotify}`);
 	if (apple && !isValidAppleMusicAlbumUrl(apple))
 		problems.push(`appleMusicUrl is not a music.apple.com album link: ${apple}`);
+	const bandcamp = manual.bandcampUrl?.trim();
+	if (bandcamp && !isValidBandcampAlbumUrl(bandcamp))
+		problems.push(`bandcampUrl is not a bandcamp.com album link: ${bandcamp}`);
 	const rym = manual.rymUrl?.trim();
 	if (rym && !/^https:\/\/rateyourmusic\.com\/release\/[^/]+\/[^/]+\/[^/]+\/?$/.test(rym))
 		problems.push(`rymUrl is not a rateyourmusic.com release link: ${rym}`);

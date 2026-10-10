@@ -4,6 +4,7 @@
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import SpotifyIcon from './icons/SpotifyIcon.svelte';
 	import AppleMusicIcon from './icons/AppleMusicIcon.svelte';
+	import BandcampIcon from './icons/BandcampIcon.svelte';
 
 	interface Props {
 		album: AlbumEntry;
@@ -47,6 +48,21 @@
 			>
 				<AppleMusicIcon class="size-4" />
 				{#if labels}<span>Apple Music</span>{/if}
+			</a>
+		</li>
+	{/if}
+	{#if album.bandcampUrl}
+		<li>
+			<a
+				href={album.bandcampUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class={linkClass}
+				title={t.openOnBandcamp}
+				aria-label="{t.openOnBandcamp} ({t.opensInNewTab})"
+			>
+				<BandcampIcon class="size-4" />
+				{#if labels}<span>Bandcamp</span>{/if}
 			</a>
 		</li>
 	{/if}

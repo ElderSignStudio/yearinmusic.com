@@ -20,6 +20,8 @@ export interface AlbumEntry {
 	primaryGenres: string[];
 	spotifyUrl?: string;
 	appleMusicUrl?: string;
+	/** Only present when an exact Bandcamp page was supplied by hand. */
+	bandcampUrl?: string;
 	rymUrl: string;
 }
 
