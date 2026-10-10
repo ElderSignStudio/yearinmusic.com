@@ -38,7 +38,7 @@
 				</span>
 				<span class="mt-3 block kicker text-ink-muted">{winner.album.artist}</span>
 				<span
-					class="mt-1.5 block font-display text-lg leading-[1.15] font-medium tracking-tight text-balance md:text-xl"
+					class="mt-1.5 block font-display text-lg leading-[1.15] font-medium tracking-tight text-balance [overflow-wrap:anywhere] md:text-xl"
 				>
 					{winner.album.album}
 				</span>

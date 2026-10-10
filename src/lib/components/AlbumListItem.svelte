@@ -42,7 +42,7 @@
 			{#if rank !== undefined}<span class="sr-only">#{rank} · </span>{/if}{album.artist}
 		</p>
 		<h3
-			class="mt-1.5 font-display text-lg leading-[1.15] font-medium tracking-tight text-balance lg:text-[1.375rem]"
+			class="mt-1.5 font-display text-lg leading-[1.15] font-medium tracking-tight text-balance [overflow-wrap:anywhere] lg:text-[1.375rem]"
 		>
 			{album.album}
 		</h3>
