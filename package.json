@@ -49,5 +49,8 @@
 		"@fontsource-variable/newsreader": "^5.3.0",
 		"@lucide/svelte": "^1.52.0",
 		"daisyui": "^5.7.47"
+	},
+	"engines": {
+  		"node": ">=22.17"
 	}
 }
