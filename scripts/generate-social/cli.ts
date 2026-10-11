@@ -1,11 +1,13 @@
 /**
  * npm run generate:social [-- <year>]
  *
- * Renders the 1200×630 social-preview cards used for Open Graph / Twitter / WhatsApp:
- *   static/social/{year}.jpg   one per published year that has a hero collage
- *   static/social/stats.jpg    the cross-year card for /stats
- * and records which cards exist in src/lib/data/socialCards.json, so page metadata
- * only ever points at a card that was actually generated.
+ * Renders the social-preview cards and records which exist in
+ * src/lib/data/socialCards.json, so page metadata only ever points at a card that
+ * was actually generated:
+ *   static/social/{year}-square.jpg  1200×1200 og:image — WhatsApp shows it as a ~95px
+ *                                    thumbnail, so it carries nothing but the year
+ *   static/social/{year}.jpg         1200×630 twitter:image / large previews
+ *   static/social/stats(-square).jpg the same pair for /stats
  *
  * Every value on a card (year, Top N, albums rated, accent, year range, totals, copy)
  * comes from the same production data the site renders, loaded through Vite so the
@@ -28,6 +30,7 @@ import { projectRoot } from '../lib/generated.ts';
 
 const WIDTH = 1200;
 const HEIGHT = 630;
+const SQUARE = 1200;
 /** Keeps every line clear of the edges that social clients crop or round off. */
 const MARGIN = 80;
 const OUTPUT_DIR = path.join(projectRoot, 'static', 'social');
@@ -209,6 +212,83 @@ function overlaySvg(card: CardText): Buffer {
 </svg>`);
 }
 
+type SharpModule = typeof import('sharp').default;
+
+/** Ink bounds of a Newsreader line, relative to its text origin, measured by rendering it. */
+interface InkBox {
+	left: number;
+	top: number;
+	width: number;
+	height: number;
+}
+
+function displayText(text: string, x: number, y: number, size: number, fill: string): string {
+	return `<text x="${x}" y="${y}" font-family="${TOKENS.display}" font-weight="400" font-size="${size}" letter-spacing="${Math.round(size * -0.02)}" fill="${fill}">${xmlEscape(text)}</text>`;
+}
+
+async function measureInk(text: string, size: number, sharp: SharpModule): Promise<InkBox> {
+	const canvas = Math.ceil(size * (text.length + 2));
+	const baseline = Math.round(size * 1.5);
+	const svg = Buffer.from(
+		`<svg xmlns="http://www.w3.org/2000/svg" width="${canvas}" height="${canvas}">${displayText(text, 0, baseline, size, '#fff')}</svg>`
+	);
+	const { info } = await sharp(svg).trim().png().toBuffer({ resolveWithObject: true });
+	return {
+		left: -(info.trimOffsetLeft ?? 0),
+		top: -(info.trimOffsetTop ?? 0) - baseline,
+		width: info.width,
+		height: info.height
+	};
+}
+
+/** One centred display line: `width` is the ink width to fit, `cy` the ink centre. */
+interface CentredLine {
+	text: string;
+	width: number;
+	cy: number;
+	fill?: string;
+}
+
+/**
+ * The square card is thumbnail-first: a vignetted, faintly accent-lit background and
+ * nothing but huge numerals, each line sized to its target ink width and centred on its
+ * ink box (not its em box) so the margins are real on every side.
+ */
+async function squareOverlaySvg(
+	accent: string,
+	lines: CentredLine[],
+	sharp: SharpModule
+): Promise<Buffer> {
+	const { bg, ink } = TOKENS;
+	const probe = 200;
+	const texts: string[] = [];
+	for (const line of lines) {
+		const ref = await measureInk(line.text, probe, sharp);
+		const size = (probe * line.width) / ref.width;
+		const scale = size / probe;
+		const x = SQUARE / 2 - (ref.left + ref.width / 2) * scale;
+		const y = line.cy - (ref.top + ref.height / 2) * scale;
+		texts.push(
+			displayText(line.text, Math.round(x), Math.round(y), Math.round(size), line.fill ?? ink)
+		);
+	}
+	return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${SQUARE}" height="${SQUARE}">
+	<defs>
+		<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+			<stop offset="0" stop-color="${accent}" stop-opacity="0.34"/>
+			<stop offset="1" stop-color="${accent}" stop-opacity="0"/>
+		</radialGradient>
+		<radialGradient id="vignette" cx="0.5" cy="0.5" r="0.72">
+			<stop offset="0" stop-color="${bg}" stop-opacity="0.5"/>
+			<stop offset="1" stop-color="${bg}" stop-opacity="0.92"/>
+		</radialGradient>
+	</defs>
+	<rect width="100%" height="100%" fill="url(#glow)"/>
+	<rect width="100%" height="100%" fill="url(#vignette)"/>
+	${texts.join('\n\t')}
+</svg>`);
+}
+
 async function writeJpeg(pipeline: import('sharp').Sharp, file: string): Promise<number> {
 	const info = await pipeline
 		.jpeg({ quality: 82, mozjpeg: true, chromaSubsampling: '4:4:4' })
@@ -249,25 +329,50 @@ async function renderYearCard(
 	return outFile;
 }
 
+/** The square yearly card: only the year, on the collage pushed to pure atmosphere. */
+async function renderYearSquare(year: YearData, sharp: SharpModule): Promise<string> {
+	if (!year.heroCollage) throw new Error(`${year.year}: no hero collage.`);
+	const overlay = await squareOverlaySvg(
+		year.theme.accent,
+		[{ text: String(year.year), width: SQUARE * 0.78, cy: SQUARE / 2 }],
+		sharp
+	);
+	const outFile = path.join(OUTPUT_DIR, `${year.year}-square.jpg`);
+	const pipeline = sharp(path.join(projectRoot, 'static', year.heroCollage))
+		.resize(SQUARE, SQUARE, { fit: 'cover' })
+		.blur(26)
+		.modulate({ saturation: 0.6, brightness: 0.85 })
+		.composite([{ input: overlay }]);
+	const size = await writeJpeg(pipeline, outFile);
+	console.log(
+		`${year.year}: square → ${path.relative(projectRoot, outFile)} (${Math.round(size / 1024)} KB)`
+	);
+	return outFile;
+}
+
 /**
- * The cross-year card: every year's winner artwork as a chronological, staggered
- * mosaic, then blurred and drained of colour until it reads as texture, not covers.
+ * Every year's winner artwork as a chronological, staggered mosaic that spills past the
+ * edges, then blurred and drained of colour until it reads as texture, not covers.
  */
-async function renderStatsCard(
+async function winnersMosaic(
 	stats: AcrossYearsStatistics,
-	copy: SiteCopy,
-	sharp: typeof import('sharp').default
-): Promise<string> {
+	width: number,
+	height: number,
+	sharp: SharpModule
+): Promise<Buffer> {
 	const winners = stats.winners;
-	const columns = Math.max(1, Math.ceil(winners.length / 2));
 	const tile = 340;
-	const stepX = (WIDTH + tile * 0.4) / columns;
+	const rows = Math.max(1, Math.round(height / 420));
+	const columns = Math.max(1, Math.ceil(winners.length / rows));
+	const stepX = (width + tile * 0.4) / columns;
 	const layers: OverlayOptions[] = [];
 	for (const [index, winner] of winners.entries()) {
-		const row = index % 2;
-		const col = Math.floor(index / 2);
-		const left = Math.round(col * stepX - tile * 0.2 + (row ? stepX / 2 : 0));
-		const top = Math.round(row ? HEIGHT - tile * 0.78 : -tile * 0.22);
+		const row = index % rows;
+		const col = Math.floor(index / rows);
+		const left = Math.round(col * stepX - tile * 0.2 + (row % 2 ? stepX / 2 : 0));
+		const top = Math.round(
+			rows === 1 ? (height - tile) / 2 : -tile * 0.22 + (row * (height - tile * 0.56)) / (rows - 1)
+		);
 		layers.push({
 			input: await sharp(path.join(projectRoot, 'static', winner.album.artwork))
 				.resize(tile, tile, { fit: 'cover' })
@@ -278,17 +383,26 @@ async function renderStatsCard(
 		});
 	}
 	const mosaic = await sharp({
-		create: { width: WIDTH * 2, height: HEIGHT * 2, channels: 4, background: TOKENS.bg }
+		create: { width: width * 2, height: height * 2, channels: 4, background: TOKENS.bg }
 	})
-		.composite(layers.map((l) => ({ ...l, left: l.left! + WIDTH / 2, top: l.top! + HEIGHT / 2 })))
+		.composite(layers.map((l) => ({ ...l, left: l.left! + width / 2, top: l.top! + height / 2 })))
 		.png()
 		.toBuffer();
-	const background = await sharp(mosaic)
-		.extract({ left: WIDTH / 2, top: HEIGHT / 2, width: WIDTH, height: HEIGHT })
+	return sharp(mosaic)
+		.extract({ left: width / 2, top: height / 2, width, height })
 		.blur(34)
 		.modulate({ saturation: 0.4, brightness: 0.8 })
 		.png()
 		.toBuffer();
+}
+
+/** The cross-year landscape card. */
+async function renderStatsCard(
+	stats: AcrossYearsStatistics,
+	copy: SiteCopy,
+	sharp: SharpModule
+): Promise<string> {
+	const background = await winnersMosaic(stats, WIDTH, HEIGHT, sharp);
 
 	const card: CardText = {
 		accent: TOKENS.accent,
@@ -307,6 +421,30 @@ async function renderStatsCard(
 	return outFile;
 }
 
+/** The square cross-year card: first year, a dash, last year. */
+async function renderStatsSquare(
+	stats: AcrossYearsStatistics,
+	sharp: SharpModule
+): Promise<string> {
+	const background = await winnersMosaic(stats, SQUARE, SQUARE, sharp);
+	const yearWidth = SQUARE * 0.54;
+	const overlay = await squareOverlaySvg(
+		TOKENS.accent,
+		[
+			{ text: String(stats.firstYear), width: yearWidth, cy: SQUARE * 0.27 },
+			{ text: '—', width: SQUARE * 0.2, cy: SQUARE / 2 },
+			{ text: String(stats.latestYear), width: yearWidth, cy: SQUARE * 0.73 }
+		],
+		sharp
+	);
+	const outFile = path.join(OUTPUT_DIR, 'stats-square.jpg');
+	const size = await writeJpeg(sharp(background).composite([{ input: overlay }]), outFile);
+	console.log(
+		`stats: square → ${path.relative(projectRoot, outFile)} (${Math.round(size / 1024)} KB)`
+	);
+	return outFile;
+}
+
 // ---------------------------------------------------------------------------
 // Manifest
 
@@ -319,7 +457,10 @@ async function exists(file: string): Promise<boolean> {
 
 /** Records every card present on disk, so metadata never points at a missing image. */
 async function writeManifest(years: readonly YearData[]): Promise<string> {
-	const names = [...years.map((y) => String(y.year)).sort(), 'stats'];
+	const names = [...years.map((y) => String(y.year)).sort(), 'stats'].flatMap((name) => [
+		name,
+		`${name}-square`
+	]);
 	const present: string[] = [];
 	for (const name of names) {
 		if (await exists(path.join(OUTPUT_DIR, `${name}.jpg`))) present.push(name);
@@ -346,8 +487,10 @@ async function main() {
 	if (target && selected.length === 0) throw new Error(`${target} is not a published year.`);
 
 	for (const year of [...selected].sort((a, b) => a.year - b.year)) {
+		await renderYearSquare(year, sharp);
 		await renderYearCard(year, copy, sharp);
 	}
+	await renderStatsSquare(stats, sharp);
 	await renderStatsCard(stats, copy, sharp);
 	console.log(`manifest → ${await writeManifest(years)}`);
 }

@@ -61,7 +61,7 @@ function capitalize(text: string): string {
 const ptBR = {
 	siteName: 'Year in Music',
 	siteTagline: 'Um arquivo pessoal de álbuns do ano',
-	heroTitle: 'Meus álbuns do ano',
+	heroTitle: 'Meus álbuns favoritos do ano',
 	topN: (n: number) => `Top ${n}`,
 	statsKicker: 'Estatísticas',
 	albumsRated: 'álbuns avaliados',
@@ -175,7 +175,7 @@ type Dictionary = typeof ptBR;
 const en: Dictionary = {
 	siteName: 'Year in Music',
 	siteTagline: 'A personal archive of albums of the year',
-	heroTitle: 'My albums of the year',
+	heroTitle: 'My favorite albums of the year',
 	topN: (n) => `Top ${n}`,
 	statsKicker: 'Statistics',
 	albumsRated: 'albums rated',

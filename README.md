@@ -64,7 +64,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    ```
 
 9. Publish the year: create `src/lib/data/years/<year>.ts` that calls `createYear(generated, overrides, editorial)` with the accent, the Brazilian Portuguese intro and any other editorial values (see `2025.ts`), then add it to `src/lib/data/years/index.ts`. The newest registered year becomes `/`. If the list is a Top N plus unranked extras, name those extras in `bonusSlugs` (see `2024.ts`); they are rendered after the ranking without a number, and the remaining albums must form a contiguous 1..N list that matches the list title.
-10. Generate the social-preview cards (1200×630 JPEGs used by WhatsApp, Open Graph and Twitter). The script reads the published data, so run it after step 9; it renders the year's card from its hero collage and always refreshes the cross-year `/stats` card:
+10. Generate the social-preview cards: a 1200×1200 square (`og:image`, which WhatsApp shows as a ~95px thumbnail, so it carries only the year) and a 1200×630 landscape (`twitter:image`). The script reads the published data, so run it after step 9; it renders the year's pair from its hero collage and always refreshes the cross-year `/stats` pair:
 
     ```sh
     npm run generate:social -- 2025   # one year; no argument renders every year
