@@ -23,6 +23,11 @@ export function albumSlug(artist: string, album: string): string {
 	return slugify(artist, album);
 }
 
+/** The stable id for an artist credit as written in a ranking (`bon-iver`, `ichiko-aoba`). */
+export function artistSlug(artist: string): string {
+	return slugify(artist);
+}
+
 /**
  * Canonical slug assignment for a year's albums: by rank, collisions resolved in rank order.
  * Importer, artwork enricher and manual overrides must all go through this function.
