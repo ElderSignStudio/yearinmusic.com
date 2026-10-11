@@ -12,18 +12,28 @@ const META_LOCALE: Locale = DEFAULT_LOCALE;
 
 const OG_LOCALE: Record<Locale, string> = { 'pt-BR': 'pt_BR', en: 'en_US' };
 
-/** Size of the generated share cards (`npm run generate:social`). */
-export const SOCIAL_CARD = { width: 1200, height: 630 } as const;
+/**
+ * Sizes of the generated share cards (`npm run generate:social`). The square card is the
+ * Open Graph image (WhatsApp shows it as a tiny thumbnail), the landscape card serves
+ * Twitter and other large-preview contexts.
+ */
+export const SOCIAL_CARD = {
+	square: { width: 1200, height: 1200 },
+	landscape: { width: 1200, height: 630 }
+} as const;
 
 export interface PageMeta {
 	title: string;
 	description: string;
 	/** Canonical/OG URL, absolute only when `SITE_URL` is configured. */
 	url: string;
+	/** Open Graph image. */
 	image: string;
 	/** Dimensions are only known for a dedicated share image. */
 	imageWidth?: number;
 	imageHeight?: number;
+	/** Twitter image: the landscape card when there is one, otherwise the OG image. */
+	twitterImage: string;
 	ogLocale: string;
 	ogLocaleAlternate: string[];
 	siteName: string;
@@ -38,13 +48,30 @@ export function socialCardPath(name: string): string | undefined {
 	return socialCards.includes(name) ? `/social/${name}.jpg` : undefined;
 }
 
-type SocialImage = Pick<PageMeta, 'image' | 'imageWidth' | 'imageHeight'>;
+type SocialImage = Pick<PageMeta, 'image' | 'imageWidth' | 'imageHeight' | 'twitterImage'>;
 
-/** A dedicated card when there is one, otherwise the fallback artwork without dimensions. */
-function socialImage(card: string | undefined, fallback: string | undefined): SocialImage {
-	return card
-		? { image: absoluteUrl(card), imageWidth: SOCIAL_CARD.width, imageHeight: SOCIAL_CARD.height }
-		: { image: absoluteUrl(fallback ?? '') };
+/**
+ * Square card for OG and landscape card for Twitter when generated; a hand-supplied
+ * landscape image replaces the generated one; the fallback artwork carries no dimensions.
+ */
+function socialImage(
+	name: string,
+	landscapeOverride: string | undefined,
+	fallback: string | undefined
+): SocialImage {
+	const square = socialCardPath(`${name}-square`);
+	const landscape = landscapeOverride ?? socialCardPath(name);
+	const og = square
+		? { image: absoluteUrl(square), ...SOCIAL_CARD.square }
+		: landscape
+			? { image: absoluteUrl(landscape), ...SOCIAL_CARD.landscape }
+			: { image: absoluteUrl(fallback ?? '') };
+	return {
+		image: og.image,
+		imageWidth: 'width' in og ? og.width : undefined,
+		imageHeight: 'height' in og ? og.height : undefined,
+		twitterImage: landscape ? absoluteUrl(landscape) : og.image
+	};
 }
 
 function localeMeta(locale: Locale): Pick<PageMeta, 'ogLocale' | 'ogLocaleAlternate'> {
@@ -63,10 +90,7 @@ export function yearMeta(data: YearData): PageMeta {
 		title: `${t.siteName} — ${data.year}`,
 		description: t.pageDescription(data.year, data.rankedAlbums.length),
 		url: absoluteUrl(`/${data.year}`),
-		...socialImage(
-			data.shareImage ?? socialCardPath(String(data.year)),
-			data.rankedAlbums[0]?.artwork
-		),
+		...socialImage(String(data.year), data.shareImage, data.rankedAlbums[0]?.artwork),
 		...localeMeta(locale),
 		siteName: t.siteName,
 		author: SITE_AUTHOR
@@ -84,7 +108,7 @@ export function statsMeta(
 		title: `${t.siteName} — ${t.acrossMetaTitle}`,
 		description: t.acrossDescription(stats?.yearCount ?? 0),
 		url: absoluteUrl('/stats'),
-		...socialImage(socialCardPath('stats'), fallbackImage),
+		...socialImage('stats', undefined, fallbackImage),
 		...localeMeta(locale),
 		siteName: t.siteName,
 		author: SITE_AUTHOR

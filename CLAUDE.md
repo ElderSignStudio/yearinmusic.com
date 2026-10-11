@@ -385,16 +385,19 @@ The playlist section is part of the publication, not an afterthought.
 
 # Social sharing
 
-Every year page and `/stats` has a dedicated 1200×630 share card in `static/social/`,
-rendered by `npm run generate:social` from the production data (year, Top N, albums
-rated, accent, cross-year totals) and the hero collages. Cards never reveal the ranking
-or the winner.
+Every year page and `/stats` has two share cards in `static/social/`, rendered by
+`npm run generate:social` from the production data (year, Top N, albums rated, accent,
+cross-year totals) and the hero collages: a 1200×1200 square for `og:image` that shows
+only the year, because WhatsApp renders it as a ~95px thumbnail, and a 1200×630
+landscape for `twitter:image` and large previews. Cards never reveal the ranking or the
+winner.
 
 Open Graph and Twitter metadata is English-first and uses these cards. A `?lang=pt-BR`
 share link gets the same preview, and `?lang` never appears in canonical or `og:url`.
 
 Publishing a new year includes running the generator and committing its output
-(`static/social/{year}.jpg`, `static/social/stats.jpg`, `src/lib/data/socialCards.json`).
+(`static/social/{year}.jpg`, `static/social/{year}-square.jpg`, the two `stats` cards and
+`src/lib/data/socialCards.json`).
 
 ---
 
