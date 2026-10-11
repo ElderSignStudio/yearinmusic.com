@@ -7,10 +7,7 @@
 
 	// Static data: derived once at build time from every registered year.
 	const stats = getAcrossYearsStatistics(years);
-	const meta = statsMeta(
-		{ first: stats?.firstYear ?? 0, latest: stats?.latestYear ?? 0 },
-		stats?.winners.at(-1)?.album.artwork
-	);
+	const meta = statsMeta(stats, stats?.winners.at(-1)?.album.artwork);
 </script>
 
 <PageMeta {meta} />
