@@ -14,8 +14,8 @@ const OG_LOCALE: Record<Locale, string> = { 'pt-BR': 'pt_BR', en: 'en_US' };
 
 /**
  * Sizes of the generated share cards (`npm run generate:social`). The square card is the
- * Open Graph image (WhatsApp shows it as a tiny thumbnail), the landscape card serves
- * Twitter and other large-preview contexts.
+ * Open Graph image (WhatsApp renders a sent link as a large square card), the landscape
+ * card serves Twitter and other large-preview contexts.
  */
 export const SOCIAL_CARD = {
 	square: { width: 1200, height: 1200 },

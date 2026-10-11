@@ -4,8 +4,10 @@
  * Renders the social-preview cards and records which exist in
  * src/lib/data/socialCards.json, so page metadata only ever points at a card that
  * was actually generated:
- *   static/social/{year}-square.jpg  1200×1200 og:image — WhatsApp shows it as a ~95px
- *                                    thumbnail, so it carries nothing but the year
+ *   static/social/{year}-square.jpg  1200×1200 og:image — WhatsApp previews it small in
+ *                                    the composer but renders the sent message as a
+ *                                    large square card, so it carries the full editorial
+ *                                    content, recomposed for the square
  *   static/social/{year}.jpg         1200×630 twitter:image / large previews
  *   static/social/stats(-square).jpg the same pair for /stats
  *
@@ -154,6 +156,7 @@ interface CardText {
 	kicker: string;
 	/** The large Newsreader line: a year or a year range. */
 	display: string;
+	/** Font size of the display line; on the square card, the cap of its fitted size. */
 	displaySize: number;
 	subtitle: string;
 	byline: string;
@@ -241,51 +244,57 @@ async function measureInk(text: string, size: number, sharp: SharpModule): Promi
 	};
 }
 
-/** One centred display line: `width` is the ink width to fit, `cy` the ink centre. */
-interface CentredLine {
-	text: string;
-	width: number;
-	cy: number;
-	fill?: string;
-}
+/**
+ * The square type scale. Larger than the landscape card's because WhatsApp shows the
+ * sent card at roughly the width of the chat, so the supporting lines must read there.
+ */
+const SQUARE_TYPE = { kicker: 38, subtitle: 40, byline: 32, meta: 32 } as const;
 
 /**
- * The square card is thumbnail-first: a vignetted, faintly accent-lit background and
- * nothing but huge numerals, each line sized to its target ink width and centred on its
- * ink box (not its em box) so the margins are real on every side.
+ * The square card recomposes the landscape design rather than cropping it: the kicker at
+ * the top, the display line fitted to the content width (capped at `displaySize`) and
+ * seated on a fixed line in the upper-middle, the subtitle and byline beneath it, and
+ * the meta line as a footer. The display line is positioned by its measured ink box, so
+ * its left edge sits exactly on the margin and its seat does not drift between a year
+ * and a year range.
  */
-async function squareOverlaySvg(
-	accent: string,
-	lines: CentredLine[],
-	sharp: SharpModule
-): Promise<Buffer> {
-	const { bg, ink } = TOKENS;
+async function squareOverlaySvg(card: CardText, sharp: SharpModule): Promise<Buffer> {
+	const { bg, ink, inkMuted } = TOKENS;
 	const probe = 200;
-	const texts: string[] = [];
-	for (const line of lines) {
-		const ref = await measureInk(line.text, probe, sharp);
-		const size = (probe * line.width) / ref.width;
-		const scale = size / probe;
-		const x = SQUARE / 2 - (ref.left + ref.width / 2) * scale;
-		const y = line.cy - (ref.top + ref.height / 2) * scale;
-		texts.push(
-			displayText(line.text, Math.round(x), Math.round(y), Math.round(size), line.fill ?? ink)
-		);
-	}
+	const ref = await measureInk(card.display, probe, sharp);
+	const size = Math.min(card.displaySize, (probe * (SQUARE - 2 * MARGIN)) / ref.width);
+	const scale = size / probe;
+	const displayX = MARGIN - ref.left * scale;
+	const displaySeat = Math.round(SQUARE * 0.51);
+	const displayY = displaySeat - (ref.top + ref.height) * scale;
+	const subtitleBaseline = displaySeat + 116;
+	const bylineBaseline = subtitleBaseline + 66;
+	const metaBaseline = SQUARE - MARGIN - 24;
 	return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${SQUARE}" height="${SQUARE}">
 	<defs>
-		<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-			<stop offset="0" stop-color="${accent}" stop-opacity="0.34"/>
-			<stop offset="1" stop-color="${accent}" stop-opacity="0"/>
+		<radialGradient id="glow" cx="0.3" cy="0.42" r="0.5">
+			<stop offset="0" stop-color="${card.accent}" stop-opacity="0.3"/>
+			<stop offset="1" stop-color="${card.accent}" stop-opacity="0"/>
 		</radialGradient>
-		<radialGradient id="vignette" cx="0.5" cy="0.5" r="0.72">
-			<stop offset="0" stop-color="${bg}" stop-opacity="0.5"/>
+		<linearGradient id="x" x1="0" y1="0" x2="1" y2="0">
+			<stop offset="0" stop-color="${bg}" stop-opacity="0.74"/>
+			<stop offset="0.5" stop-color="${bg}" stop-opacity="0.54"/>
+			<stop offset="1" stop-color="${bg}" stop-opacity="0.3"/>
+		</linearGradient>
+		<linearGradient id="y" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="${bg}" stop-opacity="0.3"/>
+			<stop offset="0.3" stop-color="${bg}" stop-opacity="0"/>
 			<stop offset="1" stop-color="${bg}" stop-opacity="0.92"/>
-		</radialGradient>
+		</linearGradient>
 	</defs>
 	<rect width="100%" height="100%" fill="url(#glow)"/>
-	<rect width="100%" height="100%" fill="url(#vignette)"/>
-	${texts.join('\n\t')}
+	<rect width="100%" height="100%" fill="url(#x)"/>
+	<rect width="100%" height="100%" fill="url(#y)"/>
+	${trackedLine(card.kicker, { x: MARGIN, y: MARGIN + 42, size: SQUARE_TYPE.kicker, weight: 500, fill: card.accent })}
+	${displayText(card.display, Math.round(displayX), Math.round(displayY), Math.round(size), ink)}
+	${trackedLine(card.subtitle, { x: MARGIN, y: subtitleBaseline, size: SQUARE_TYPE.subtitle, weight: 500, fill: ink })}
+	${trackedLine(card.byline, { x: MARGIN, y: bylineBaseline, size: SQUARE_TYPE.byline, weight: 400, fill: inkMuted })}
+	${trackedLine(card.meta, { x: MARGIN, y: metaBaseline, size: SQUARE_TYPE.meta, weight: 500, fill: inkMuted })}
 </svg>`);
 }
 
@@ -296,28 +305,36 @@ async function writeJpeg(pipeline: import('sharp').Sharp, file: string): Promise
 	return info.size;
 }
 
-/** A yearly card: the hero collage pushed well past recognisability, then the year. */
-async function renderYearCard(
-	year: YearData,
-	copy: SiteCopy,
-	sharp: typeof import('sharp').default
-): Promise<string> {
+/**
+ * The copy shared by both yearly cards. Top N counts ranked albums only: bonus albums
+ * never widen the ranking.
+ */
+function yearCardText(year: YearData, copy: SiteCopy, displaySize: number): CardText {
+	return {
+		accent: year.theme.accent,
+		kicker: copy.siteName,
+		display: String(year.year),
+		displaySize,
+		subtitle: copy.heroTitle,
+		byline: copy.author,
+		meta: `${copy.topN(year.rankedAlbums.length)} · ${year.totalAlbumsRated} ${copy.albumsRated}`
+	};
+}
+
+function heroCollagePath(year: YearData): string {
 	if (!year.heroCollage) {
 		throw new Error(
 			`${year.year}: no hero collage yet — run: npm run generate:hero -- ${year.year}`
 		);
 	}
-	const card: CardText = {
-		accent: year.theme.accent,
-		kicker: copy.siteName,
-		display: String(year.year),
-		displaySize: 340,
-		subtitle: copy.heroTitle,
-		byline: copy.author,
-		meta: `${copy.topN(year.rankedAlbums.length)} · ${year.totalAlbumsRated} ${copy.albumsRated}`
-	};
+	return path.join(projectRoot, 'static', year.heroCollage);
+}
+
+/** A yearly card: the hero collage pushed well past recognisability, then the year. */
+async function renderYearCard(year: YearData, copy: SiteCopy, sharp: SharpModule): Promise<string> {
+	const card = yearCardText(year, copy, 340);
 	const outFile = path.join(OUTPUT_DIR, `${year.year}.jpg`);
-	const pipeline = sharp(path.join(projectRoot, 'static', year.heroCollage))
+	const pipeline = sharp(heroCollagePath(year))
 		.resize(WIDTH, HEIGHT, { fit: 'cover' })
 		.blur(22)
 		.modulate({ saturation: 0.6, brightness: 0.88 })
@@ -329,20 +346,19 @@ async function renderYearCard(
 	return outFile;
 }
 
-/** The square yearly card: only the year, on the collage pushed to pure atmosphere. */
-async function renderYearSquare(year: YearData, sharp: SharpModule): Promise<string> {
-	if (!year.heroCollage) throw new Error(`${year.year}: no hero collage.`);
-	const overlay = await squareOverlaySvg(
-		year.theme.accent,
-		[{ text: String(year.year), width: SQUARE * 0.78, cy: SQUARE / 2 }],
-		sharp
-	);
+/** The square yearly card: the same editorial content, recomposed for 1200×1200. */
+async function renderYearSquare(
+	year: YearData,
+	copy: SiteCopy,
+	sharp: SharpModule
+): Promise<string> {
+	const card = yearCardText(year, copy, 470);
 	const outFile = path.join(OUTPUT_DIR, `${year.year}-square.jpg`);
-	const pipeline = sharp(path.join(projectRoot, 'static', year.heroCollage))
+	const pipeline = sharp(heroCollagePath(year))
 		.resize(SQUARE, SQUARE, { fit: 'cover' })
-		.blur(26)
-		.modulate({ saturation: 0.6, brightness: 0.85 })
-		.composite([{ input: overlay }]);
+		.blur(24)
+		.modulate({ saturation: 0.6, brightness: 0.88 })
+		.composite([{ input: await squareOverlaySvg(card, sharp) }]);
 	const size = await writeJpeg(pipeline, outFile);
 	console.log(
 		`${year.year}: square → ${path.relative(projectRoot, outFile)} (${Math.round(size / 1024)} KB)`
@@ -396,6 +412,23 @@ async function winnersMosaic(
 		.toBuffer();
 }
 
+/** The copy shared by both cross-year cards. */
+function statsCardText(
+	stats: AcrossYearsStatistics,
+	copy: SiteCopy,
+	displaySize: number
+): CardText {
+	return {
+		accent: TOKENS.accent,
+		kicker: copy.siteName,
+		display: `${stats.firstYear}–${stats.latestYear}`,
+		displaySize,
+		subtitle: copy.acrossTitle,
+		byline: copy.author,
+		meta: `${stats.totalAlbumsRated.toLocaleString('en-US')} ${copy.albumsRated} · ${stats.yearCount} ${copy.yearsLabel}`
+	};
+}
+
 /** The cross-year landscape card. */
 async function renderStatsCard(
 	stats: AcrossYearsStatistics,
@@ -403,16 +436,7 @@ async function renderStatsCard(
 	sharp: SharpModule
 ): Promise<string> {
 	const background = await winnersMosaic(stats, WIDTH, HEIGHT, sharp);
-
-	const card: CardText = {
-		accent: TOKENS.accent,
-		kicker: copy.siteName,
-		display: `${stats.firstYear}–${stats.latestYear}`,
-		displaySize: 184,
-		subtitle: copy.acrossTitle,
-		byline: copy.author,
-		meta: `${stats.totalAlbumsRated.toLocaleString('en-US')} ${copy.albumsRated} · ${stats.yearCount} ${copy.yearsLabel}`
-	};
+	const card = statsCardText(stats, copy, 184);
 	const outFile = path.join(OUTPUT_DIR, 'stats.jpg');
 	const size = await writeJpeg(sharp(background).composite([{ input: overlaySvg(card) }]), outFile);
 	console.log(
@@ -421,24 +445,19 @@ async function renderStatsCard(
 	return outFile;
 }
 
-/** The square cross-year card: first year, a dash, last year. */
+/** The square cross-year card: the year range fitted to the content width. */
 async function renderStatsSquare(
 	stats: AcrossYearsStatistics,
+	copy: SiteCopy,
 	sharp: SharpModule
 ): Promise<string> {
 	const background = await winnersMosaic(stats, SQUARE, SQUARE, sharp);
-	const yearWidth = SQUARE * 0.54;
-	const overlay = await squareOverlaySvg(
-		TOKENS.accent,
-		[
-			{ text: String(stats.firstYear), width: yearWidth, cy: SQUARE * 0.27 },
-			{ text: '—', width: SQUARE * 0.2, cy: SQUARE / 2 },
-			{ text: String(stats.latestYear), width: yearWidth, cy: SQUARE * 0.73 }
-		],
-		sharp
-	);
+	const card = statsCardText(stats, copy, 470);
 	const outFile = path.join(OUTPUT_DIR, 'stats-square.jpg');
-	const size = await writeJpeg(sharp(background).composite([{ input: overlay }]), outFile);
+	const size = await writeJpeg(
+		sharp(background).composite([{ input: await squareOverlaySvg(card, sharp) }]),
+		outFile
+	);
 	console.log(
 		`stats: square → ${path.relative(projectRoot, outFile)} (${Math.round(size / 1024)} KB)`
 	);
@@ -487,10 +506,10 @@ async function main() {
 	if (target && selected.length === 0) throw new Error(`${target} is not a published year.`);
 
 	for (const year of [...selected].sort((a, b) => a.year - b.year)) {
-		await renderYearSquare(year, sharp);
+		await renderYearSquare(year, copy, sharp);
 		await renderYearCard(year, copy, sharp);
 	}
-	await renderStatsSquare(stats, sharp);
+	await renderStatsSquare(stats, copy, sharp);
 	await renderStatsCard(stats, copy, sharp);
 	console.log(`manifest → ${await writeManifest(years)}`);
 }
