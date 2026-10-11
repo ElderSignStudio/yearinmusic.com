@@ -88,12 +88,16 @@ const ptBR = {
 	/** Header label on phones, where the full word would crowd the bar. */
 	statsLinkShort: 'Números',
 	acrossTitle: 'Ao longo dos anos',
+	/** Title-case variant for the document title and social previews. */
+	acrossMetaTitle: 'Ao longo dos anos',
 	acrossTagline: (years: number) =>
 		years === 1
 			? 'Um ano ouvindo, avaliando e escolhendo meus discos favoritos.'
 			: `${capitalize(numberWord(years, 'pt-BR'))} anos ouvindo, avaliando e escolhendo meus discos favoritos.`,
-	acrossDescription: (first: number, latest: number) =>
-		`Um olhar estatístico e editorial sobre as listas anuais de música do Dan Eisenberg, de ${first} a ${latest}.`,
+	acrossDescription: (years: number) =>
+		years === 1
+			? 'Um ano de notas, rankings, artistas, gêneros e vencedores anuais no Year in Music.'
+			: `${capitalize(numberWord(years, 'pt-BR'))} anos de notas, rankings, artistas, gêneros e vencedores anuais no Year in Music.`,
 	bigPictureKicker: 'O panorama',
 	yearsLabel: 'Anos',
 	byYearKicker: 'Por ano',
@@ -162,7 +166,8 @@ const ptBR = {
 	notFoundBody: 'Esse ano ainda não existe no arquivo.',
 	backToNewest: 'Voltar ao ano mais recente',
 	footerNote: 'Notas no RateYourMusic, playlists no Spotify.',
-	pageDescription: (year: number) => `Os melhores álbuns e músicas de ${year}, segundo o Dan.`
+	pageDescription: (year: number, topN: number) =>
+		`Meus ${topN} álbuns favoritos de ${year}, estatísticas e a playlist com as melhores músicas do ano.`
 };
 
 type Dictionary = typeof ptBR;
@@ -196,12 +201,15 @@ const en: Dictionary = {
 	statsLink: 'Stats',
 	statsLinkShort: 'Stats',
 	acrossTitle: 'Across the years',
+	acrossMetaTitle: 'Across the Years',
 	acrossTagline: (years) =>
 		years === 1
 			? 'One year of listening, rating and choosing my favorite records.'
 			: `${capitalize(numberWord(years, 'en'))} years of listening, rating and choosing my favorite records.`,
-	acrossDescription: (first, latest) =>
-		`A statistical, editorial look across Dan Eisenberg's annual music lists, ${first} to ${latest}.`,
+	acrossDescription: (years) =>
+		years === 1
+			? 'One year of ratings, rankings, artists, genres and annual winners across Year in Music.'
+			: `${capitalize(numberWord(years, 'en'))} years of ratings, rankings, artists, genres and annual winners across Year in Music.`,
 	bigPictureKicker: 'The big picture',
 	yearsLabel: 'Years',
 	byYearKicker: 'By year',
@@ -264,7 +272,8 @@ const en: Dictionary = {
 	notFoundBody: 'That year is not in the archive yet.',
 	backToNewest: 'Back to the newest year',
 	footerNote: 'Ratings on RateYourMusic, playlists on Spotify.',
-	pageDescription: (year) => `The best albums and songs of ${year}, according to Dan.`
+	pageDescription: (year, topN) =>
+		`My ${topN} favorite albums of ${year}, statistics and the year's best songs playlist.`
 };
 
 export const translations: Record<Locale, Dictionary> = { 'pt-BR': ptBR, en };

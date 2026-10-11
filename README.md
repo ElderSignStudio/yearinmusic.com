@@ -64,10 +64,17 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    ```
 
 9. Publish the year: create `src/lib/data/years/<year>.ts` that calls `createYear(generated, overrides, editorial)` with the accent, the Brazilian Portuguese intro and any other editorial values (see `2025.ts`), then add it to `src/lib/data/years/index.ts`. The newest registered year becomes `/`. If the list is a Top N plus unranked extras, name those extras in `bonusSlugs` (see `2024.ts`); they are rendered after the ranking without a number, and the remaining albums must form a contiguous 1..N list that matches the list title.
+10. Generate the social-preview cards (1200×630 JPEGs used by WhatsApp, Open Graph and Twitter). The script reads the published data, so run it after step 9; it renders the year's card from its hero collage and always refreshes the cross-year `/stats` card:
+
+    ```sh
+    npm run generate:social -- 2025   # one year; no argument renders every year
+    ```
+
+    Commit `static/social/` and `src/lib/data/socialCards.json` together: page metadata only references cards listed in that manifest, and falls back to the #1 artwork otherwise.
 
 **Composition.** `src/lib/data/years/compose.ts` turns the three inputs (generated JSON, manual links, editorial config) into the `YearData` the page renders. Exact manual links win per service; empty ones fall back to the generated search links. Components never see import-specific fields.
 
-**Generated vs hand-authored.** `src/lib/data/years/generated/<year>.json` and `static/artwork/<year>/` are written by the scripts and tracked in Git; re-running the scripts is safe and deterministic. `src/lib/data/years/manual/<year>.ts` is written by hand and never touched by any script; for a new year, copy the structure of an existing file and register it in `manual/index.ts`. Hand-authored presentation data such as `src/lib/data/years/<year>.ts` is likewise never regenerated.
+**Generated vs hand-authored.** `src/lib/data/years/generated/<year>.json`, `static/artwork/<year>/`, `static/social/` and `src/lib/data/socialCards.json` are written by the scripts and tracked in Git; re-running the scripts is safe and deterministic. `src/lib/data/years/manual/<year>.ts` is written by hand and never touched by any script; for a new year, copy the structure of an existing file and register it in `manual/index.ts`. Hand-authored presentation data such as `src/lib/data/years/<year>.ts` is likewise never regenerated.
 
 **Import.** The importer reads only the fields the site needs: list title and URL, the introduction paragraphs, the stated statistics, the yearly playlist URL and each ranked album's stable slug, artist, title, release year, RYM URL, genres, descriptors and artwork reference. Percentages are never copied from the page; the site derives them from each bucket count and the year's total, which is the sum of the rating buckets. A total written in the text is only a cross-check and is reported when it disagrees. Re-importing a year keeps the artwork paths that enrichment already wrote. Spotify and Apple Music links are search fallbacks (`streamingLinksAreSearchFallbacks: true`) until exact links are supplied in the manual file.
 

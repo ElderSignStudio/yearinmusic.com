@@ -383,6 +383,21 @@ The playlist section is part of the publication, not an afterthought.
 
 ---
 
+# Social sharing
+
+Every year page and `/stats` has a dedicated 1200×630 share card in `static/social/`,
+rendered by `npm run generate:social` from the production data (year, Top N, albums
+rated, accent, cross-year totals) and the hero collages. Cards never reveal the ranking
+or the winner.
+
+Open Graph and Twitter metadata is English-first and uses these cards. A `?lang=pt-BR`
+share link gets the same preview, and `?lang` never appears in canonical or `og:url`.
+
+Publishing a new year includes running the generator and committing its output
+(`static/social/{year}.jpg`, `static/social/stats.jpg`, `src/lib/data/socialCards.json`).
+
+---
+
 # Motion
 
 Motion should be subtle.
