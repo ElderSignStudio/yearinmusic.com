@@ -16,7 +16,8 @@
 		"enrich:artwork": "node --no-warnings scripts/enrich-artwork/cli.ts",
 		"check:overrides": "node --no-warnings scripts/check-overrides/cli.ts",
 		"generate:hero": "node --no-warnings scripts/generate-hero/cli.ts",
-		"generate:social": "node --no-warnings scripts/generate-social/cli.ts"
+		"generate:social": "node --no-warnings scripts/generate-social/cli.ts",
+		"add:artist-image": "node --no-warnings scripts/add-artist-image/cli.ts"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
