@@ -11,9 +11,10 @@
 	let { children }: LayoutProps = $props();
 	const t = $derived(locale.t);
 
-	// The current year's accent flows into the whole document via one CSS variable.
-	const year = $derived(page.data.year);
-	const accent = $derived(year?.theme.accent ?? 'var(--accent)');
+	// The current year's (or special edition's) accent flows into the whole document via one CSS variable.
+	const accent = $derived(
+		page.data.year?.theme.accent ?? page.data.edition?.theme.accent ?? 'var(--accent)'
+	);
 
 	// Resolve the language before anything renders on the client: ?lang › saved › English.
 	locale.initialize(page.url);

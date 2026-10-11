@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { archiveEntries, earliestYear } from '#lib/data/years/index.js';
+	import { formatYearRange, specialEditions } from '#lib/data/specialEditions.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import Section from './Section.svelte';
 
@@ -61,6 +62,47 @@
 			{#each upcoming as entry (entry.year)}
 				<span class="tabular-nums">{entry.year}</span>
 			{/each}
+		</div>
+	{/if}
+
+	<!-- Special editions live apart from the chronological list: same grid, their own heading. -->
+	{#if specialEditions.length}
+		<div class="mt-14 border-t border-line pt-10">
+			<h3 class="kicker text-ink-muted">{t.specialEditionsTitle}</h3>
+			<ol
+				class="mt-8 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+			>
+				{#each specialEditions as edition (edition.slug)}
+					{@const range = formatYearRange(edition)}
+					{@const title = locale.pick(edition.title)}
+					<li style="--year-accent: {edition.theme.accent}">
+						<a
+							href={locale.href(`/${edition.slug}`)}
+							class="group block"
+							aria-label="{range} · {title}"
+						>
+							<span class="artwork-link">
+								<img
+									src={edition.artwork}
+									alt=""
+									width="1600"
+									height="1600"
+									loading="lazy"
+									decoding="async"
+									sizes="(min-width: 1280px) 200px, (min-width: 640px) 30vw, 50vw"
+									class="opacity-85 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+								/>
+							</span>
+							<span
+								class="mt-3 block font-display text-2xl leading-none font-normal tracking-[-0.02em] tabular-nums transition-colors duration-200 group-hover:text-year"
+							>
+								{range}
+							</span>
+							<span class="mt-2 block kicker text-ink-muted">{title}</span>
+						</a>
+					</li>
+				{/each}
+			</ol>
 		</div>
 	{/if}
 </Section>

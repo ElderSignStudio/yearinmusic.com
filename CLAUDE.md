@@ -175,6 +175,18 @@ Keep TypeScript types explicit and reusable.
 
 ---
 
+# Special editions
+
+Standalone publications outside the yearly rankings (for example `/2022-2026`, a
+five-year playlist retrospective) are entries in `src/lib/data/specialEditions.ts`: slug,
+year range, accent, bilingual copy, cover path and playlist URL. The `[edition=edition]`
+route, the archive's "Special editions" block, the metadata and the callout on the
+edition's final year page all derive from that list. `npm run generate:social` renders
+each edition's cover (`static/special/{slug}.jpg`) and its share cards. A special edition
+has no ranking, statistics or winner treatment.
+
+---
+
 # URLs
 
 The intended URL model is:
