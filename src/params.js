@@ -12,5 +12,7 @@ import { defineParams } from '@sveltejs/kit/params';
  */
 export const params = defineParams({
 	/** Four-digit year segment, e.g. `/2024`. */
-	year: (param) => (/^\d{4}$/.test(param) ? param : undefined)
+	year: (param) => (/^\d{4}$/.test(param) ? param : undefined),
+	/** Special-edition year range, e.g. `/2022-2026`. Unknown ranges 404 in the page load. */
+	edition: (param) => (/^\d{4}-\d{4}$/.test(param) ? param : undefined)
 });

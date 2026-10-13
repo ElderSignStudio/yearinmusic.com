@@ -1,4 +1,5 @@
 import type { Locale, YearData } from '#lib/types/year.js';
+import type { SpecialEdition } from '#lib/types/specialEdition.js';
 import { translations } from '#lib/i18n/translations.js';
 import { DEFAULT_LOCALE } from '#lib/i18n/localeUrl.js';
 import socialCards from '#lib/data/socialCards.json';
@@ -91,6 +92,21 @@ export function yearMeta(data: YearData): PageMeta {
 		description: t.pageDescription(data.year, data.rankedAlbums.length),
 		url: absoluteUrl(`/${data.year}`),
 		...socialImage(String(data.year), data.shareImage, data.rankedAlbums[0]?.artwork),
+		...localeMeta(locale),
+		siteName: t.siteName,
+		author: SITE_AUTHOR
+	};
+}
+
+/** Metadata for a special edition: its own share cards when generated, else its cover. */
+export function specialEditionMeta(edition: SpecialEdition): PageMeta {
+	const locale = META_LOCALE;
+	const t = translations[locale];
+	return {
+		title: `${t.siteName} — ${edition.title[locale]}`,
+		description: edition.summary[locale],
+		url: absoluteUrl(`/${edition.slug}`),
+		...socialImage(edition.slug, undefined, edition.artwork),
 		...localeMeta(locale),
 		siteName: t.siteName,
 		author: SITE_AUTHOR

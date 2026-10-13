@@ -167,7 +167,13 @@ const ptBR = {
 	backToNewest: 'Voltar ao ano mais recente',
 	footerNote: 'Notas no RateYourMusic, playlists no Spotify.',
 	pageDescription: (year: number, topN: number) =>
-		`Meus ${topN} álbuns favoritos de ${year}, estatísticas e a playlist com as melhores músicas do ano.`
+		`Meus ${topN} álbuns favoritos de ${year}, estatísticas e a playlist com as melhores músicas do ano.`,
+	specialEditionKicker: 'Edição especial',
+	specialEditionsTitle: 'Edições especiais',
+	exploreCollection: 'Explorar a coleção',
+	latestYear: 'Ano mais recente',
+	playlistEmbedTitleNamed: (name: string) => `Playlist no Spotify: ${name}`,
+	specialCoverAlt: (range: string, title: string) => `Capa da edição especial ${range}: ${title}`
 };
 
 type Dictionary = typeof ptBR;
@@ -273,7 +279,13 @@ const en: Dictionary = {
 	backToNewest: 'Back to the newest year',
 	footerNote: 'Ratings on RateYourMusic, playlists on Spotify.',
 	pageDescription: (year, topN) =>
-		`My ${topN} favorite albums of ${year}, statistics and the year's best songs playlist.`
+		`My ${topN} favorite albums of ${year}, statistics and the year's best songs playlist.`,
+	specialEditionKicker: 'Special edition',
+	specialEditionsTitle: 'Special editions',
+	exploreCollection: 'Explore the collection',
+	latestYear: 'Latest year',
+	playlistEmbedTitleNamed: (name) => `Spotify playlist: ${name}`,
+	specialCoverAlt: (range, title) => `Cover of the ${range} special edition: ${title}`
 };
 
 export const translations: Record<Locale, Dictionary> = { 'pt-BR': ptBR, en };
