@@ -6,9 +6,10 @@
 import * as cheerio from 'cheerio';
 import type { ImportedAlbum, ImportedYearData } from '../../src/lib/types/imported.ts';
 import { assignAlbumSlugs } from '../../src/lib/utils/slug.ts';
+import { bucketSum } from '../../src/lib/utils/ratingShares.ts';
 import { appleMusicSearchUrl, spotifySearchUrl } from '../../src/lib/utils/streaming.ts';
 import { Diagnostics } from './diagnostics.ts';
-import { descriptionToLines, parseDescription } from './description.ts';
+import { descriptionToLines, parseDescription, resolveAlbumsRated } from './description.ts';
 
 const RYM_ORIGIN = 'https://rateyourmusic.com';
 
@@ -179,22 +180,14 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 		diagnostics.warn('No list description found; introduction, statistics and playlist are empty.');
 	}
 
-	// The official total for a year is the sum of its rating buckets. A "rated N albums"
-	// sentence in the text is only a cross-check: it is reported when it disagrees, never used.
-	const bucketSum = description.ratingDistribution.reduce((sum, b) => sum + b.count, 0);
-	let totalAlbumsRated = bucketSum;
-	if (!description.ratingDistribution.length) {
-		totalAlbumsRated = description.statedTotal ?? 0;
-		diagnostics.warn(
-			description.statedTotal === undefined
-				? 'No rating buckets and no stated total found; albums rated is 0.'
-				: `No rating buckets found; falling back to the stated total (${description.statedTotal}).`
-		);
-	} else if (description.statedTotal !== undefined && description.statedTotal !== bucketSum) {
-		diagnostics.warn(
-			`The text states ${description.statedTotal} albums rated but the rating buckets sum to ${bucketSum}; using ${bucketSum}.`
-		);
-	}
+	// The stated total ("I rated 157 albums") is the official figure and the denominator;
+	// a bucket sum that disagrees is reported, never substituted (see resolveAlbumsRated).
+	const totalAlbumsRated = resolveAlbumsRated(
+		description.statedTotal,
+		description.ratingDistribution,
+		diagnostics
+	);
+	const ratingBucketSum = bucketSum(description.ratingDistribution);
 	if (!description.ratingDistribution.length)
 		diagnostics.warn('No rating distribution lines found.');
 	if (!description.spotifyPlaylistUrl)
@@ -217,7 +210,7 @@ export function parseRymListHtml(html: string, sourceFile: string): ParseResult 
 		withRymUrl,
 		withPrimaryGenres,
 		withArtwork,
-		bucketSum,
+		bucketSum: ratingBucketSum,
 		expectedAlbumCount
 	};
 	if (diagnostics.fatal || year === undefined) return { diagnostics, stats };

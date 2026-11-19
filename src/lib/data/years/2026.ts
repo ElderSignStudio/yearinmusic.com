@@ -18,6 +18,6 @@ export const year2026 = createYear(generated as ImportedYearData, overrides2026,
 			'Avaliei 131 álbuns lançados em 2026, menos do que em 2025 (quando avaliei 157 álbuns).'
 		]
 	},
-	// As written in the 2026 text; the published 2025 page states 159 and takes precedence.
+	// As written in the 2026 text; the same as the stated 2025 total, which takes precedence.
 	previousYearAlbumsRated: 157
 });

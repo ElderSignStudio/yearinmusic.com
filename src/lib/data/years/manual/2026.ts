@@ -10,6 +10,8 @@ import type { ManualYearOverrides } from './types.ts';
 export const overrides2026: ManualYearOverrides = {
 	// 01 — Cell — Live in Poland
 	'cell-live-in-poland': {
+		// RYM lists no genres for this release.
+		primaryGenres: ['Psybient', 'Downtempo'],
 		spotifyUrl: '',
 		appleMusicUrl: ''
 	},
@@ -44,8 +46,10 @@ export const overrides2026: ManualYearOverrides = {
 		appleMusicUrl: ''
 	},
 
-	// 07 — Fabiano do Nascimento — Vila
+	// 07 — Fabiano do Nascimento & Vittor Santos Orchestra — Vila
 	'fabiano-do-nascimento-vila': {
+		// The import keeps only the first credited artist of the collaboration.
+		artist: 'Fabiano do Nascimento & Vittor Santos Orchestra',
 		spotifyUrl: '',
 		appleMusicUrl: ''
 	},

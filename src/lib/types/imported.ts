@@ -53,8 +53,9 @@ export interface ImportedYearData {
 	/** Editorial introduction paragraphs, without rating or playlist lines. */
 	introEn: string[];
 	/**
-	 * Sum of the rating bucket counts: the official albums-rated figure and the
-	 * denominator for every percentage. A total written in the text is only a cross-check.
+	 * The total stated in the source text ("I rated 157 albums"): the official albums-rated
+	 * figure and the denominator for every percentage. It may differ from the sum of the
+	 * bucket counts; both are kept as written and the import warns about the mismatch.
 	 */
 	totalAlbumsRated: number;
 	/** Ordered from the highest rating to the lowest. */

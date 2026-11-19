@@ -377,6 +377,11 @@ Every year can include:
 - comparison with previous year
 - distribution of ratings
 
+Every rating percentage is `bucket count / stated total albums rated`. The total stated in
+the yearly source is authoritative and the bucket counts are authoritative as written; when
+they disagree, keep both, warn in diagnostics, and never normalize the buckets or substitute
+their sum for the denominator (`src/lib/utils/ratingShares.ts`, covered by `npm test`).
+
 The rating distribution should use lightweight horizontal bars created with HTML/CSS/Tailwind.
 
 Do not introduce a charting library for this.

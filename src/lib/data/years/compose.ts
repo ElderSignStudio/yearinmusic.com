@@ -2,7 +2,7 @@
  * Builds the production `YearData` for an imported year from three inputs that
  * stay separate on disk:
  *   generated/{year}.json  — imported list data and local artwork paths
- *   manual/{year}.ts       — hand-supplied exact streaming links
+ *   manual/{year}.ts       — hand-supplied exact streaming links and editorial corrections
  *   the editorial config   — accent, Brazilian Portuguese intro, share image
  *
  * Components only ever see `YearData`; nothing downstream knows about RYM.
@@ -50,21 +50,23 @@ function toAlbum(
 		);
 	}
 	const override = manual?.[imported.slug];
+	const artist = override?.artist ?? imported.artist;
 	const album = override?.album ?? imported.album;
-	// A display title also drives the search fallbacks, so they look for the real album name.
-	const source = override?.album
-		? {
-				...imported,
-				spotifyUrl: spotifySearchUrl(imported.artist, album),
-				appleMusicUrl: appleMusicSearchUrl(imported.artist, album)
-			}
-		: imported;
+	// A display credit or title also drives the search fallbacks, so they look for the real names.
+	const source =
+		override?.artist || override?.album
+			? {
+					...imported,
+					spotifyUrl: spotifySearchUrl(artist, album),
+					appleMusicUrl: appleMusicSearchUrl(artist, album)
+				}
+			: imported;
 	const links = resolveServiceLinks(source, override);
 	return {
-		artist: imported.artist,
+		artist,
 		album,
 		artwork: imported.artwork,
-		primaryGenres: imported.primaryGenres,
+		primaryGenres: override?.primaryGenres ?? imported.primaryGenres,
 		spotifyUrl: links.spotify?.url,
 		appleMusicUrl: links.appleMusic?.url,
 		bandcampUrl: links.bandcamp?.url,
@@ -113,13 +115,8 @@ export function createYear(
 	editorial: YearEditorial
 ): YearData {
 	const { ranked, bonus } = splitAlbums(generated, editorial.bonusSlugs ?? []);
-	// The official total is the sum of the rating buckets; refuse data that disagrees.
-	const bucketSum = generated.ratingDistribution.reduce((sum, b) => sum + b.count, 0);
-	if (generated.ratingDistribution.length && generated.totalAlbumsRated !== bucketSum) {
-		throw new Error(
-			`${generated.year}: totalAlbumsRated is ${generated.totalAlbumsRated} but the rating buckets sum to ${bucketSum}. Re-run: npm run import:rym`
-		);
-	}
+	// totalAlbumsRated is the stated total and stays the denominator even when the buckets
+	// sum to something else; both pass through unchanged (see shareOfTotal).
 	const intro: Record<Locale, string[]> = {
 		'pt-BR': editorial.intro['pt-BR'],
 		en: editorial.intro.en ?? generated.introEn

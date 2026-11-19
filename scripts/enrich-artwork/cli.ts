@@ -103,14 +103,14 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 	const results: AlbumResult[] = [];
 
 	// A title or artist name may only name a file when no other album in the year could claim it.
-	// A hand-authored display title (manual/{year}.ts) counts as one of the album's names.
+	// A hand-authored display title or artist credit (manual/{year}.ts) counts as one of the album's names.
 	const overrides = manualOverridesFor(year);
 	const namesOf = (album: ImportedAlbum, slug: string): Set<string> => {
-		const manualTitle = overrides?.[slug]?.album;
+		const { album: manualTitle, artist: manualArtist } = overrides?.[slug] ?? {};
 		const titles = manualTitle ? [album.album, manualTitle] : [album.album];
-		return new Set(
-			[...titles.flatMap(titleVariants), ...artistVariants(album.artist, album.rymUrl)].map(nameKey)
-		);
+		const artists = artistVariants(album.artist, album.rymUrl);
+		if (manualArtist) artists.push(manualArtist);
+		return new Set([...titles.flatMap(titleVariants), ...artists].map(nameKey));
 	};
 	const keyCounts = new Map<string, number>();
 	for (const [index, a] of albums.entries()) {
