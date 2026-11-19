@@ -28,6 +28,8 @@ import {
 } from './image.ts';
 import { formatReport, type AlbumResult } from './report.ts';
 import {
+	approximateMatches,
+	artistVariants,
 	fetchCdn,
 	findManualOverride,
 	isCdnReference,
@@ -100,28 +102,31 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 	const slugs = albums.map((a) => a.slug || canonical.get(a) || `release-${a.rank}`);
 	const results: AlbumResult[] = [];
 
-	// A title variant may only name a file when no other album in the year could claim it.
+	// A title or artist name may only name a file when no other album in the year could claim it.
 	// A hand-authored display title (manual/{year}.ts) counts as one of the album's names.
 	const overrides = manualOverridesFor(year);
-	const titlesOf = (album: ImportedAlbum, slug: string): string[] => {
+	const namesOf = (album: ImportedAlbum, slug: string): Set<string> => {
 		const manualTitle = overrides?.[slug]?.album;
-		return manualTitle ? [album.album, manualTitle] : [album.album];
+		const titles = manualTitle ? [album.album, manualTitle] : [album.album];
+		return new Set(
+			[...titles.flatMap(titleVariants), ...artistVariants(album.artist, album.rymUrl)].map(nameKey)
+		);
 	};
 	const keyCounts = new Map<string, number>();
 	for (const [index, a] of albums.entries()) {
-		const keys = new Set(titlesOf(a, slugs[index]).flatMap(titleVariants).map(nameKey));
-		for (const key of keys) keyCounts.set(key, (keyCounts.get(key) ?? 0) + 1);
+		for (const key of namesOf(a, slugs[index])) keyCounts.set(key, (keyCounts.get(key) ?? 0) + 1);
 	}
+	const lookups: OverrideLookup[] = albums.map((album, index) => ({
+		year,
+		slug: slugs[index],
+		keys: [...namesOf(album, slugs[index])].filter((key) => key && keyCounts.get(key) === 1)
+	}));
+	const approximate = await approximateMatches(year, lookups);
+	for (const lookup of lookups) lookup.approximateFile = approximate.get(lookup.slug);
 
 	for (const [index, album] of albums.entries()) {
 		const slug = slugs[index];
-		const lookup: OverrideLookup = {
-			year,
-			slug,
-			keys: [...new Set(titlesOf(album, slug).flatMap(titleVariants).map(nameKey))].filter(
-				(key) => key && keyCounts.get(key) === 1
-			)
-		};
+		const lookup = lookups[index];
 		const outFile = path.join(outputDir, `${slug}.webp`);
 		const publicPath = `/artwork/${year}/${slug}.webp`;
 		const result: AlbumResult = {
@@ -153,6 +158,10 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 						? 'cdn'
 						: 'local-saved';
 				result.source = existing;
+				if (manual?.approximate)
+					result.warnings.push(
+						`matched by a near-identical file name (${manual.label}); check that it is the right cover`
+					);
 				if (existing.width < HIGH_RES_EDGE)
 					result.warnings.push(
 						`source only ${existing.width}×${existing.height} (existing file reused)`
@@ -177,6 +186,10 @@ async function enrichYear(file: string, force: boolean): Promise<boolean> {
 			result.sourceKind = source.kind;
 			result.sourceLabel = source.label;
 			result.source = info;
+			if (source.approximate)
+				result.warnings.push(
+					`matched by a near-identical file name (${source.label}); check that it is the right cover`
+				);
 			if (!isSquare(info))
 				result.warnings.push(
 					`source image not square (${info.width}×${info.height}); stored without cropping`

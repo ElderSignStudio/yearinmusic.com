@@ -42,7 +42,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    ```
 
 3. Read the import report. Warnings (for example, a total written in the text that differs from the sum of the rating buckets) still produce output; structural errors (no albums, no year) do not.
-4. Optionally drop higher-resolution covers into `imports/artwork/<year>/<artist-album>.(jpg|png|webp)`. The artwork report lists each album's slug.
+4. Optionally drop higher-resolution covers into `imports/artwork/<year>/<artist-album>.(jpg|png|webp)`. The artwork report lists each album's slug. A file may also be named after just the album title or just the artist in any casing (`Pachinko.jpeg`, `moron police.jpg`) when that name is unique within the year; a leftover file within a typo or two of one unmatched album (`doid bishop.jpg`) is used too, and flagged in the report for review.
 5. Resolve the artwork:
 
    ```sh
