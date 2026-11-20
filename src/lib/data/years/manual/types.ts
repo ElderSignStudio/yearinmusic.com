@@ -5,6 +5,14 @@
 
 export interface ManualAlbumOverride {
 	/**
+	 * Artist credit as it should be displayed, when the import shortens it (RYM lists a
+	 * collaboration under its first artist). Also drives the search fallbacks and the
+	 * cross-year artist statistics; the album keeps its slug.
+	 */
+	artist?: string;
+	/** RYM primary genres to display when the list entry has none or the wrong ones. */
+	primaryGenres?: string[];
+	/**
 	 * Album title as it should be displayed, when RYM lists the entry under another
 	 * name (e.g. a single's title). Cover files may also be named after it.
 	 */

@@ -45,12 +45,14 @@ export interface YearData {
 	theme: YearTheme;
 	/** Paragraphs, per language. */
 	intro: Localized<string[]>;
+	/** Stated total from the yearly source: the denominator for every rating percentage. */
 	totalAlbumsRated: number;
 	/**
 	 * Fallback for the year-over-year comparison when the previous year has not
 	 * been imported yet. When it has, its own `totalAlbumsRated` takes precedence.
 	 */
 	previousYearAlbumsRated?: number;
+	/** Bucket counts exactly as written; their sum may differ from `totalAlbumsRated`. */
 	ratingDistribution: RatingBucket[];
 	rymListUrl: string;
 	/** Absent when the year has no playlist yet; the playlist section is then not rendered. */

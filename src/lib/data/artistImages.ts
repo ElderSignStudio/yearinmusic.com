@@ -19,8 +19,10 @@ const artistImages: Record<string, string> = {
 	'bon-iver': '/artists/bon-iver.webp',
 	'carly-rae-jepsen': '/artists/carly-rae-jepsen.webp',
 	'devin-townsend': '/artists/devin-townsend.webp',
+	'droid-bishop': '/artists/droid-bishop.webp',
 	ghost: '/artists/ghost.webp',
 	haken: '/artists/haken.webp',
+	insomnium: '/artists/insomnium.webp',
 	leprous: '/artists/leprous.webp',
 	'seventh-wonder': '/artists/seventh-wonder.webp',
 	'steven-wilson': '/artists/steven-wilson.webp'

@@ -14,6 +14,7 @@ import { overrides2022 } from './2022.ts';
 import { overrides2023 } from './2023.ts';
 import { overrides2024 } from './2024.ts';
 import { overrides2025 } from './2025.ts';
+import { overrides2026 } from './2026.ts';
 
 export const manualOverrides: Record<number, ManualYearOverrides> = {
 	2016: overrides2016,
@@ -25,7 +26,8 @@ export const manualOverrides: Record<number, ManualYearOverrides> = {
 	2022: overrides2022,
 	2023: overrides2023,
 	2024: overrides2024,
-	2025: overrides2025
+	2025: overrides2025,
+	2026: overrides2026
 };
 
 export function manualOverridesFor(year: number): ManualYearOverrides | undefined {

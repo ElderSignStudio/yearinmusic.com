@@ -2,11 +2,13 @@
  * Derived yearly statistics, kept out of the visual components so the same
  * numbers can later feed a cross-year view.
  *
- * Data rules: the albums-rated total is the sum of the rating buckets (never a figure
- * quoted from the source text) and is the denominator for every share; percentages
- * are never copied from the source. Shares are fractions (0–1) for `formatPercent`.
+ * Data rules: the albums-rated total is the stated total from the yearly source and is
+ * the denominator for every share, even when the rating buckets sum to something else
+ * (see `shareOfTotal`); percentages are never copied from the source. Shares are
+ * fractions (0–1) for `formatPercent`.
  */
 import type { YearData } from '#lib/types/year.js';
+import { shareOfTotal } from '#lib/utils/ratingShares.js';
 import { previousYearTotal } from './index.js';
 
 export interface CountShare {
@@ -35,7 +37,7 @@ function countWhere(data: YearData, predicate: (rating: number) => boolean): num
 }
 
 function countShare(count: number, total: number): CountShare {
-	return { count, share: total > 0 ? count / total : 0 };
+	return { count, share: shareOfTotal(count, total) };
 }
 
 /** Pure derivation from a year's data and an optional previous-year total. */

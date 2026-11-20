@@ -2,9 +2,11 @@
 	import type { RatingBucket } from '#lib/types/year.js';
 	import { locale } from '#lib/i18n/locale.svelte.js';
 	import { formatPercent } from '#lib/utils/format.js';
+	import { shareOfTotal } from '#lib/utils/ratingShares.js';
 
 	interface Props {
 		buckets: RatingBucket[];
+		/** The stated total albums rated: the denominator, even when the buckets sum differently. */
 		total: number;
 		/** Extra classes for the heading, e.g. to hide it where a toggle carries the title instead. */
 		titleClass?: string;
@@ -24,7 +26,7 @@
 	-->
 	<ol class="mt-5">
 		{#each buckets as bucket (bucket.rating)}
-			{@const share = total ? bucket.count / total : 0}
+			{@const share = shareOfTotal(bucket.count, total)}
 			<li
 				class="grid grid-cols-[2.75rem_minmax(0,1fr)_auto_3.5rem] items-baseline gap-x-3 gap-y-2 py-2.5 sm:grid-cols-[2.75rem_10rem_minmax(0,1fr)_2.5rem_3.75rem] sm:items-center sm:gap-x-4 sm:py-2 md:grid-cols-[2.75rem_11rem_minmax(0,1fr)_2.5rem_3.75rem]"
 			>

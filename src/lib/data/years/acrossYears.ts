@@ -2,12 +2,14 @@
  * Cross-year statistics for the "Across the Years" page, derived entirely from the
  * published `YearData` so a newly registered year updates the page automatically.
  *
- * Rules: a year's `totalAlbumsRated` is its official total and the denominator for its
- * shares; cumulative shares use the sum of those totals. Bonus albums are never counted
- * in ranking-derived statistics (recurring artists, Top 5 appearances, genres).
+ * Rules: a year's `totalAlbumsRated` is its stated total and the denominator for its
+ * shares; cumulative shares use the sum of those stated totals, never the sum of the
+ * buckets (see `shareOfTotal`). Bonus albums are never counted in ranking-derived
+ * statistics (recurring artists, Top 5 appearances, genres).
  */
 import type { Album, Localized, RatingBucket, YearData } from '#lib/types/year.js';
 import { ratingLabel } from '#lib/data/ratingLabels.js';
+import { shareOfTotal } from '#lib/utils/ratingShares.js';
 import { deriveYearStatistics, type CountShare } from './statistics.js';
 
 export interface YearPoint {
@@ -121,7 +123,7 @@ function highlights(
 }
 
 function share(count: number, total: number): CountShare {
-	return { count, share: total > 0 ? count / total : 0 };
+	return { count, share: shareOfTotal(count, total) };
 }
 
 /** Conservative identity for an artist credit: whitespace collapsed, case ignored. */

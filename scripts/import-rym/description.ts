@@ -5,6 +5,7 @@
 import type { Cheerio, CheerioAPI } from 'cheerio';
 import type { AnyNode } from 'domhandler';
 import type { ImportedRatingBucket } from '../../src/lib/types/imported.ts';
+import { bucketSum } from '../../src/lib/utils/ratingShares.ts';
 import type { Diagnostics } from './diagnostics.ts';
 
 export interface ParsedDescription {
@@ -61,6 +62,34 @@ export function descriptionToLines($: CheerioAPI, root: Cheerio<AnyNode>): strin
 	};
 	walk(root.contents().toArray());
 	return text.split('\n').map((line) => line.replace(/\s+/g, ' ').trim());
+}
+
+/**
+ * The year's official albums-rated figure: the total stated in the text. It is the
+ * denominator for every percentage. Bucket counts are kept exactly as written, and a
+ * bucket sum that disagrees is reported but never replaces the stated total. Only a
+ * description without any stated total falls back to the bucket sum, with a warning.
+ */
+export function resolveAlbumsRated(
+	statedTotal: number | undefined,
+	ratingDistribution: readonly ImportedRatingBucket[],
+	diagnostics: Diagnostics
+): number {
+	const sum = bucketSum(ratingDistribution);
+	if (statedTotal === undefined) {
+		diagnostics.warn(
+			ratingDistribution.length
+				? `No stated total found; falling back to the sum of the rating buckets (${sum}).`
+				: 'No stated total and no rating buckets found; albums rated is 0.'
+		);
+		return sum;
+	}
+	if (ratingDistribution.length && statedTotal !== sum) {
+		diagnostics.warn(
+			`The text states ${statedTotal} albums rated but the rating buckets sum to ${sum}; keeping both and using the stated ${statedTotal} as the total.`
+		);
+	}
+	return statedTotal;
 }
 
 export function parseDescription(lines: string[], diagnostics: Diagnostics): ParsedDescription {

@@ -2,11 +2,13 @@
  * Finds the best available source image for an album, in order of preference:
  *   1. a hand-supplied file in imports/artwork/{year}/ named after the album slug
  *      (`moron-police-pachinko.jpg`) or, when unambiguous within the year, after the
- *      album title in any casing (`Pachinko.jpeg`). Names are compared Unicode-aware,
- *      so non-Latin titles work, and a title's bracketed suffixes (`Dreamkiller [neon
- *      violet vinyl]`, `αριθμός τέσσερα [Number Four]`) are optional in the file name.
- *      A title that contains a dot may be saved without an extension (`ID.Entity`);
- *      such files are accepted when their bytes are a JPEG, PNG or WebP image.
+ *      album title or the artist in any casing (`Pachinko.jpeg`, `Moron Police.jpeg`).
+ *      Names are compared Unicode-aware, so non-Latin titles work, and a title's
+ *      bracketed suffixes (`Dreamkiller [neon violet vinyl]`, `αριθμός τέσσερα [Number
+ *      Four]`) are optional in the file name. A title that contains a dot may be saved
+ *      without an extension (`ID.Entity`); such files are accepted when their bytes are
+ *      a JPEG, PNG or WebP image. A file left over after exact matching may still be
+ *      paired with an album by a near-identical name (see `approximateMatches`).
  *   2. the CDN reference captured from the saved page (fetched as-is)
  *   3. the thumbnail the browser saved into the page's *_files folder
  *
@@ -26,6 +28,8 @@ export interface SourceImage {
 	data: Buffer;
 	/** Modification time of file sources, used to detect changed overrides. */
 	mtimeMs?: number;
+	/** True when a manual file was matched by a near-identical name; reported for review. */
+	approximate?: boolean;
 }
 
 const USER_AGENT = 'YearInMusic-artwork-enricher/1.0 (personal static site importer)';
@@ -82,27 +86,101 @@ export function titleVariants(title: string): string[] {
 	return variants;
 }
 
+/**
+ * Names a cover file may carry for an artist: the credit as imported and RYM's URL name
+ * for the release's artist, which spells out collaborations the import shortens to their
+ * first name (`fabiano-do-nascimento-and-vittor-santos-orchestra`).
+ */
+export function artistVariants(artist: string, rymUrl: string | undefined): string[] {
+	const variants = [artist];
+	const segment = rymUrl ? /\/release\/[^/]+\/([^/]+)\//.exec(rymUrl)?.[1] : undefined;
+	if (segment) variants.push(segment);
+	return variants;
+}
+
 export interface OverrideLookup {
 	year: number;
 	slug: string;
-	/** `nameKey`s a file may be named by: the slug plus title variants unique within the year. */
+	/** `nameKey`s a file may be named by: the slug plus title and artist variants unique within the year. */
 	keys: readonly string[];
+	/** A file name accepted by `approximateMatches` although no key matches it exactly. */
+	approximateFile?: string;
 }
 
+const manualDir = (year: number) => path.join(importsDir, 'artwork', String(year));
+
 export async function findManualOverride(lookup: OverrideLookup): Promise<SourceImage | undefined> {
-	const dir = path.join(importsDir, 'artwork', String(lookup.year));
+	const dir = manualDir(lookup.year);
 	const entries = await readdir(dir).catch(() => [] as string[]);
 	const accepted = new Set([lookup.slug, ...lookup.keys].filter(Boolean));
 	for (const name of entries.sort()) {
-		if (!manualNameCandidates(name).some((stem) => accepted.has(nameKey(stem)))) continue;
+		const approximate = name === lookup.approximateFile;
+		if (!approximate && !manualNameCandidates(name).some((stem) => accepted.has(nameKey(stem))))
+			continue;
 		const file = path.join(dir, name);
 		const info = await stat(file);
 		if (!info.isFile()) continue;
 		const data = await readFile(file);
 		if (!looksLikeImage(data)) continue;
-		return { kind: 'manual', label: path.relative(importsDir, file), data, mtimeMs: info.mtimeMs };
+		const label = path.relative(importsDir, file);
+		return { kind: 'manual', label, data, mtimeMs: info.mtimeMs, approximate };
 	}
 	return undefined;
+}
+
+/** Levenshtein distance between two short strings. */
+function editDistance(a: string, b: string): number {
+	let previous = Array.from({ length: b.length + 1 }, (_, j) => j);
+	for (let i = 1; i <= a.length; i++) {
+		const current = [i];
+		for (let j = 1; j <= b.length; j++) {
+			const substitution = previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1);
+			current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, substitution);
+		}
+		previous = current;
+	}
+	return previous[b.length];
+}
+
+/** Typos a file name may contain and still be paired with an album. */
+const MAX_TYPOS = 2;
+/** Names shorter than this are too generic to match approximately. */
+const MIN_APPROXIMATE_LENGTH = 6;
+
+/**
+ * Pairs cover files that match no album exactly with albums that found no file, when
+ * the file name is within a couple of typos of one of the album's names
+ * (`doid bishop.jpg` → Droid Bishop). A pair is only made when the file is close to
+ * exactly one such album and that album to exactly one such file. Keyed by slug.
+ */
+export async function approximateMatches(
+	year: number,
+	lookups: readonly OverrideLookup[]
+): Promise<Map<string, string>> {
+	const entries = await readdir(manualDir(year)).catch(() => [] as string[]);
+	const files = entries
+		.filter((name) => !name.startsWith('.'))
+		.map((name) => ({ name, keys: manualNameCandidates(name).map(nameKey) }));
+	const namesOf = (lookup: OverrideLookup) => [lookup.slug, ...lookup.keys];
+	const exact = (lookup: OverrideLookup, file: (typeof files)[number]) =>
+		file.keys.some((key) => namesOf(lookup).includes(key));
+	const close = (lookup: OverrideLookup, file: (typeof files)[number]) =>
+		file.keys.some((fileKey) =>
+			namesOf(lookup).some(
+				(key) => key.length >= MIN_APPROXIMATE_LENGTH && editDistance(fileKey, key) <= MAX_TYPOS
+			)
+		);
+
+	const leftoverFiles = files.filter((file) => !lookups.some((lookup) => exact(lookup, file)));
+	const unmatched = lookups.filter((lookup) => !files.some((file) => exact(lookup, file)));
+	const matches = new Map<string, string>();
+	for (const lookup of unmatched) {
+		const candidates = leftoverFiles.filter((file) => close(lookup, file));
+		if (candidates.length !== 1) continue;
+		if (unmatched.filter((other) => close(other, candidates[0])).length !== 1) continue;
+		matches.set(lookup.slug, candidates[0].name);
+	}
+	return matches;
 }
 
 export function isCdnReference(source: string): boolean {

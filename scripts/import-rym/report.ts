@@ -31,8 +31,11 @@ export function formatReport(sourceFile: string, result: ParseResult, outputPath
 		);
 		lines.push(`Spotify playlist: ${data.spotifyPlaylistUrl ? `found ${OK}` : `missing ${WARN}`}`);
 		lines.push(`Intro paragraphs: ${data.introEn.length} ${data.introEn.length ? OK : WARN}`, '');
+		const bucketsAgree =
+			data.ratingDistribution.length && stats.bucketSum === data.totalAlbumsRated;
 		lines.push(
-			`Albums rated (sum of rating buckets): ${data.totalAlbumsRated} ${data.ratingDistribution.length ? OK : WARN}`
+			`Albums rated (stated total, the denominator): ${data.totalAlbumsRated}`,
+			`Rating buckets sum to: ${stats.bucketSum} ${bucketsAgree ? OK : WARN}`
 		);
 	}
 

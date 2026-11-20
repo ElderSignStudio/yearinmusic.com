@@ -10,6 +10,7 @@ npm run build    # static build to ./build (adapter-static, fully prerendered)
 npm run preview  # serve ./build (restart after rebuilding)
 npm run check    # svelte-check
 npm run lint     # prettier + eslint
+npm test         # node:test regression tests (tests/), e.g. the statistics denominator rule
 npm run format
 ```
 
@@ -42,7 +43,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    ```
 
 3. Read the import report. Warnings (for example, a total written in the text that differs from the sum of the rating buckets) still produce output; structural errors (no albums, no year) do not.
-4. Optionally drop higher-resolution covers into `imports/artwork/<year>/<artist-album>.(jpg|png|webp)`. The artwork report lists each album's slug.
+4. Optionally drop higher-resolution covers into `imports/artwork/<year>/<artist-album>.(jpg|png|webp)`. The artwork report lists each album's slug. A file may also be named after just the album title or just the artist in any casing (`Pachinko.jpeg`, `moron police.jpg`) when that name is unique within the year; a leftover file within a typo or two of one unmatched album (`doid bishop.jpg`) is used too, and flagged in the report for review.
 5. Resolve the artwork:
 
    ```sh
@@ -50,7 +51,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
    npm run enrich:artwork -- 2025 --force  # re-encode even if files already exist
    ```
 
-6. Paste exact Spotify and Apple Music album URLs into `src/lib/data/years/manual/<year>.ts`. Every album is listed by stable slug with its rank, artist and title in a comment; leave a value empty to keep the generated search link. Exact links are optional: the search fallbacks work on their own, and each service is resolved independently. Set a value to `null` when the album is not on that service at all; the site then shows no link for it instead of a search. An optional `bandcampUrl: '…'` adds a Bandcamp link (for example for an album that is only sold there); it has no fallback and the icon only appears when it is set. The same entry can carry `album: '…'` when RYM lists the release under another name (for example a single's title); the site displays that title and the enricher also accepts cover files named after it; `rymUrl: '…'` likewise replaces the entry's RateYourMusic link when the list points at the wrong release.
+6. Paste exact Spotify and Apple Music album URLs into `src/lib/data/years/manual/<year>.ts`. Every album is listed by stable slug with its rank, artist and title in a comment; leave a value empty to keep the generated search link. Exact links are optional: the search fallbacks work on their own, and each service is resolved independently. Set a value to `null` when the album is not on that service at all; the site then shows no link for it instead of a search. An optional `bandcampUrl: '…'` adds a Bandcamp link (for example for an album that is only sold there); it has no fallback and the icon only appears when it is set. The same entry can carry `album: '…'` when RYM lists the release under another name (for example a single's title); the site displays that title and the enricher also accepts cover files named after it; `rymUrl: '…'` likewise replaces the entry's RateYourMusic link when the list points at the wrong release. Two editorial corrections are also possible: `artist: '…'` displays the full credit when the import shortens a collaboration to its first artist (it also drives the search fallbacks and the cross-year artist statistics; the slug stays the same), and `primaryGenres: ['…']` supplies the genres when the RYM entry has none.
 7. Check progress and catch typos:
 
    ```sh
@@ -76,7 +77,7 @@ The source of truth for each year is a RateYourMusic list page saved from the br
 
 **Generated vs hand-authored.** `src/lib/data/years/generated/<year>.json`, `static/artwork/<year>/`, `static/social/` and `src/lib/data/socialCards.json` are written by the scripts and tracked in Git; re-running the scripts is safe and deterministic. `src/lib/data/years/manual/<year>.ts` is written by hand and never touched by any script; for a new year, copy the structure of an existing file and register it in `manual/index.ts`. Hand-authored presentation data such as `src/lib/data/years/<year>.ts` is likewise never regenerated.
 
-**Import.** The importer reads only the fields the site needs: list title and URL, the introduction paragraphs, the stated statistics, the yearly playlist URL and each ranked album's stable slug, artist, title, release year, RYM URL, genres, descriptors and artwork reference. Percentages are never copied from the page; the site derives them from each bucket count and the year's total, which is the sum of the rating buckets. A total written in the text is only a cross-check and is reported when it disagrees. Re-importing a year keeps the artwork paths that enrichment already wrote. Spotify and Apple Music links are search fallbacks (`streamingLinksAreSearchFallbacks: true`) until exact links are supplied in the manual file.
+**Import.** The importer reads only the fields the site needs: list title and URL, the introduction paragraphs, the stated statistics, the yearly playlist URL and each ranked album's stable slug, artist, title, release year, RYM URL, genres, descriptors and artwork reference. Percentages are never copied from the page; the site derives every one of them as bucket count ÷ the total stated in the text ("I rated 157 albums"), which is the year's official albums-rated figure. Bucket counts are kept exactly as written: when they sum to something else, both values are kept, the import warns, and the stated total remains the denominator (so the shares need not add up to 100%). See `src/lib/utils/ratingShares.ts`. Re-importing a year keeps the artwork paths that enrichment already wrote. Spotify and Apple Music links are search fallbacks (`streamingLinksAreSearchFallbacks: true`) until exact links are supplied in the manual file.
 
 **Artwork.** The enricher copies or downloads each cover, checks its real dimensions, and stores one normalized WebP per album at `static/artwork/<year>/<artist-album>.webp`, recording the public path in the album's `artwork` field; the site never depends on RYM image URLs. Sources are tried in order: a hand-supplied file, the CDN reference captured from the saved page, then the thumbnail the browser saved. RYM's CDN only serves each rendition under its own hash, so a saved page yields 150px covers at best. Images are never enlarged, cropped, filtered or recolored; non-square covers are kept as-is and flagged.
 
