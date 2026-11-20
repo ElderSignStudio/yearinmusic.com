@@ -16,8 +16,11 @@
 	let { album, labels = false, class: className = '' }: Props = $props();
 	const t = $derived(locale.t);
 
+	// `flex`, not `inline-flex`: an inline box sits on its first child's baseline, which is the
+	// icon's bottom edge for Spotify/Apple Music but the text baseline for RYM, so RYM sat 4px
+	// lower. As block-level boxes every link is simply centred in the row.
 	const linkClass =
-		'quiet-link inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.08em] uppercase';
+		'quiet-link flex items-center gap-1.5 text-xs font-medium tracking-[0.08em] uppercase';
 </script>
 
 <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 {className}">
